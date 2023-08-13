@@ -899,6 +899,24 @@ img[src*=stcomm]	{ vertical-align: text-top; }
 		border-bottom:  solid 1px rgba(0,0,0,.2) !important;	/* required to avoid to lose bottom line when focus is lost on select2. */
 	}
 
+	.cke_top {
+    	background: var(--colorbacktitle1) !important;
+    }
+
+	.cke_dialog_ui_vbox_child {
+    	color: var(--tooltipfontcolor) !important;
+    }
+
+	.cke_reset_all textarea, .cke_reset_all input[type="text"], .cke_reset_all input[type="password"] {
+    	color: var(--tooltipfontcolor) !important;
+    }
+
+	textarea.cke_source	{
+		box-shadow: none;
+		background-color:var(--inputbackgroundcolor) !important;
+		color: var(--colortext) !important;
+	}
+
 	textarea.cke_source:focus
 	{
 		box-shadow: none;
@@ -6289,7 +6307,7 @@ table.cal_event td.cal_event_right {
 .ui-widget-content {
 	border: solid 1px rgba(0,0,0,.3);
 	background: <?php print $bgcolor; ?> !important;
-	color: var(----colortext);
+	color: var(--colortext);
 }
 
 .ui-autocomplete-loading {
@@ -6300,8 +6318,6 @@ table.cal_event td.cal_event_right {
 	position:absolute;
 	width:auto;
 	font-size: 1.0em;
-	background-color:white;
-	border:1px solid #888;
 	margin:0px;
 }
 
@@ -6940,6 +6956,7 @@ display: block;
 font-family: <?php echo $fontlist; ?>;
 font-size: 1em;
 font-weight: normal;
+color: var(--colortext);
 line-height: 1.5;
 padding: .2em .4em;
 text-decoration: none;
@@ -6949,6 +6966,10 @@ zoom: 1;
 .ui-widget {
 font-family: <?php echo $fontlist; ?>;
 font-size: <?php echo $fontsize; ?>px;
+}
+
+.ui-widget.ui-widget-content {
+	border: solid 1px rgba(0,0,0,.3);
 }
 
 .ui-button {
@@ -9470,7 +9491,7 @@ ul.ulmenu {
 .cd-timeline-content {
 	position: relative;
 	margin-left: 60px;
-	background: white;
+	background: <?php echo (!empty($colorbline_hover) ? $colorbline_hover : 'white'); ?>;
 	border-radius: 0.25em;
 	padding: 1em;
 	background-image: -o-linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(230,230,230,0.4) 100%);
@@ -9512,7 +9533,7 @@ ul.ulmenu {
 	height: 0;
 	width: 0;
 	border: 7px solid transparent;
-	border-right: 7px solid white;
+	border-right: 7px solid <?php echo (!empty($colorbline_hover) ? $colorbline_hover : 'white'); ?>;
 }
 @media only screen and (min-width: 768px) {
 	.cd-timeline-content h2 {
@@ -9538,7 +9559,7 @@ ul.ulmenu {
 		top: 24px;
 		left: 100%;
 		border-color: transparent;
-		border-left-color: white;
+		border-left-color: <?php echo (!empty($colorbline_hover) ? $colorbline_hover : 'white'); ?>;
 	}
 	.cd-timeline-content .cd-read-more {
 		float: left;
@@ -9559,7 +9580,7 @@ ul.ulmenu {
 		left: auto;
 		right: 100%;
 		border-color: transparent;
-		border-right-color: white;
+		border-right-color: <?php echo (!empty($colorbline_hover) ? $colorbline_hover : 'white'); ?>;
 	}
 	.cd-timeline-block:nth-child(even) .cd-timeline-content .cd-read-more {
 		float: right;

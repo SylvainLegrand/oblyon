@@ -23,8 +23,8 @@ span.butAction, span.butActionDelete {
 	cursor: pointer;
 }
 
-.butAction {
-	background: <?php print $colorButtonAction1; ?>;
+.butAction, .cke_dialog_ui_button_ok {
+	background: <?php print $colorButtonAction1; ?> !important;
 }
 .butActionRefused, .butAction, .butAction:link, .butAction:visited, .butAction:hover, .butAction:active, .butActionDelete, .butActionDelete:link, .butActionDelete:visited, .butActionDelete:hover, .butActionDelete:active {
 	text-decoration: none;
@@ -75,18 +75,6 @@ span.butActionNewRefused>span.fa-list-alt, span.butActionNewRefused>span.fa-list
 	padding-left: 0px;
 }
 
-/*a.butActionNew>span.fa-plus-circle, a.butActionNew>span.fa-plus-circle:hover,
-span.butActionNew>span.fa-plus-circle, span.butActionNew>span.fa-plus-circle:hover,
-a.butActionNewRefused>span.fa-plus-circle, a.butActionNewRefused>span.fa-plus-circle:hover,
-span.butActionNewRefused>span.fa-plus-circle, span.butActionNewRefused>span.fa-plus-circle:hover,
-a.butActionNew>span.fa-list-alt, a.butActionNew>span.fa-list-alt:hover,
-span.butActionNew>span.fa-list-alt, span.butActionNew>span.fa-list-alt:hover,
-a.butActionNewRefused>span.fa-list-alt, a.butActionNewRefused>span.fa-list-alt:hover,
-span.butActionNewRefused>span.fa-list-alt, span.butActionNewRefused>span.fa-list-alt:hover,
-a.butActionNew>span.fa-comment-dots, a.butActionNew>span.fa-comment-dots:hover,
-span.butActionNew>span.fa-comment-dots, span.butActionNew>span.fa-comment-dots:hover,
-a.butActionNewRefused>span.fa-comment-dots, a.butActionNewRefused>span.fa-comment-dots:hover,
-span.butActionNewRefused>span.fa-comment-dots, span.butActionNewRefused>span.fa-comment-dots:hover,*/
 a.butActionNew>span.fa, a.butActionNew>span.fa:hover,
 span.butActionNew>span.fa, span.butActionNew>span.fa:hover,
 a.butActionNewRefused>span.fa, a.butActionNewRefused>span.fa:hover,
@@ -98,8 +86,8 @@ span.butActionNewRefused>span.fa, span.butActionNewRefused>span.fa:hover
 	box-shadow: none; webkit-box-shadow: none;
 }
 
-.butAction:hover   {
-	background: <?php print $colorButtonAction2; ?>;
+.butAction:hover, .cke_dialog_ui_button_ok:hover {
+	background: <?php print $colorButtonAction2; ?> !important;
 	-webkit-box-shadow: 0px 1px 4px 1px rgba(50, 50, 50, 0.4), 0px 0px 0px rgba(60,60,60,0.1);
 	box-shadow: 0px 1px 4px 1px rgba(50, 50, 50, 0.4), 0px 0px 0px rgba(60,60,60,0.1);
 }
@@ -108,13 +96,13 @@ span.butActionNewRefused>span.fa, span.butActionNewRefused>span.fa:hover
 	box-shadow: unset !important;
 }
 
-.butActionDelete, .butActionDelete:link, .butActionDelete:visited, .butActionDelete:hover, .butActionDelete:active, .buttonDelete {
-	background: <?php print $colorButtonDelete1; ?>;
+.butActionDelete, .butActionDelete:link, .butActionDelete:visited, .butActionDelete:hover, .butActionDelete:active, .buttonDelete, .cke_dialog_ui_button_cancel {
+	background: <?php print $colorButtonDelete1; ?> !important;
 	color: #ffffff;
 }
 
-.butActionDelete:hover {
-	background: <?php print $colorButtonDelete2; ?>;
+.butActionDelete:hover, .cke_dialog_ui_button_cancel:hover {
+	background: <?php print $colorButtonDelete2; ?> !important;
 	-webkit-box-shadow: 0px 1px 4px 1px rgba(50, 50, 50, 0.4), 0px 0px 0px rgba(60,60,60,0.1);
 	box-shadow: 0px 1px 4px 1px rgba(50, 50, 50, 0.4), 0px 0px 0px rgba(60,60,60,0.1);
 }
