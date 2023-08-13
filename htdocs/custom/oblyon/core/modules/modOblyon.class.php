@@ -114,7 +114,7 @@
 			oblyon_restore_module ($this->name);
 			// delete old menu manager
 			if (file_exists(dol_buildpath('/core/menus/standard/oblyon_menu.php')))	unlink(dol_buildpath('/core/menus/standard/oblyon_menu.php'));
-			if (file_exists(dol_buildpath('/core/menus/standard/oblyon.lib.php')))		unlink(dol_buildpath('/core/menus/standard/oblyon.lib.php'));
+			if (file_exists(dol_buildpath('/core/menus/standard/oblyon.lib.php')))	unlink(dol_buildpath('/core/menus/standard/oblyon.lib.php'));
 			dolibarr_set_const($this->db,'MAIN_THEME','oblyon', 'chaine', 0, '', $conf->entity);
 			dolibarr_set_const($this->db,'MAIN_MENU_INVERT', getDolGlobalInt('MAIN_MENU_INVERT_OBLYON_SAVE'), 'chaine', 0, '', $conf->entity);
 			dolibarr_del_const($this->db,'MAIN_MENU_INVERT_OBLYON_SAVE', $conf->entity);

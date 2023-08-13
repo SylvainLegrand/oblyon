@@ -101,8 +101,7 @@
 															'THEME_ELDY_TEXTLINK'
 															)
 										);
-	$listtheme					= array('green'		=> array(
-															'OBLYON_INFOXBOX_BACKGROUND'			=> '#FFFFFF',
+	$listtheme					= array('green'		=> array('OBLYON_INFOXBOX_BACKGROUND'			=> '#FFFFFF',
 															'OBLYON_COLOR_TOPMENU_BCKGRD'			=> '#34495E',
 															'OBLYON_COLOR_TOPMENU_BCKGRD_HOVER'		=> '#2C3E50',
 															'OBLYON_COLOR_TOPMENU_TXT'				=> '#FFFFFF',
@@ -157,8 +156,7 @@
 															'THEME_ELDY_TEXT'						=> '#000000',
 															'THEME_ELDY_TEXTLINK'					=> '#1C1C1C'
 															),
-										'dark'		=> array(
-															'OBLYON_INFOXBOX_BACKGROUND'			=> '#FFFFFF',
+										'dark'		=> array('OBLYON_INFOXBOX_BACKGROUND'			=> '#FFFFFF',
 															'OBLYON_COLOR_TOPMENU_BCKGRD'			=> '#333333',
 															'OBLYON_COLOR_TOPMENU_BCKGRD_HOVER'		=> '#0083A2',
 															'OBLYON_COLOR_TOPMENU_TXT'				=> '#F4F4F4',
@@ -213,8 +211,7 @@
 															'THEME_ELDY_TEXT'						=> '#000000',
 															'THEME_ELDY_TEXTLINK'					=> '#1C1C1C'
 															),
-										'blue'		=> array(
-															'OBLYON_INFOXBOX_BACKGROUND'			=> '#FFFFFF',
+										'blue'		=> array('OBLYON_INFOXBOX_BACKGROUND'			=> '#FFFFFF',
 															'OBLYON_COLOR_TOPMENU_BCKGRD'			=> '#092D5C',
 															'OBLYON_COLOR_TOPMENU_BCKGRD_HOVER'		=> '#0D4185',
 															'OBLYON_COLOR_TOPMENU_TXT'				=> '#F4F4F4',
@@ -269,8 +266,7 @@
 															'THEME_ELDY_TEXT'						=> '#000000',
 															'THEME_ELDY_TEXTLINK'					=> '#1C1C1C'
 															),
-										'night'		=> array(
-															'OBLYON_INFOXBOX_BACKGROUND'			=> '#444444',
+										'night'		=> array('OBLYON_INFOXBOX_BACKGROUND'			=> '#444444',
 															'OBLYON_COLOR_TOPMENU_BCKGRD'			=> '#222222',
 															'OBLYON_COLOR_TOPMENU_BCKGRD_HOVER'		=> '#333333',
 															'OBLYON_COLOR_TOPMENU_TXT'				=> '#F4F4F4',
@@ -325,8 +321,7 @@
 															'THEME_ELDY_TEXT'						=> '#000000',
 															'THEME_ELDY_TEXTLINK'					=> '#1C1C1C'
 															),
-										'light'		=> array(
-															'OBLYON_INFOXBOX_BACKGROUND'			=> '#FFFFFF',
+										'light'		=> array('OBLYON_INFOXBOX_BACKGROUND'			=> '#FFFFFF',
 															'OBLYON_COLOR_TOPMENU_BCKGRD'			=> '#FFFFFF',
 															'OBLYON_COLOR_TOPMENU_BCKGRD_HOVER'		=> '#D51123',
 															'OBLYON_COLOR_TOPMENU_TXT'				=> '#444444',
