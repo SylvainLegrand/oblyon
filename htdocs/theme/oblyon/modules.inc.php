@@ -11,8 +11,8 @@ if (! defined('ISLOADEDBYSTEELSHEET')) die('Must be call by steelsheet');
  */
  	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 
-	$cssdir		= $path.'/theme/'.$theme.'/modules/quicklist/';
+	$cssdir		= DOL_DOCUMENT_ROOT.$path.'/theme/'.$theme.'/modules';
 	$listcss	= dol_dir_list($cssdir, 'files', 0, '\.inc.php$', null, 'name', SORT_ASC, 1, 0, '', 0);
 	foreach ($listcss as $css) {
-		include dol_buildpath($css['fullname'], 0);
+		include dol_buildpath($path.'/theme/'.$theme.'/modules/'.$css['name'], 0);
 	}
