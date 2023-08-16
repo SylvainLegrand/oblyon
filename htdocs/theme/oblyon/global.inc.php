@@ -2869,7 +2869,7 @@ img.photorefnoborder {
 }
 
 .main-nav__link {
-	color: <?php print $navlinkcolor; ?>;
+	color: <?php print $bgnavtop_txt; ?> !important;
 	display: block;
 	font-family: <?php print $fontmainmenu; ?>;
 	transition: all .2s ease-in-out;
