@@ -922,6 +922,10 @@ img[src*=stcomm]	{ vertical-align: text-top; }
 		box-shadow: none;
 	}
 
+	select.cke_dialog_ui_input_select {
+		color: var(--tooltipfontcolor) !important;
+	}
+
 	.liste_titre .flat, .liste_titre select.flat {
 		margin: 2px;
 	}
@@ -1368,8 +1372,6 @@ span.butActionDelete {
 */
 
 .ok	        { color: #114466; }
-.warning    { color: #f07b6e !important }
-.error      { color: #7e1515 !important; font-weight: bold; }
 .green      { color: #118822 !important; }
 
 .bloc_success {
@@ -1404,9 +1406,10 @@ div.warning {
 	color: <?php echo $colorWarningTxt; ?>;
 }
 
-/* Error message */
+/* Error message */ /* Doit corriger .../opensurvey/css/style.css */
 div.error {
-	border-<?php print $left; ?>: solid 5px <?php print $colorErrorBorder; ?>;
+	border-<?php print $left; ?>: solid 5px <?php print $colorErrorBorder; ?> !important;
+	text-align: <?php print $left; ?> !important;
 	padding-top: 8px;
 	padding-left: 10px;
 	padding-right: 4px;
@@ -1414,6 +1417,7 @@ div.error {
 	margin: 0.5em 0em 0.5em 0em;
 	background: <?php print $colorErrorBg; ?>;
 	color: <?php echo $colorErrorTxt; ?>;
+	font-size: unset !important;
 }
 
 /* Info admin */
