@@ -2751,7 +2751,7 @@ div.attachareaformuserfileecm {
 div.arearef {
 <?php if (!empty($conf->global->FIX_AREAREF_TABACTION)) { ?>
 	position: sticky;
-    z-index: 94;
+    z-index: 4;
 	<?php if (!empty($conf->global->MAIN_MENU_INVERT)) { ?>
 	top: 40px;
 	<?php } else { ?>
