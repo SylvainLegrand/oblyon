@@ -1,7 +1,7 @@
 <?php
 	/************************************************
 	* Copyright (C) 2015-2024   Alexandre Spangaro   <alexandre@inovea-conseil.com>
-	* Copyright (C) 2022        Sylvain Legrand      <contact@infras.fr>
+	* Copyright (C) 2022-2024   Sylvain Legrand      <contact@infras.fr>
 	*
 	* This program is free software: you can redistribute it and/or modify
 	* it under the terms of the GNU General Public License as published by
@@ -131,6 +131,8 @@
 	$colorNotifErrorTxt			= $conf->global->OBLYON_COLOR_NOTIF_ERROR_TEXT;			// default value: #a72947
 	$colorTextTabActive			= $conf->global->OBLYON_COLOR_TEXTTABACTIVE;			// default value: #222222
 	$colorBckgrdInput			= $conf->global->OBLYON_COLOR_INPUT_BCKGRD;				// default value: #DEDEDE
+	$color1BckgrdInfobox		= $conf->global->OBLYON_COLOR_INFOBOX_BCKGRD1;			// default value: #444444
+	$color2BckgrdInfobox		= $conf->global->OBLYON_COLOR_INFOBOX_BCKGRD2;			// default value: #E4EFE8
 	$bgotherbox					= '#f4f4f4';											// default value: #E6E6E6	//	Other information boxes on home page
 	$bgbutton_hover				= '#197489';											// default value: #197489
 	if (!empty($maincolor)) {

@@ -1,7 +1,7 @@
 <?php
 	/************************************************
-	* Copyright (C) 2015-2022  Alexandre Spangaro   <alexandre@inovea-conseil.com>
-	* Copyright (C) 2023	   Sylvain Legrand	  <contact@infras.fr>
+	* Copyright (C) 2015-2024  Alexandre Spangaro   <alexandre@inovea-conseil.com>
+	* Copyright (C) 2023-2024  Sylvain Legrand	    <contact@infras.fr>
 	*
 	* This program is free software: you can redistribute it and/or modify
 	* it under the terms of the GNU General Public License as published by
@@ -86,7 +86,9 @@
 															'OBLYON_COLOR_FLINE_HOVER',
 															'OBLYON_COLOR_FDATE_DEFAULT',
 															'OBLYON_COLOR_TEXTTABACTIVE',
-															'OBLYON_COLOR_INPUT_BCKGRD'
+															'OBLYON_COLOR_INPUT_BCKGRD',
+															'OBLYON_COLOR_INFOBOX_BCKGRD1',
+															'OBLYON_COLOR_INFOBOX_BCKGRD2'
 															),
 										'eldy'		=> array('THEME_ELDY_TOPBORDER_TITLE1',
 															'THEME_ELDY_BACKTITLE1',
@@ -145,6 +147,8 @@
 															'OBLYON_COLOR_FDATE_DEFAULT'			=> '#FF0000',
 															'OBLYON_COLOR_TEXTTABACTIVE'			=> '#222222',
 															'OBLYON_COLOR_INPUT_BCKGRD'				=> '#FFFFFF',
+															'OBLYON_COLOR_INFOBOX_BCKGRD1'			=> '#444444',
+															'OBLYON_COLOR_INFOBOX_BCKGRD2'			=> '#E4EFE8',
 															'THEME_INVERT_RATIO_FILTER'				=> '0',
 															'THEME_ELDY_TOPBORDER_TITLE1'			=> '#FFFFFF',
 															'THEME_ELDY_BACKTITLE1'					=> '#E9EAED',
@@ -202,6 +206,8 @@
 															'OBLYON_COLOR_FDATE_DEFAULT'			=> '#FF0000',
 															'OBLYON_COLOR_TEXTTABACTIVE'			=> '#222222',
 															'OBLYON_COLOR_INPUT_BCKGRD'				=> '#FFFFFF',
+															'OBLYON_COLOR_INFOBOX_BCKGRD1'			=> '#444444',
+															'OBLYON_COLOR_INFOBOX_BCKGRD2'			=> '#E4EFE8',
 															'THEME_INVERT_RATIO_FILTER'				=> '80',
 															'THEME_ELDY_TOPBORDER_TITLE1'			=> '#FFFFFF',
 															'THEME_ELDY_BACKTITLE1'					=> '#E9EAED',
@@ -259,6 +265,8 @@
 															'OBLYON_COLOR_FDATE_DEFAULT'			=> '#FF0000',
 															'OBLYON_COLOR_TEXTTABACTIVE'			=> '#222222',
 															'OBLYON_COLOR_INPUT_BCKGRD'				=> '#FFFFFF',
+															'OBLYON_COLOR_INFOBOX_BCKGRD1'			=> '#444444',
+															'OBLYON_COLOR_INFOBOX_BCKGRD2'			=> '#E4EFE8',
 															'THEME_INVERT_RATIO_FILTER'				=> '0',
 															'THEME_ELDY_TOPBORDER_TITLE1'			=> '#FFFFFF',
 															'THEME_ELDY_BACKTITLE1'					=> '#E9EAED',
@@ -316,6 +324,8 @@
 															'OBLYON_COLOR_FDATE_DEFAULT'			=> '#FF0000',
 															'OBLYON_COLOR_TEXTTABACTIVE'			=> '#222222',
 															'OBLYON_COLOR_INPUT_BCKGRD'				=> '#DEDEDE',
+															'OBLYON_COLOR_INFOBOX_BCKGRD1'			=> '#444444',
+															'OBLYON_COLOR_INFOBOX_BCKGRD2'			=> '#E4EFE8',
 															'THEME_INVERT_RATIO_FILTER'				=> '0',
 															'THEME_ELDY_TOPBORDER_TITLE1'			=> '#FFFFFF',
 															'THEME_ELDY_BACKTITLE1'					=> '#E9EAED',
@@ -373,6 +383,8 @@
 															'OBLYON_COLOR_FDATE_DEFAULT'			=> '#FF0000',
 															'OBLYON_COLOR_TEXTTABACTIVE'			=> '#222222',
 															'OBLYON_COLOR_INPUT_BCKGRD'				=> '#F4F4F4',
+															'OBLYON_COLOR_INFOBOX_BCKGRD1'			=> '#444444',
+															'OBLYON_COLOR_INFOBOX_BCKGRD2'			=> '#E4EFE8',
 															'THEME_INVERT_RATIO_FILTER'				=> '0',
 															'THEME_ELDY_TOPBORDER_TITLE1'			=> '#FFFFFF',
 															'THEME_ELDY_BACKTITLE1'					=> '#E9EAED',

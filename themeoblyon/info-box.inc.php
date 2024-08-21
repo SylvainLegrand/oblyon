@@ -228,7 +228,7 @@ a.info-box-text-a i.fa.fa-exclamation-triangle {
     height: 86px;   /* 96 - margins of .info-box-sm .info-box-content */
 }
 .info-box-sm .info-box-module-enabled {
-	background: linear-gradient(0.35turn, #fff, #fff, #f6faf8, #e4efe8);
+	background: linear-gradient(0.35turn, var(--color1BckgrdInfobox), var(--color1BckgrdInfobox), var(--color2BckgrdInfobox), var(--color2BckgrdInfobox));
 }
 .info-box-content-warning span.font-status4 {
     color: #bc9526 !important;

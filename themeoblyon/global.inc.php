@@ -33,6 +33,8 @@
 	--colortopbordertitle1: rgb(<?php print $colortopbordertitle1; ?>);
 	--listetotal: #888888;
 	--inputbackgroundcolor: <?php echo $colorBckgrdInput; ?>;
+	--color1BckgrdInfobox: <?php echo $color1BckgrdInfobox; ?>;
+	--color2BckgrdInfobox: <?php echo $color2BckgrdInfobox; ?>;
 	--inputbordercolor: rgba(0,0,0,.15);
 	--tooltipbgcolor: <?php print $toolTipBgColor; ?>;
 	--tooltipfontcolor : <?php print $toolTipFontColor; ?>;

@@ -1,6 +1,6 @@
 --	/************************************************
---	* Copyright (C) 2015-2022  Alexandre Spangaro   <alexandre@inovea-conseil.com>
---	* Copyright (C) 2022       Sylvain Legrand      <contact@infras.fr>
+--	* Copyright (C) 2015-2024  Alexandre Spangaro   <alexandre@inovea-conseil.com>
+--	* Copyright (C) 2022-2024  Sylvain Legrand      <contact@infras.fr>
 --	*
 --	* This program is free software: you can redistribute it and/or modify
 --	* it under the terms of the GNU General Public License as published by
@@ -96,6 +96,8 @@ INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_FDATE_DEFAULT',				'__ENTITY__', '#FF0000',			'chaine',	'0',	'Oblyon text default date (today) color');
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_TEXTTABACTIVE',				'__ENTITY__', '#222222',			'chaine',	'0',	'Oblyon text tab active');
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_INPUT_BCKGRD',				'__ENTITY__', '#FFFFFF',			'chaine',	'0',	'Oblyon background imput color');
+INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_INFOBOX_BCKGRD1',			'__ENTITY__', '#444444',			'chaine',	'0',	'Oblyon Background color 1 of active kanban cards');
+INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_INFOBOX_BCKGRD2',			'__ENTITY__', '#E4EFE8',			'chaine',	'0',	'Oblyon Background color 1 of active kanban cards');
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('THEME_INVERT_RATIO_FILTER',				'__ENTITY__', '0',					'chaine',	'0',	'Oblyon Ratio for invert filter');
 -- Color - Default Eldy values
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('THEME_ELDY_TOPBORDER_TITLE1',				'__ENTITY__', '#D4D4D4',			'chaine',	'0',	'Oblyon module');
