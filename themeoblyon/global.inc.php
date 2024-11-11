@@ -44,7 +44,7 @@
 	--dolgraphbg: rgba(255,255,255,0);
 	--fieldrequiredcolor: #400030;
     --fontfamilydol:<?php print $fontlisted; ?>;
-    --fontsize:<?php echo $colorfline; ?>;
+    --fontsize:<?php print $fontsize; ?>;
 	--colortextbacktab: <?php print $colorTextTabActive; ?>;
 	--colorboxiconbg: #eee;
 	--refidnocolor:#444;
@@ -131,7 +131,7 @@ body {
     color: var(--colorfline) !important;
     font-family: var(--fontfamilydol)!important; /*lucky*/ 
 <?php if (empty($dol_use_jmobile) || 1==1) { ?>
-    font-size: var(--fontsize)px;
+    font-size: <?php print $fontsize; ?>px;
 <?php } ?>
     -webkit-font-smoothing: subpixel-antialiased;
     margin: 0;
@@ -3767,7 +3767,7 @@ div.login a:hover {
 
 .sec-nav .sec-nav__link {
     color: <?php print $bgnavleft_txt; ?>;
-    font-size: var(--fontsize)px;
+    font-size: <?php print $fontsize; ?>px;
     font-family: var(--fontfamilydol); /*lucky*/
     font-weight: normal;
     text-align: <?php print $left; ?>;
@@ -3888,7 +3888,7 @@ font-size: 14px;
 .blockvmenusearch a:active {
     color: #eee;
     font-family: <?php print $fontmenusearch; ?>;
-    font-size:var(--fontsize)px;
+    font-size:<?php print $fontsize; ?>px;
     text-align: <?php print $left; ?>;
 }
 
@@ -3937,7 +3937,7 @@ font-size: 14px;
 .blockvmenubookmarks a:active{
     color: var(--colorfline);
     font-family: <?php print $fontmenubookmarks; ?>;
-    font-size:var(--fontsize)px;
+    font-size:<?php print $fontsize; ?>px;
 }
 
 .blockvmenubookmarks a.vmenu:link,
@@ -3969,7 +3969,7 @@ font-size: 14px;
 
 .blockvmenuhelp a {
     font-family: <?php print $fontmenuhelp; ?>;
-    font-size: var(--fontsize)px;
+    font-size: <?php print $fontsize; ?>px;
     display: inline-block;
 }
 
@@ -4611,7 +4611,7 @@ a.vmenu:visited,
 a.vmenu:hover,
 a.vmenu:active,
 span.vmenu {
-    font-size:var(--fontsize)px;
+    font-size:<?php print $fontsize; ?>px;
     font-weight: normal;
     text-align: <?php print $left; ?>;
     text-decoration: none;
@@ -4624,7 +4624,7 @@ span.vmenu {
 
 font.vmenudisabled	{
     color: #93a5aa;
-    font-size:var(--fontsize)px;
+    font-size:<?php print $fontsize; ?>px;
     font-weight: bold;
     text-align: <?php print $left; ?>;
 }
@@ -4663,7 +4663,7 @@ color: <?php print $maincolor; ?>;
 
 font.vsmenudisabled {
 color: #93a5aa;
-font-size:var(--fontsize)px;
+font-size:<?php print $fontsize; ?>px;
 font-weight: normal;
 text-align: <?php print $left; ?>;
 }
@@ -4980,7 +4980,7 @@ otherwise color shifts while dragging when bar can't keep up with mouse */
 
 .ui-layout-toggler .content {	/* style the text we put INSIDE the togglers */
     color:					#666;
-    font-size:var(--fontsize)px;
+    font-size:<?php print $fontsize; ?>px;
     font-weight:		bold;
     width:					100%;
     padding-bottom: .35ex; /* to 'vertically center' text inside text-span */
@@ -5039,7 +5039,7 @@ otherwise color shifts while dragging when bar can't keep up with mouse */
 
 .ecm-layout-toggler .content {	/* style the text we put INSIDE the togglers */
     color: #666;
-    font-size:var(--fontsize)px;
+    font-size:<?php print $fontsize; ?>px;
     font-weight: bold;
     width: 100%;
     padding-bottom: .35ex; /* to 'vertically center' text inside text-span */
@@ -6121,7 +6121,7 @@ a.impayee:hover { font-weight: bold; color: #550000; }
 }
 
 .ui-dialog-content {
-font-size: var(--fontsize)px !important;
+font-size: <?php print $fontsize; ?>px !important;
 }
 
 
