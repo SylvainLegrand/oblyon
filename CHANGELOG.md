@@ -3,9 +3,10 @@
 - Add option to change the Dolibarr font family 
 - Seperate the option to change the text color of line titles and the main title
 
-### Version 3.0.6 - Compatibility 14.0.x - 20.0.x (2024/09/01)
+### Version 3.0.6 - Compatibility 14.0.x - 20.0.x (2024/09/30)
 - Fix CSS badges
 - Fix CSS for FIX_AREAREF_TABACTION
+- Fix print_oblyon_menu function with $noout=1 still prints something (Thanks UltraViolet33 from Easya Solutions)
 
 ### Version 3.0.5 - Compatibility 14.0.x - 20.0.x (2024/09/01)
 - Fix Z-index with option FIX_AREAREF_TABACTION activated

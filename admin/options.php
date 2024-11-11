@@ -30,7 +30,6 @@
 	require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 	require_once '../lib/oblyon.lib.php';
-	
 
 	// Translations *********************************
 	$langs->loadLangs(array('admin', 'oblyon@oblyon', 'inovea@oblyon'));
@@ -55,10 +54,7 @@
 		$confkey								= $reg[1];
 		$error									= 0;
 		foreach ($list[$confkey] as $constname)	$result	= dolibarr_set_const($db, $constname, GETPOST($constname, 'alpha'),'chaine', 0, 'Oblyon module', $conf->entity);
-
 	}
-
-
 	// Retour => message Ok ou Ko
 	if ($result == 1)			setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
 	if ($result == -1)			setEventMessages($langs->trans('Error'), null, 'errors');
@@ -177,8 +173,7 @@
 		oblyon_print_input('MAIN_USE_TOP_MENU_BOOKMARK_DROPDOWN', 'on_off', $langs->trans('OblyonMainUseBookmarkDropdown'), '', $metas, 2, 1);    // Bookmark dropdown menu
 	}
 	$metas	= array(array(), $conf->entity, 0, 0, 1, 0, 0, 0, '', 'options');
-	oblyon_print_input('OBLYON_PADDING_RIGHT_BOTTOM', 'on_off', $langs->trans('OblyonPaddingRightBottom'), '', $metas, 2, 1);
-		// Add padding on bottom
+	oblyon_print_input('OBLYON_PADDING_RIGHT_BOTTOM', 'on_off', $langs->trans('OblyonPaddingRightBottom'), '', $metas, 2, 1);	// Add padding on bottom
 	// Login
 	$metas	= array(array(3), 'OblyonLogin');
 	oblyon_print_liste_titre($metas);
@@ -225,6 +220,4 @@
 	// End of page
 	llxFooter();
 	$db->close();
-
-
 ?>

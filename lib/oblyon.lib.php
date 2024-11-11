@@ -109,6 +109,12 @@
 		global $db, $conf, $langs, $errormsg;
         require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 
+		// Set to UTF-8
+		if (is_a($db, 'DoliDBMysqli'))	$db->db->set_charset('utf8');
+		else {
+			$db->query('SET NAMES utf8');
+			$db->query('SET CHARACTER SET utf8');
+		}
 		// Control dir and file
 		$path		= DOL_DATA_ROOT.'/'.(empty($conf->global->MAIN_MODULE_MULTICOMPANY) || $conf->entity == 1 ? '' : $conf->entity.'/').$appliname.'/sql';
 		$bkpfile	= $path.'/update.'.$conf->entity;
