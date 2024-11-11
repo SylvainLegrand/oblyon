@@ -74,6 +74,7 @@ FixStickyFirstColumn                 = Fixer la première colonne des tableaux l
 FixStickyLastColumn                  = Fixer la dernière colonne des tableaux lors d'un défilement horizontal
 General                              = Paramètres généraux
 OblyonFontSize                       = Taille du texte de base en pixels (doit être entre 10 et 16)
+OblyonFontFamily                     = Font utiliser pour l'interface Dolibarr
 MainStatusUseImages                  = Les différents statuts des éléments seront affichés sous forme d'icône avec ou sans texte explicatif (sinon un libellé coloré sera utilisé)
 
 #
@@ -93,6 +94,7 @@ OBLYON_COLOR_LOGO_BCKGRD           = Couleur de fond du logo
 OBLYON_COLOR_LOGIN_BCKGRD          = Couleur de fond de la page de connexion
 OBLYON_COLOR_BTITLE                = Couleur de fond des titres
 OBLYON_COLOR_FTITLE                = Couleur de texte des titres
+OBLYON_COLOR_STITLE                = Couleur de texte du titre principal
 OBLYON_COLOR_BLINE                 = Couleur de fond des lignes
 OBLYON_COLOR_BLINE_HOVER           = Couleur de fond des lignes survolées
 OBLYON_COLOR_FDATE_DEFAULT         = Couleur de la date par défaut (date du jour) dans les calendriers de choix

@@ -89,6 +89,7 @@ INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_LOGIN_BCKGRD',				'__ENTITY__', '#F4F4F4',			'chaine',	'0',	'Oblyon background login color');
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_BTITLE',						'__ENTITY__', '#0083A2',			'chaine',	'0',	'Oblyon background title');
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_FTITLE',						'__ENTITY__', '#222222',			'chaine',	'0',	'Oblyon text title');
+INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_STITLE',						'__ENTITY__', '#222222',			'chaine',	'0',	'Oblyon text title');
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_BLINE',						'__ENTITY__', '#FFFFFF',			'chaine',	'0',	'Oblyon background line color');
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_BLINE_HOVER',				'__ENTITY__', '#E0E0E0',			'chaine',	'0',	'Oblyon background line color hover');
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_COLOR_FLINE',						'__ENTITY__', '#444444',			'chaine',	'0',	'Oblyon text line');
@@ -148,6 +149,7 @@ INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_INFOXBOX_TICKET_COLOR',			'__ENTITY__', '#C93E28',			'chaine',	'0',	'Oblyon Dashboard ticket background color');
 
 -- Options - general
+INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_FONT_FAMILY',                      '__ENTITY__', 'Arial',              'chaine',   '0',    'Oblyon module') ON DUPLICATE KEY UPDATE value = 'Arial';
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_FONT_SIZE',						'__ENTITY__', '14',					'chaine',	'0',	'Oblyon module');
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_IMAGE_HEIGHT_TABLE',		    	'__ENTITY__', '24',					'chaine',	'0',	'Oblyon max height for image on tables');
 INSERT INTO llx_const (name, entity, value, type, visible, note) VALUES ('OBLYON_DISABLE_VERSION',					'__ENTITY__', '1',					'yesno',	'0',	'Oblyon module');

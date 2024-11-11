@@ -30,6 +30,7 @@
 	require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 	require_once '../lib/oblyon.lib.php';
+	
 
 	// Translations *********************************
 	$langs->loadLangs(array('admin', 'oblyon@oblyon', 'inovea@oblyon'));
@@ -50,11 +51,14 @@
 	}
 	// Update buttons management
 	if (preg_match('/update_(.*)/', $action, $reg)) {
-		$list									= array ('Gen' => array('OBLYON_FONT_SIZE', 'OBLYON_IMAGE_HEIGHT_TABLE'));
+		$list									= array ('Gen' => array('OBLYON_FONT_SIZE', 'OBLYON_IMAGE_HEIGHT_TABLE','OBLYON_FONT','OBLYON_FONT_FAMILY'));
 		$confkey								= $reg[1];
 		$error									= 0;
-		foreach ($list[$confkey] as $constname)	$result	= dolibarr_set_const($db, $constname, GETPOST($constname, 'alpha'), 'chaine', 0, 'Oblyon module', $conf->entity);
+		foreach ($list[$confkey] as $constname)	$result	= dolibarr_set_const($db, $constname, GETPOST($constname, 'alpha'),'chaine', 0, 'Oblyon module', $conf->entity);
+
 	}
+
+
 	// Retour => message Ok ou Ko
 	if ($result == 1)			setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
 	if ($result == -1)			setEventMessages($langs->trans('Error'), null, 'errors');
@@ -101,6 +105,65 @@
 	oblyon_print_liste_titre($metas);
 	$metas						= array('type' => 'number', 'class' => 'flat quatrevingtpercent right action', 'dir' => 'rtl', 'min' => '10', 'max' => '16');
 	oblyon_print_input('OBLYON_FONT_SIZE', 'input', $langs->trans('OblyonFontSize'), '', $metas, 2, 1);	// Font size
+
+	//Lucky
+	// Liste des polices web standards
+	$font_options = array(
+		'Arial' 				=> 'Arial',
+		'Arial Black' 			=> 'Arial Black',
+		'Arial Narrow' 			=> 'Arial Narrow',
+		'Calibri' 				=> 'Calibri',
+		'Cambria' 				=> 'Cambria',
+		'Candara' 				=> 'Candara',
+		'Century Gothic' 		=> 'Century Gothic',
+		'Comic Sans MS' 		=> 'Comic Sans MS',
+		'Consolas' 				=> 'Consolas',
+		'Courier New' 			=> 'Courier New',
+		'Copperplate Gothic'	=> 'Copperplate Gothic',
+		'Franklin Gothic'		=> 'Franklin Gothic',
+		'Georgia' 				=> 'Georgia',
+		'Gill Sans'				=> 'Gill Sans',
+    	'Helvetica' 			=> 'Helvetica',
+		'Impact' 				=> 'Impact',
+		'Lucida Console'		=> 'Lucida Console',
+		'Lucida Sans'			=> 'Lucida Sans',
+		'Microsoft Sans Serif'	=> 'Microsoft Sans Serif',
+		'Open Sans' 			=> 'Open Sans',
+		'Palatino Linotype' 	=> 'Palatino Linotype',
+		'Sans-serif' 			=> 'Sans-serif',
+		'Segoe UI'				=> 'Segoe UI',
+		'Tahoma' 				=> 'Tahoma',
+		'Times New Roman' 		=> 'Times New Roman',
+    	'Trebuchet MS' 			=> 'Trebuchet MS',
+    	'Verdana' 				=> 'Verdana',
+	
+		
+	);
+	$currentFont = !empty($conf->global->OBLYON_FONT_FAMILY) ? $conf->global->OBLYON_FONT_FAMILY : 'Arial';
+	// Définir les métadonnées pour le champ de sélection
+	/* $metas = '<select name="OBLYON_FONT_FAMILY" id="OBLYON_FONT_FAMILY" class="flat quatrevingtpercent right action">';
+	foreach ($font_options as $value => $label) {
+		$selected = ($conf->global->OBLYON_FONT_FAMILY == $value) ? 'selected' : '';
+		$metas .= '<option value="'.$value.'" '.$selected.'>'.$label.'</option>';
+	}
+	$metas .= '</select>'; */
+	$metas = '<select name="OBLYON_FONT_FAMILY" id="OBLYON_FONT_FAMILY" class="flat quatrevingtpercent right action">';
+	foreach ($font_options as $font => $fontName) {
+    // Vérifie si la police est la sélectionnée et définit l'attribut selected
+    $selected = ($font === $currentFont) ? 'selected' : '';
+    $metas .= '<option value="'.htmlspecialchars($font).'" '.$selected.'>'.htmlspecialchars($fontName).'</option>';
+	}
+	$metas .= '</select>';
+
+	// Affichage du champ dans les options
+	oblyon_print_input('OBLYON_FONT_FAMILY', 'select', $langs->trans('OblyonFontFamily'), '', $metas, 2, 1);
+	// Enregistrement de la sélection dans la base de données
+	if (isset($_POST['OBLYON_FONT_FAMILY'])) {
+		$font_family = $db->escape($_POST['OBLYON_FONT_FAMILY']);
+		dolibarr_set_const($db, 'OBLYON_FONT_FAMILY', $font_family, 'chaine', 0, '', $conf->entity);
+	}
+	//Lucky
+
 	$metas						= array('type' => 'number', 'class' => 'flat quatrevingtpercent right action', 'dir' => 'rtl', 'min' => '24', 'max' => '128');
 	oblyon_print_input('OBLYON_IMAGE_HEIGHT_TABLE', 'input', $langs->trans('OblyonImageHeightTable'), '', $metas, 2, 1);	// Max height for Image on table list
 	$metas						= array(array(), $conf->entity, 0, 0, 1, 0, 0, 0, '', 'options');
@@ -114,7 +177,8 @@
 		oblyon_print_input('MAIN_USE_TOP_MENU_BOOKMARK_DROPDOWN', 'on_off', $langs->trans('OblyonMainUseBookmarkDropdown'), '', $metas, 2, 1);    // Bookmark dropdown menu
 	}
 	$metas	= array(array(), $conf->entity, 0, 0, 1, 0, 0, 0, '', 'options');
-	oblyon_print_input('OBLYON_PADDING_RIGHT_BOTTOM', 'on_off', $langs->trans('OblyonPaddingRightBottom'), '', $metas, 2, 1);	// Add padding on bottom
+	oblyon_print_input('OBLYON_PADDING_RIGHT_BOTTOM', 'on_off', $langs->trans('OblyonPaddingRightBottom'), '', $metas, 2, 1);
+		// Add padding on bottom
 	// Login
 	$metas	= array(array(3), 'OblyonLogin');
 	oblyon_print_liste_titre($metas);
@@ -161,4 +225,6 @@
 	// End of page
 	llxFooter();
 	$db->close();
+
+
 ?>
