@@ -152,6 +152,7 @@
 	$login_bgcolor						= $conf->global->OBLYON_COLOR_LOGIN_BCKGRD;		// default value : #f4f4f4
 	$colorbtitle						= $conf->global->OBLYON_COLOR_BTITLE;			// default value : #E09430
 	$colorftitle						= $conf->global->OBLYON_COLOR_FTITLE;			// default value : #F4F4F4
+	$colorStitle						= $conf->global->OBLYON_COLOR_STITLE;			// default value : #F4F4F4
 	$colorbline							= $conf->global->OBLYON_COLOR_BLINE;			// default value : #FFFFFF
 	$colorbline_hover					= $conf->global->OBLYON_COLOR_BLINE_HOVER;		// default value : #F1F1F1
 	$colorfline							= $conf->global->OBLYON_COLOR_FLINE;			// default value : #444444

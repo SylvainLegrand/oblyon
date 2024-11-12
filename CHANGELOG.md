@@ -1,4 +1,7 @@
 ## Changelog ##
+### Version 3.0.7 - Compatibility 14.0.x - 20.0.x (2024/11/07)
+- Add option to change the Dolibarr font family 
+- Seperate the option to change the text color of line titles and the main title
 
 ### Version 3.0.6 - Compatibility 14.0.x - 20.0.x (2024/09/30)
 - Fix CSS badges
