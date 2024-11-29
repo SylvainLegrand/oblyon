@@ -71,6 +71,7 @@ RemoveKanbanViewInList               = Remove the "Kanban view" button at the to
 FixStickyTableHeadersColumns         = Fix the table column header on the elements during vertical scrolling
 General                              = General parameters
 OblyonFontSize                       = Basic text size in pixels (must be between 10 and 16)
+OblyonFontFamily                     = Change Font family for Dolibarr interface
 MainStatusUseImages                  = The different statuses of the elements will be displayed as icons with or without explanatory text (otherwise a colored label will be used)
 
 #
@@ -85,6 +86,7 @@ OBLYON_COLOR_LOGO_BCKGRD           = Logo background color
 OBLYON_COLOR_LOGIN_BCKGRD          = Login background color
 OBLYON_COLOR_BTITLE                = Title background color
 OBLYON_COLOR_FTITLE                = Text color of the titles
+OBLYON_COLOR_STITLE                = Text color of the Main titles
 OBLYON_COLOR_BLINE                 = Lines background color
 OBLYON_COLOR_BLINE_HOVER           = Background color of the hovered lines
 OBLYON_COLOR_FDATE_DEFAULT         = Default date color (today's date) in choice calendars

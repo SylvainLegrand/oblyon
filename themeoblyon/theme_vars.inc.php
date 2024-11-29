@@ -36,6 +36,10 @@
 	// Define fonts
 	$fontlist			= '"Century Gothic", "Futura PT", sans-serif';
 	$fontboxtitle		= '"Century Gothic", "Futura PT", sans-serif';
+	//lucky
+	$fontlisted = '"' . (!empty($conf->global->OBLYON_FONT_FAMILY) ? $conf->global->OBLYON_FONT_FAMILY : 'Century Gothic') . '", sans-serif';// Valeur par défaut
+	//lucky
+	//$fontlisted = !empty($conf->global->OBLYON_FONT_FAMILY) ? $conf->global->OBLYON_FONT_FAMILY : '"Century Gothic", "Futura PT", "Tahoma", "Verdana", sans-serif';
 	/* Main menu */
 	$fontmainmenu		= '"Century Gothic", "Futura PT", sans-serif';
 	/* Secondary menu */

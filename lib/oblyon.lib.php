@@ -156,7 +156,7 @@ SET SQL_MODE = \'NO_AUTO_VALUE_ON_ZERO\';
 			$sql_const			.= ')';
 			$sql_const			.= ' AND entity = "'.$conf->entity.'"';
 			$sql_const			.= ' ORDER BY name';
-			fwrite($handle, oblyon_bkup_table ('const', $sql_const, $cols_const, $duplicate_constduplicate_const));
+			fwrite($handle, oblyon_bkup_table ('const', $sql_const, $cols_const, $duplicate_const));
 			// Enabling back the keys/index checking
 			$sqlfooter		= '
 SET FOREIGN_KEY_CHECKS = 1;
@@ -408,4 +408,40 @@ SET FOREIGN_KEY_CHECKS = 1;
 		if (preg_match('/<td(.*)/', $end, $reg))	print $end;
 		print '	</tr>';
 	}
+	function oblyon_print_dropdown($confkey, $desc = '', $help = '', $metas = array(), $cs1 = '2', $cs2 = '1', $begin = '', $end = '')
+{
+    global $langs, $conf;
+
+    print '<tr class="oddeven">';
+    print '<td colspan="'.$cs1.'">';
+    if (!empty($help)) {
+        print '<span title="'.$langs->trans($help).'">'.$desc.'</span>';
+    } else {
+        print $desc;
+    }
+    print '</td>';
+    print '<td colspan="'.$cs2.'" class="center">';
+
+    // Begin the select field
+    print (!empty($begin) && !preg_match('/<td(.*)/', $begin, $reg) ? $begin : '');
+
+    $selected_value = isset($conf->global->$confkey) ? $conf->global->$confkey : '';
+
+    print '<select name="'.$metas['name'].'" id="'.$metas['id'].'" class="'.$metas['class'].'" style="'.$metas['style'].'">';
+
+    // Loop through options and create the dropdown
+    if (!empty($metas['options'])) {
+        foreach ($metas['options'] as $key => $value) {
+            $selected = ($selected_value == $key) ? 'selected' : '';
+            print '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+        }
+    }
+
+    print '</select>';
+
+    print (!empty($end) && !preg_match('/<td(.*)/', $end, $reg) ? $end : '');
+    print '</td>';
+    print '</tr>';
+}
+
 ?>

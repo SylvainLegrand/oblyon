@@ -22,6 +22,7 @@
 	--colorbackbody: rgb(<?php print $colorbackbody; ?>);
 	--colorbackmobilemenu: #f8f8f8;
 	--colorbackgrey: #f0f0f0;
+    --colorfline: <?php echo $colorfline; ?>;
 	--colortexttitlenotab: rgb(<?php print $colortexttitlenotab; ?>);
 	--colortexttitlenotab2: rgb(<?php print $colortexttitlenotab2; ?>);
 	--colortexttitle: rgba(<?php print $colortexttitle; ?>, 0.9);
@@ -42,6 +43,8 @@
 	--colorboxstatsborder: <?php echo $bgnavtop ?>;
 	--dolgraphbg: rgba(255,255,255,0);
 	--fieldrequiredcolor: #400030;
+    --fontfamilydol:<?php print $fontlisted; ?>;
+    --fontsize:<?php print $fontsize; ?>;
 	--colortextbacktab: <?php print $colorTextTabActive; ?>;
 	--colorboxiconbg: #eee;
 	--refidnocolor:#444;
@@ -76,6 +79,7 @@ time, mark, audio, video {
     padding: 0;
     border: 0;
     font-size: 100%;
+    font-family: var(--fontfamilydol); /*lucky*/ 
 /*	font: inherit;	*/
 /*	vertical-align: middle;	*/
 }
@@ -114,6 +118,7 @@ html {
 html, body {
     height: 100%;
     font-size: 100%;
+    font-family: var(--fontfamilydol);
 }
 
 body {
@@ -121,10 +126,10 @@ body {
 <?php if (GETPOST("optioncss") == 'print') {	?>
     background-color: #fff !important;
 <?php } else { ?>
-    background-color: <?php print $bgcolor; ?> !important;
+    background-color: var(--bgcolor)!important;
 <?php } ?>
-    color: <?php echo $colorfline; ?> !important;
-    font-family: <?php print $fontlist; ?>, sans-serif;
+    color: var(--colorfline) !important;
+    font-family: var(--fontfamilydol)!important; /*lucky*/ 
 <?php if (empty($dol_use_jmobile) || 1==1) { ?>
     font-size: <?php print $fontsize; ?>px;
 <?php } ?>
@@ -197,7 +202,7 @@ input, input.flat, form.flat select, select, select.flat, .dataTables_length lab
 	border: none;
 }
 input, input.flat, textarea, textarea.flat, form.flat select, select, select.flat, .dataTables_length label select {
-	font-family: <?php print $fontlist ?>;
+	font-family: var(--fontfamilydol);/*lucky*/ 
 	outline: none;
 	margin: 0px 0px 0px 0px;
 	border<?php echo empty($conf->global->THEME_SHOW_BORDER_ON_INPUT) ? '-bottom' : ''; ?>: solid 1px var(--inputbordercolor);
@@ -209,6 +214,7 @@ input {
 }
 .liste_titre input {
 	padding: 5px;
+    font-family: var(--fontfamilydol);/*lucky*/ 
 }
 select {
 	padding-top: 5px;
@@ -255,10 +261,10 @@ input:invalid, select:invalid {
 */
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-family: var(--fontfamilydol);/*lucky*/ 
     font-weight: normal;
     font-style: normal;
-    color: <?php echo $colorfline; ?>;
+    color: var(--colorfline);
     text-rendering: optimizeLegibility;
     margin-top: 0.2rem;
     margin-bottom: 0.5rem;
@@ -666,8 +672,8 @@ span.fa.fa-plus-circle.paddingleft {
 */
 
 a {
-    color: <?php echo $colorfline; ?>; /* @new */
-    font-family: <?php print $fontlist; ?>;
+    color: var(--colorfline); /* @new */
+    font-family: var(--fontfamilydol); /*lucky*/ 
     font-weight: normal;
     text-decoration: none;
 }
@@ -781,7 +787,7 @@ hr {
     margin-top: 0;
     margin-left: 5px;
     margin-right: 5px;
-    font-family: <?php print $fontlist ?>;
+    font-family: var(--fontfamilydol); /*lucky*/ 
     display: inline-block;
     padding: 4px 14px;
     text-align: center;
@@ -1410,7 +1416,7 @@ a.butActionNewRefused>span.fa-plus-circle { padding-left: 6px; font-size: 1.5em;
 .butActionRefused,
 .butActionNewRefused {
     background-color: <?php echo $colorbline; ?>;
-    color: <?php echo $colorfline; ?>;
+    color: var(--colorfline);
     font-weight: 500;
     margin: 0 <?php echo ($dol_optimize_smallscreen?'.3':'.5'); ?>em;
     padding: .3em <?php echo ($dol_optimize_smallscreen?'.4':'.7'); ?>em;
@@ -1457,7 +1463,7 @@ a.butActionNewRefused>span.fa-plus-circle { padding-left: 6px; font-size: 1.5em;
     border: 1px solid rgba(0,0,0, .12);
     -webkit-box-shadow: inset 0 1px 0 rgba(170, 170, 170, .6);
     box-shadow: inset 0 1px 0 rgba(170, 170, 170, .6);
-    color: <?php echo $colorfline; ?>;
+    color: var(--colorfline);
     opacity: .6;
 }
 
@@ -2401,7 +2407,7 @@ select.widthcentpercentminusxx, span.widthcentpercentminusxx:not(.select2-select
 .linkobject { cursor: pointer; }
 /*
 table.tableforfield tr>td:first-of-type, div.tableforfield div.tagtr>div.tagtd:first-of-type {
-    color: <?php echo $colorfline; ?>;
+    color: var(--colorfline);
 }
 */
 <?php if (GETPOST('optioncss', 'aZ09') == 'print') { ?>
@@ -2458,7 +2464,7 @@ div.login_block_other {
     display: block;
 }
 .login_block_getinfo .atoplogin, .login_block_getinfo .atoplogin:hover {
-    color: <?php echo $colorfline; ?> !important;
+    color: var(--colorfline) !important;
     font-weight: normal !important;
 }
 
@@ -2983,7 +2989,7 @@ img.photorefnoborder {
         /*
         border-style: solid;
         border-width: 6px 10px 6px 0px;
-        border-color: transparent <?php print $bgcolor; ?> transparent transparent;
+        border-color: transparent var(--bgcolor) transparent transparent;
         */
     <?php } ?>
 }
@@ -3054,7 +3060,7 @@ transition: all .2s ease-in-out;
 .main-nav__link {
 	color: <?php print $bgnavtop_txt; ?> !important;
     display: block;
-    font-family: <?php print $fontmainmenu; ?>;
+    font-family: var(--fontfamilydol);/*lucky*/
     transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     -webkit-transition: all .2s ease-in-out;
@@ -3502,7 +3508,7 @@ div.login_block_other {
         line-height: 50px;
     <?php } ?>
     display: block;
-    font-family: <?php print $fontmainmenu; ?>;
+    font-family: var(--fontfamilydol);
     padding: 0 3px;
     text-decoration: none;
     transition: all .2s ease-in-out;
@@ -3762,7 +3768,7 @@ div.login a:hover {
 .sec-nav .sec-nav__link {
     color: <?php print $bgnavleft_txt; ?>;
     font-size: <?php print $fontsize; ?>px;
-    font-family: <?php print $fontsecmenu; ?>;
+    font-family: var(--fontfamilydol); /*lucky*/
     font-weight: normal;
     text-align: <?php print $left; ?>;
     text-decoration: none;
@@ -3929,13 +3935,13 @@ font-size: 14px;
 .blockvmenubookmarks a:link,
 .blockvmenubookmarks a:visited,
 .blockvmenubookmarks a:active{
-    color: <?php echo $colorfline; ?>;
+    color: var(--colorfline);
     font-family: <?php print $fontmenubookmarks; ?>;
     font-size:<?php print $fontsize; ?>px;
 }
 
 .blockvmenubookmarks a.vmenu:link,
-.blockvmenubookmarks a.vmenu:visited { color: <?php echo $colorfline; ?>; }
+.blockvmenubookmarks a.vmenu:visited { color: var(--colorfline); }
 
 .blockvmenubookmarks a.vmenu:hover,
 .blockvmenubookmarks a.vsmenu:hover { color: <?php print $maincolor; ?>; }
@@ -5097,7 +5103,7 @@ div.tabBar {
     border: 1px solid rgba(0,0,0, .16);
     box-shadow: 0 1px 1px rgba(0,0,0, .04);
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0, .04);
-    color: <?php echo $colorfline; ?>;
+    color: var(--colorfline);
     margin-bottom: 10px;
     padding-top: 8px;
     padding-left: <?php echo ($dol_optimize_smallscreen?'4':'8'); ?>px;
@@ -5117,7 +5123,7 @@ div.tabsAction {
 	<?php if (GETPOST("optioncss") == 'print') {	?>
     background-color: #fff !important;
 	<?php } else { ?>
-    background-color: <?php print $bgcolor; ?> !important;
+    background-color: var(--bgcolor) !important;
 	<?php } ?>
 <?php } ?>
 }
@@ -5143,7 +5149,7 @@ a.tabTitle {
 }
 
 a.tab {
-    color: <?php echo $colorfline; ?>;
+    color: var(--colorfline);
     font-weight: normal;
 }
 
@@ -5154,7 +5160,7 @@ a.tab:hover, a.tab:focus {
 
 a.tabimage {
     color: #434956;
-    font-family: <?php print $fontlist ?>;
+    font-family: var(--fontfamilydol);
     text-decoration: none;
     white-space: nowrap;
 }
@@ -5231,7 +5237,7 @@ div.tabsAction > a {
 a.tabTitle {
 	color: rgba(0,0,0,0.4) !important;
 	text-shadow:1px 1px 1px #ffffff;
-	font-family: <?php print $fontlist ?>;
+	font-family: var(--fontfamilydol);
 	font-weight: normal !important;
 	padding: 4px 6px 2px 0px;
 	margin-<?php print $right; ?>: 10px;
@@ -5252,7 +5258,7 @@ a.tabunactive {
 	color: rgb(<?php echo $colortextlink; ?>) !important;
 }
 a.tab:link, a.tab:visited, a.tab:hover, a.tab#active {
-	font-family: <?php print $fontlist ?>;
+	font-family: var(--fontfamilydol);
 	padding: 12px 14px 13px;
 	text-decoration: none;
 	white-space: nowrap;
@@ -5276,7 +5282,7 @@ a.tab:link, a.tab:visited, a.tab:hover, a.tab#active {
 }
 a.tabimage {
 	color: #434956;
-	font-family: <?php print $fontlist ?>;
+	font-family: var(--fontfamilydol);
 	text-decoration: none;
 	white-space: nowrap;
 }
@@ -5288,7 +5294,7 @@ td.tab {
 span.tabspan {
 	background: #dee7ec;
 	color: #434956;
-	font-family: <?php print $fontlist ?>;
+	font-family: var(--fontfamilydol);
 	padding: 0px 6px;
 	margin: 0em 0.2em;
 	text-decoration: none;
@@ -5564,7 +5570,7 @@ form.liste_titre,
 form.liste_titre_sel {
     background-color: <?php print $colorbtitle; ?>;
     color: <?php print $colorftitle; ?>;
-    font-family: <?php print $fontboxtitle; ?>;
+    font-family: var(--fontfamilydol);
     font-size: 1em;
     font-weight: normal;
     line-height: 1em;
@@ -5590,7 +5596,7 @@ tr.liste_titre td,
 td.liste_titre,
 form.liste_titre div,
 div.liste_titre {
-    font-family: <?php print $fontboxtitle; ?>;
+    font-family: var(--fontfamilydol);
     font-weight: normal;
     /* border-bottom: 1px solid #FDFFFF;*/
     white-space: normal;
@@ -5609,8 +5615,8 @@ table.noborder tr td a:active,
 table.noborder tr th a:link,
 table.noborder tr th a:visited,
 table.noborder tr th a:active {
-    color: <?php echo $colorfline; ?>;
-    font-family: <?php echo $fontboxtitle; ?>;
+    color: var(--colorfline);
+    font-family: <?php echo $fontlisted; ?>;
 }
 
 table.noborder tr td a:hover { color: <?php echo $colorfline_hover; ?>; }
@@ -5897,7 +5903,7 @@ tr.box_titre {
     /* TO MATCH ELDY */
     background: <?php print $colorbtitle; ?>;
     color: <?php print $colorftitle; ?>;
-    font-family: <?php print $fontlist ?>, sans-serif;
+    font-family: var(--fontfamilydol), sans-serif;
     font-weight: <?php echo $useboldtitle?'bold':'normal'; ?>;
     border-bottom: 1px solid #FDFFFF;
     white-space: nowrap;
@@ -5963,7 +5969,7 @@ div.boximport {
 .product_line_stock_ok { color: #002000; }
 .product_line_stock_too_low { color: #884400; }
 
-.fieldrequired { color: <?php echo $colorfline; ?>; font-weight: bold; }
+.fieldrequired { color: var(--colorfline); font-weight: bold; }
 
 .widthpictotitle { width: 40px; font-size: 1.5em; text-align: <?php echo $left; ?>; }
 
@@ -6016,7 +6022,7 @@ table.notopnoleftnoright div.titre {
 }
 
 div.titre {
-	color: <?php print $colorftitle; ?>;
+	color: <?php print $colorStitle; ?>;
     font-weight: bold;
     font-size: 1.1em;
     text-decoration: none;
@@ -6202,7 +6208,7 @@ html .ui-datepicker-calendar .ui-button.ui-state-disabled:hover, html .ui-button
     border: unset;
 }
 .ui-datepicker .ui-datepicker-header {
-	background: <?php print $bgcolor; ?> !important;
+	background: var(--bgcolor) !important;
 	border: none;
 }
 
@@ -6573,7 +6579,7 @@ table.cal_event td.cal_event_right {
 
 .ui-widget-content {
 	border: solid 1px rgba(0,0,0,.3);
-	background: <?php print $bgcolor; ?> !important;
+	background: var(--bgcolor) !important;
 	color: var(--colortext);
 }
 
@@ -6741,7 +6747,7 @@ table.cal_event td.cal_event_right {
 }
 
 .menu_principal .menu_choix0 a {
-    color: <?php echo $colorfline; ?>;
+    color: var(--colorfline);
     font-weight: bold!important;
 }
 
@@ -6833,7 +6839,7 @@ p.titre {
 .cadre_facturation {
     border: 2px solid rgba(0,0,0, .32) !important;
     background-color: <?php echo $colorbline; ?>;
-    color: <?php echo $colorfline; ?>;
+    color: var(--colorfline);
     padding: 1em;
 }
 
@@ -6847,7 +6853,7 @@ p.titre {
 }
 
 .cadre_facturation .label1 {
-    color: <?php echo $colorfline; ?>;
+    color: var(--colorfline);
 }
 
 .select_tva select {
@@ -7115,7 +7121,7 @@ border: 1px solid;
 border-collapse: collapse;
 border-spacing: 0;
 border-style: ridge;
-font-family: sans-serif;
+font-family: var(--fontfamilydol); /*lucky font-family: sans-serif;*/ 
 font-weight: normal;
 }
 
@@ -7231,7 +7237,7 @@ width: 100%;
 
 .ui-menu .ui-menu-item a {
 display: block;
-font-family: <?php echo $fontlist; ?>;
+font-family: <?php echo $fontlisted; ?>;
 font-size: 1em;
 font-weight: normal;
 color: var(--colortext);
@@ -7242,7 +7248,7 @@ zoom: 1;
 }
 
 .ui-widget {
-font-family: <?php echo $fontlist; ?>;
+font-family: <?php echo $fontlisted; ?>;
 font-size: <?php echo $fontsize; ?>px;
 }
 .ui-widget.ui-widget-content {
@@ -7394,7 +7400,7 @@ outline: 0;
 a.cke_dialog_ui_button {
 background-image: url(<?php echo $img_button; ?>) !important;
 background-position: bottom !important;
-font-family: <?php print $fontlist; ?> !important;
+font-family: var(--fontfamilydol) !important;
 margin: 0em .5em !important;
 padding: .1em .7em !important;
 }
@@ -8866,7 +8872,7 @@ div.refid {
 div.refidno	{
     padding-top: 2px;
     font-weight: normal;
-    color: <?php echo $colorfline; ?>;
+    color: var(--colorfline);
     font-size: <?php print $fontsize ?>px;
     line-height: 21px;
 }
@@ -9016,7 +9022,7 @@ div.pagination li.paginationafterarrows {
 }
 .oddeven, .evenodd, .impair, .nohover .impair:hover, tr.impair td.nohover, .tagtr.oddeven
 {
-    font-family: <?php print $fontlist ?>;
+    font-family: var(--fontfamilydol);
     margin-bottom: 1px;
 	color: var(--colortext);
 }
@@ -9029,7 +9035,7 @@ div.pagination li.paginationafterarrows {
 }
 
 .oddeven, .evenodd, .pair, .nohover .pair:hover, tr.pair td.nohover, .tagtr.oddeven {
-    font-family: <?php print $fontlist ?>;
+    font-family: var(--fontfamilydol);
     margin-bottom: 1px;
 	color: var(--colortext);
 }
@@ -9127,7 +9133,7 @@ div.liste_titre_bydiv, .liste_titre div.tagtr, tr.liste_titre, tr.liste_titre_se
     font-weight: normal;
 
     color: <?php print $colorftitle; ?>;
-    font-family: <?php print $fontlist ?>;
+    font-family: var(--fontfamilydol);
     text-align: <?php echo $left; ?>;
 }
 tr.liste_titre th, tr.liste_titre td, th.liste_titre
@@ -9140,7 +9146,7 @@ tr.liste_titre:first-child th, tr:first-child th.liste_titre {
 }
 tr.liste_titre th, th.liste_titre, tr.liste_titre td, td.liste_titre, form.liste_titre div
 {
-    font-family: <?php print $fontlist ?>;
+    font-family: var(--fontfamilydol);
     font-weight: <?php echo $useboldtitle ? 'bold' : 'normal'; ?>;
     vertical-align: middle;
     height: 38px;
@@ -9173,7 +9179,7 @@ div.liste_titre {
 }
 tr.liste_titre_sel th, th.liste_titre_sel, tr.liste_titre_sel td, td.liste_titre_sel, form.liste_titre_sel div
 {
-	font-family: <?php print $fontlist ?>;
+	font-family: var(--fontfamilydol);
 	color: <?php print $colorftitle; ?> !important;
 	font-weight: bold;
 	background-color: <?php print colorDarker($colorbtitle, 5); ?>;
@@ -10189,7 +10195,7 @@ div.tabs:first-of-type, .fiche > div.tabs
         top: 0;
     <?php } ?>
     border-bottom: solid 1px #cccccc !important;
-    background-color: <?php echo $bgcolor; ?>;
+    background-color: var(--bgcolor);
     margin: 0 auto 0 0 !important;
     height: auto;
     z-index: 50;
