@@ -10170,7 +10170,7 @@ span.clipboardCPValue.hidewithsize {
 	div.fiche>form>div.div-table-responsive, div.fiche>form>div.div-table-responsive-no-min {
 		overflow-x: unset;
 	}
-	.div-table-responsive-no-min {
+	.div-table-responsive-no-min, div.div-table-responsive {
 		 overflow-x: unset;
 	 }
 	tr.liste_titre th:not(#ajaxloaded_tablelines th) {
