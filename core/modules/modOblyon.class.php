@@ -74,8 +74,8 @@
 			$this->hidden					= false;											// A condition to hide module
 			$this->depends					= array();											// List of modules id that must be enabled if this module is enabled
 			$this->requiredby				= array();											// List of modules id to disable if this one is disabled
-			$this->conflictwith				= array();											// List of modules id this module is in conflict with
-			$this->phpmin					= array(7, 1);										// Minimum version of PHP required by module
+			$this->conflictwith				= array("modQuickUX");							// List of modules id this module is in conflict with
+			$this->phpmin					= array(7,1);										// Minimum version of PHP required by module
       		$this->need_dolibarr_version	= array(14,0);										// Minimum version of Dolibarr required by module
 			if ($easyaVersion >= '2024') {
 				$easya_info = json_decode(file_get_contents(__DIR__ . '/../../.easya_info.json'));
