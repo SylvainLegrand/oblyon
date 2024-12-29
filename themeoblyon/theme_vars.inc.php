@@ -34,26 +34,27 @@
 	global $conf, $theme_bordercolor, $theme_datacolor, $theme_bgcolor, $theme_bgcoloronglet;
 
 	// Define fonts
-	$fontlist			= '"Century Gothic", "Futura PT", sans-serif';
-	$fontboxtitle		= '"Century Gothic", "Futura PT", sans-serif';
+	$fontlist			= '"'.getDolGlobalString('OBLYON_FONT_FAMILY', 'Century Gothic').'", sans-serif';
+	$fontboxtitle		= '"'.getDolGlobalString('OBLYON_FONT_FAMILY', 'Century Gothic').'", sans-serif';
+	$fontlisted			= '"'.getDolGlobalString('OBLYON_FONT_FAMILY', 'Century Gothic').'", sans-serif';
 	/* Main menu */
-	$fontmainmenu		= '"Century Gothic", "Futura PT", sans-serif';
+	$fontmainmenu		= '"'.getDolGlobalString('OBLYON_FONT_FAMILY', 'Century Gothic').'", sans-serif';
 	/* Secondary menu */
-	$fontsecmenu		= '"Century Gothic", "Futura PT", sans-serif';
-	$fontmenusearch		= '"Century Gothic", "Futura PT", sans-serif';
-	$fontmenubookmarks	= '"Century Gothic", "Futura PT", sans-serif';
-	$fontmenuhelp		= '"Century Gothic", "Futura PT", sans-serif';
+	$fontsecmenu		= '"'.getDolGlobalString('OBLYON_FONT_FAMILY', 'Century Gothic').'", sans-serif';
+	$fontmenusearch		= '"'.getDolGlobalString('OBLYON_FONT_FAMILY', 'Century Gothic').'", sans-serif';
+	$fontmenubookmarks	= '"'.getDolGlobalString('OBLYON_FONT_FAMILY', 'Century Gothic').'", sans-serif';
+	$fontmenuhelp		= '"'.getDolGlobalString('OBLYON_FONT_FAMILY', 'Century Gothic').'", sans-serif';
 	$img_head			= '';
 	$usegradient		= 0;
 	$borderwidth		= 3;
 	// Font size and line height
-	$fontsizebase		= !empty($conf->global->OBLYON_FONT_SIZE) ? $conf->global->OBLYON_FONT_SIZE : '14';
+	$fontsizebase		= getDolGlobalInt('OBLYON_FONT_SIZE', 14);
 	$fontsize			= !empty($conf->dol_optimize_smallscreen) ? $fontsizebase - 2 : $fontsizebase;
 	$fontsizesmaller	= empty($conf->dol_optimize_smallscreen) ? $fontsizebase - 3 : $fontsizebase;
 	$topMenuFontSize	= '1em';
 	$lineHeight			= '1.4em';
 	$dropdownLineHeight	= '1.4em';
-	$tblImageMaxHeight	= !empty($conf->global->OBLYON_IMAGE_HEIGHT_TABLE) ? $conf->global->OBLYON_IMAGE_HEIGHT_TABLE : '32';
+	$tblImageMaxHeight	= getDolGlobalInt('OBLYON_IMAGE_HEIGHT_TABLE', 32);
 	// Theme Colors
 	$theme_bordercolor	= array(235, 235, 224);
 	$theme_datacolor	= array(array(137, 86, 161),

@@ -50,7 +50,7 @@
 	}
 	// Update buttons management
 	if (preg_match('/update_(.*)/', $action, $reg)) {
-		$list									= array ('Gen' => array('OBLYON_FONT_SIZE', 'OBLYON_IMAGE_HEIGHT_TABLE'));
+		$list									= array ('Gen' => array('OBLYON_FONT_SIZE', 'OBLYON_IMAGE_HEIGHT_TABLE', 'OBLYON_FONT', 'OBLYON_FONT_FAMILY'));
 		$confkey								= $reg[1];
 		$error									= 0;
 		foreach ($list[$confkey] as $constname)	$result	= dolibarr_set_const($db, $constname, GETPOST($constname, 'alpha'), 'chaine', 0, 'Oblyon module', $conf->entity);
@@ -61,6 +61,36 @@
 	$_SESSION['dol_resetcache']	= dol_print_date(dol_now(), 'dayhourlog');	// Reset cache
 
 	// init variables *******************************
+	// Liste des polices web standards
+	$font_options				= array ('Arial' 				=> 'Arial',
+										'Arial Black' 			=> 'Arial Black',
+										'Arial Narrow' 			=> 'Arial Narrow',
+										'Calibri' 				=> 'Calibri',
+										'Cambria' 				=> 'Cambria',
+										'Candara' 				=> 'Candara',
+										'Century Gothic' 		=> 'Century Gothic',
+										'Comic Sans MS' 		=> 'Comic Sans MS',
+										'Consolas' 				=> 'Consolas',
+										'Courier New' 			=> 'Courier New',
+										'Copperplate Gothic'	=> 'Copperplate Gothic',
+										'Franklin Gothic'		=> 'Franklin Gothic',
+										'Georgia' 				=> 'Georgia',
+										'Gill Sans'				=> 'Gill Sans',
+			    						'Helvetica' 			=> 'Helvetica',
+										'Impact' 				=> 'Impact',
+										'Lucida Console'		=> 'Lucida Console',
+										'Lucida Sans'			=> 'Lucida Sans',
+										'Microsoft Sans Serif'	=> 'Microsoft Sans Serif',
+										'Open Sans' 			=> 'Open Sans',
+										'Palatino Linotype' 	=> 'Palatino Linotype',
+										'Sans-serif' 			=> 'Sans-serif',
+										'Segoe UI'				=> 'Segoe UI',
+										'Tahoma' 				=> 'Tahoma',
+										'Times New Roman' 		=> 'Times New Roman',
+			    						'Trebuchet MS' 			=> 'Trebuchet MS',
+			    						'Verdana' 				=> 'Verdana',
+										);
+	$currentFont				= getDolGlobalString('OBLYON_FONT_FAMILY', 'Arial');
 
 	// View *****************************************
 	$page_name					= $langs->trans('OblyonOptionsTitle');
@@ -101,6 +131,10 @@
 	oblyon_print_liste_titre($metas);
 	$metas						= array('type' => 'number', 'class' => 'flat quatrevingtpercent right action', 'dir' => 'rtl', 'min' => '10', 'max' => '16');
 	oblyon_print_input('OBLYON_FONT_SIZE', 'input', $langs->trans('OblyonFontSize'), '', $metas, 2, 1);	// Font size
+
+	// Définir les métadonnées pour le champ de sélection
+	$metas			= $form->selectarray('OBLYON_FONT_FAMILY', $font_options, $currentFont, 0, 0, 0, 'class = "fontsizeinherit nopadding cursorpointer"', 0, 0, 0, '', 'maxwidth200');
+	oblyon_print_input('OBLYON_FONT_FAMILY', 'select', $langs->trans('OblyonFontFamily'), '', $metas, 2, 1);
 	$metas						= array('type' => 'number', 'class' => 'flat quatrevingtpercent right action', 'dir' => 'rtl', 'min' => '24', 'max' => '128');
 	oblyon_print_input('OBLYON_IMAGE_HEIGHT_TABLE', 'input', $langs->trans('OblyonImageHeightTable'), '', $metas, 2, 1);	// Max height for Image on table list
 	$metas						= array(array(), $conf->entity, 0, 0, 1, 0, 0, 0, '', 'options');
