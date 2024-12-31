@@ -75,6 +75,14 @@ OblyonFontFamily                     = Change Font family for Dolibarr interface
 MainStatusUseImages                  = The different statuses of the elements will be displayed as icons with or without explanatory text (otherwise a colored label will be used)
 
 #
+# Warnings
+#
+ResetCacheDisclaimer=For some options to take effect, it is necessary to clear the browser's cache.<br> CTRL + F5 will suffice in most cases immediately after applying an option below.
+WIP=Caution! Function under development - May cause unexpected display behavior
+NotAvailableOnAllLists=Not available on all lists
+WarningActivationOption1Enabled=Not recommended when %s is enabled
+
+#
 # Colors page
 #
 OblyonColorsTitle                  = Oblyon Configurator - Colors
@@ -208,12 +216,26 @@ OBLYON_SOCIAL_GITHUB            = Github
 #
 # Options page
 #
-OblyonOptionsTitle            = Options
+OptionsGeneral=General options
 OblyonMainUseQuickAddDropdown = Add the quick action menu (in top right)
 OblyonMainUseBookmarkDropdown = Add the bookmark menu (in top right)
 OblyonImageHeightTable        = Maximum height of images in lists (tables)
 OblyonDisableVersion          = Don't show the version number of Dolibarr (in top right)
 OblyonPaddingRightBottom      = Display a margin at the bottom of the page on the right side
+# List
+SwitchColumnOnLeft=Flip the selection / search / mass action column to the left.
+RemoveKanbanViewInList=Remove the “Kanban view” button at the top right of lists
+FixStickyTableHeadersColumns=Sticky table column headers on elements when scrolling vertically
+FixStickyFirstColumn=Sticky first column of tables when scrolling horizontally
+FixStickyLastColumn=Sticky last table column when scrolling horizontally
+FixStickyTotalBar=Sticky total bar at the bottom of the page
+ShowGrandTotalList=Display grand totals without pagination if amounts differ from classic totals
+FixStickyGrandTotalBar=Sticky grand total bar at the bottom of the page
+# Card
+FixStickyTabsCard=Sticky tab banner when scrolling vertically
+FixAreaRefCard=Sticky area ref when scrolling vertically (Disabled on mobiles phones)
+FixAbsoluteButtonsActionCard=Sticky action buttons at bottom of the page
+ShowLineNumberCard=Show line number (Invoice, proposal, etc)
 
 #
 # Icons page

@@ -10212,10 +10212,14 @@ div.tabs:first-of-type, .fiche > div.tabs
     height: auto;
     z-index: 50;
 }
+
+#dialogforpopup .tabs {
+    top: unset !important;
+}
 <?php } ?>
 
 /* ============================================================================== */
-/* Sticky table 1st column  WIP												      */
+/* Sticky table 1st column  												      */
 /* ============================================================================== */
 <?php if (!empty($conf->global->OBLYON_STICKY_COLUMN_FIRST)) { ?>
 @media (min-width: 768px) {
@@ -10223,14 +10227,30 @@ div.tabs:first-of-type, .fiche > div.tabs
     #id-right > .fiche > .tabBar > form[action*="list.php"] div.div-table-responsive > table > tbody > * > :first-of-type {
         position: sticky;
         left: 0;
-        z-index: 1;
+        z-index: 2;
         background: #<?php echo colorArrayToHex(colorStringToArray($colorbacklineimpair1)); ?>;
+        border-right: 1px solid #bbbbbb;
     }
+
+    .multichoicedoc {
+        left: 240px !important;
+        top: -10px;
+    }
+
+    <?php if (getDolGlobalString('MAIN_CHECKBOX_LEFT_COLUMN')) { ?>
+        .dropdown dd ul {
+            left: 60px;
+        }
+    <?php } else { ?>
+        .dropdown dd ul {
+            right: 30px;
+        }
+    <?php } ?>
 }
 <?php } ?>
 
 /* ============================================================================== */
-/* Sticky table last column  WIP			    							      */
+/* Sticky table last column			    							      */
 /* ============================================================================== */
 <?php if (!empty($conf->global->OBLYON_STICKY_COLUMN_LAST)) { ?>
 #id-right > .fiche > form[action*="list.php"] div.div-table-responsive > table > tbody > * > :last-of-type,
@@ -10239,6 +10259,35 @@ div.tabs:first-of-type, .fiche > div.tabs
     right: 0;
     z-index: 1;
     background: #<?php echo colorArrayToHex(colorStringToArray($colorbacklineimpair1)); ?>;
+    border-left: 1px solid #bbbbbb;
+}
+<?php } ?>
+
+/* ============================================================================== */
+/* Sticky total bar                                                               */
+/* ============================================================================== */
+<?php if (getDolGlobalString('FIX_STICKY_TOTAL_BAR')) { ?>
+#id-right > .fiche > form[action*="list.php"] div.div-table-responsive > table tr.liste_total,
+#id-right > .fiche > .tabBar > form[action*="list.php"] div.div-table-responsive > table tr.liste_total {
+    position: sticky;
+<?php if (getDolGlobalString('FIX_STICKY_GRANDTOTAL_BAR')) { ?>
+    bottom: 42px;
+<?php } else { ?>
+    bottom: 0;
+<?php } ?>
+    z-index: 2;
+}
+<?php } ?>
+
+/* ============================================================================== */
+/* Sticky grand total bar  WIP                                                    */
+/* ============================================================================== */
+<?php if (getDolGlobalString('FIX_STICKY_GRANDTOTAL_BAR')) { ?>
+#id-right > .fiche > form[action*="list.php"] div.div-table-responsive > table tr.liste_grandtotal,
+#id-right > .fiche > .tabBar > form[action*="list.php"] div.div-table-responsive > table tr.liste_grandtotal {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
 }
 <?php } ?>
 
