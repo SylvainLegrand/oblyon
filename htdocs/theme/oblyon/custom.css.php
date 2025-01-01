@@ -17,6 +17,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+define('NOLOGIN', 1); // Allow the use of the custom CSS on public pages like tickets
+
 $res														        = 0;
 if (! $res && file_exists("../main.inc.php"))		$res	= @include "../main.inc.php";
 if (! $res && file_exists("../../main.inc.php"))	$res	= @include "../../main.inc.php";
