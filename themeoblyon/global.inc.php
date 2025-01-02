@@ -10177,21 +10177,21 @@ span.clipboardCPValue.hidewithsize {
 	}
 	.div-table-responsive-no-min, div.div-table-responsive {
 		 overflow-x: unset;
-	 }
+    }
 	tr.liste_titre th:not(#ajaxloaded_tablelines th) {
-	position: sticky;
-<?php if (!empty($conf->global->OBLYON_STICKY_TOPBAR)) { ?>
-	<?php if (!empty($conf->global->MAIN_MENU_INVERT)) { ?>
-		top: 40px;
-	<?php } else { ?>
-		top: 54px;
-	<?php } ?>
-<?php } else { ?>
-	top: 0;
-<?php } ?>
-	background-color: <?php print $colorbtitle; ?>;
-	z-index: 1;
-}
+	    position: sticky;
+        <?php if (!empty($conf->global->OBLYON_STICKY_TOPBAR)) { ?>
+            <?php if (!empty($conf->global->MAIN_MENU_INVERT)) { ?>
+                top: 40px;
+            <?php } else { ?>
+                top: 54px;
+            <?php } ?>
+        <?php } else { ?>
+            top: 0;
+        <?php } ?>
+        background-color: <?php print $colorbtitle; ?>;
+        z-index: 1;
+    }
 <?php } ?>
 
 /* ============================================================================== */
@@ -10267,43 +10267,42 @@ div.tabs:first-of-type, .fiche > div.tabs
 /* Sticky total bar                                                               */
 /* ============================================================================== */
 <?php if (getDolGlobalString('FIX_STICKY_TOTAL_BAR')) { ?>
-#id-right > .fiche > form[action*="list.php"] div.div-table-responsive > table tr.liste_total,
-#id-right > .fiche > .tabBar > form[action*="list.php"] div.div-table-responsive > table tr.liste_total {
-    position: sticky;
-<?php if (getDolGlobalString('FIX_STICKY_GRANDTOTAL_BAR')) { ?>
-    bottom: 42px;
-<?php } else { ?>
-    bottom: 0;
-<?php } ?>
-    z-index: 2;
-}
+    #id-right > .fiche > form[action*="list.php"] div.div-table-responsive > table tr.liste_total,
+    #id-right > .fiche > .tabBar > form[action*="list.php"] div.div-table-responsive > table tr.liste_total {
+        position: sticky;
+        <?php if (getDolGlobalString('FIX_STICKY_GRANDTOTAL_BAR')) { ?>
+            bottom: 42px;
+        <?php } else { ?>
+            bottom: 0;
+        <?php } ?>
+        z-index: 2;
+    }
 <?php } ?>
 
 /* ============================================================================== */
 /* Sticky grand total bar  WIP                                                    */
 /* ============================================================================== */
 <?php if (getDolGlobalString('FIX_STICKY_GRANDTOTAL_BAR')) { ?>
-#id-right > .fiche > form[action*="list.php"] div.div-table-responsive > table tr.liste_grandtotal,
-#id-right > .fiche > .tabBar > form[action*="list.php"] div.div-table-responsive > table tr.liste_grandtotal {
-    position: sticky;
-    bottom: 0;
-    z-index: 2;
-}
+    #id-right > .fiche > form[action*="list.php"] div.div-table-responsive > table tr.liste_grandtotal,
+    #id-right > .fiche > .tabBar > form[action*="list.php"] div.div-table-responsive > table tr.liste_grandtotal {
+        position: sticky;
+        bottom: 0;
+        z-index: 2;
+    }
 <?php } ?>
 
 /* ============================================================================== */
 /* Option to remove Kanban view in list                                           */
 /* ============================================================================== */
 <?php if (!empty($conf->global->OBLYON_DISABLE_KANBAN_VIEW_IN_LIST)) { ?>
-.paginationafterarrows > .reposition {
-    display: none;
-}
+    .paginationafterarrows > .reposition {
+        display: none;
+    }
 <?php } ?>
 
 /* ============================================================================== */
 /* CSS style used for small screen												  */
 /* ============================================================================== */
-
 .topmenuimage {
     background-size: 22px auto;
     top: 2px;

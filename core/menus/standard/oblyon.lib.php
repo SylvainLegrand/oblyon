@@ -69,29 +69,26 @@ function print_oblyon_menu($db, $atarget, $type_user = 0, &$tabMenu, &$menu, $no
     // Show logo company
 	if (empty($menu_invert) && empty($noout) && ! empty($conf->global->MAIN_SHOW_LOGO)) {
         //$mysoc->logo_mini=(empty($conf->global->MAIN_INFO_SOCIETE_LOGO_MINI)?'':$conf->global->MAIN_INFO_SOCIETE_LOGO_MINI);
-        $mysoc->logo_squarred_mini=(empty($conf->global->MAIN_INFO_SOCIETE_LOGO_SQUARRED_MINI)?'':$conf->global->MAIN_INFO_SOCIETE_LOGO_SQUARRED_MINI);
+        $mysoc->logo_squarred_mini = (empty($conf->global->MAIN_INFO_SOCIETE_LOGO_SQUARRED_MINI)?'':$conf->global->MAIN_INFO_SOCIETE_LOGO_SQUARRED_MINI);
 
-        if (! empty($mysoc->logo_squarred_mini) && is_readable($conf->mycompany->dir_output.'/logos/thumbs/'.$mysoc->logo_squarred_mini))
-        {
-            $urllogo=DOL_URL_ROOT.'/viewimage.php?cache=1&amp;modulepart=mycompany&amp;file='.urlencode('logos/thumbs/'.$mysoc->logo_squarred_mini);
+        if (! empty($mysoc->logo_squarred_mini) && is_readable($conf->mycompany->dir_output.'/logos/thumbs/'.$mysoc->logo_squarred_mini)) {
+            $urllogo = DOL_URL_ROOT.'/viewimage.php?cache=1&amp;modulepart=mycompany&amp;file='.urlencode('logos/thumbs/'.$mysoc->logo_squarred_mini);
         }
         /*elseif (! empty($mysoc->logo_mini) && is_readable($conf->mycompany->dir_output.'/logos/thumbs/'.$mysoc->logo_mini))
         {
             $urllogo=DOL_URL_ROOT.'/viewimage.php?cache=1&amp;modulepart=mycompany&amp;file='.urlencode('logos/thumbs/'.$mysoc->logo_mini);
         }*/
-        else
-        {
-            $urllogo=DOL_URL_ROOT.'/theme/dolibarr_logo.png';
+        else {
+            $urllogo = DOL_URL_ROOT.'/theme/dolibarr_logo.png';
             $logoContainerAdditionalClass = '';
         }
-        $title=$langs->trans("GoIntoSetupToChangeLogo");
+        $title = $langs->trans("GoIntoSetupToChangeLogo");
 
         print "\n".'<!-- Show logo on menu -->'."\n";
         print_start_menu_entry('companylogo', 'class="tmenu tmenucompanylogo"', 1);
 
-
         print '<div class="center backgroundforcompanylogo menulogocontainer">';
-        print '<a href="' . DOL_URL_ROOT . $landingpage . '" alt="'.dol_escape_htmltag($title).'" title="'.dol_escape_htmltag($title).'">';
+        print '<a href="' . $landingpage . '" alt="'.dol_escape_htmltag($title).'" title="'.dol_escape_htmltag($title).'">';
         print '<img class="mycompany" title="'.dol_escape_htmltag($title).'" alt="" src="'.$urllogo.'" style="max-width: 100px; height: 32px;">';
         print '</a>'."\n";
         print '</div>'."\n";
@@ -163,11 +160,11 @@ function print_oblyon_menu($db, $atarget, $type_user = 0, &$tabMenu, &$menu, $no
 		'perms' => (!empty($user->rights->adherent->lire)),
 		'module' => 'adherent'
 	);
-    $showmode=dol_oblyon_showmenu($type_user, $tmpentry, $listofmodulesforexternal);
+    $showmode = dol_oblyon_showmenu($type_user, $tmpentry, $listofmodulesforexternal);
 	if ($showmode)
 	{
 		if (!empty($_SESSION["mainmenu"]) && $_SESSION["mainmenu"] == "members") {
-            $itemsel=TRUE;
+            $itemsel = TRUE;
             $_SESSION['idmenu']='';
         } else {
             $itemsel = FALSE;
@@ -197,7 +194,7 @@ function print_oblyon_menu($db, $atarget, $type_user = 0, &$tabMenu, &$menu, $no
         $langs->loadLangs(array("companies","suppliers"));
 
 		if (!empty($_SESSION["mainmenu"]) && $_SESSION["mainmenu"] == "companies") {
-            $itemsel=TRUE;
+            $itemsel = TRUE;
             $_SESSION['idmenu']='';
         } else {
             $itemsel = FALSE;
@@ -256,7 +253,7 @@ function print_oblyon_menu($db, $atarget, $type_user = 0, &$tabMenu, &$menu, $no
 		'perms'=>(!empty($user->rights->bom->read) || !empty($user->rights->mrp->read)),
 		'module'=>'bom|mrp'
 	);
-    $showmode=dol_oblyon_showmenu($type_user, $tmpentry, $listofmodulesforexternal);
+    $showmode = dol_oblyon_showmenu($type_user, $tmpentry, $listofmodulesforexternal);
     if ($showmode) {
         $langs->loadLangs(array("mrp"));
 
@@ -268,7 +265,7 @@ function print_oblyon_menu($db, $atarget, $type_user = 0, &$tabMenu, &$menu, $no
         }
         $idsel='mrp';
 
-        $chaine=$langs->trans("TMenuMRP");
+        $chaine = $langs->trans("TMenuMRP");
 
         if (empty($noout)) print_start_menu_entry($idsel,$itemsel,$showmode);
         if (empty($noout)) print_text_menu_entry($chaine, $showmode, DOL_URL_ROOT.'/mrp/index.php?mainmenu=mrp&amp;leftmenu=', $id, $idsel, $atarget);
