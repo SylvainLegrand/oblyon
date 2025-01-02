@@ -2025,6 +2025,7 @@ overflow-y: hidden;
 div.fiche>form>div.div-table-responsive, div.fiche>form>div.div-table-responsive-no-min {
     overflow-x: auto;
 }
+
 div.fiche>form>div.div-table-responsive {
     min-height: 392px;
 }
@@ -10177,6 +10178,19 @@ span.clipboardCPValue.hidewithsize {
 }
 
 /* ============================================================================== */
+/* Global options      														      */
+/* ============================================================================== */
+div.fiche>form>div.div-table-responsive, div.fiche>form>div.div-table-responsive-no-min {
+    overflow-x: unset;
+}
+.div-table-responsive-no-min, div.div-table-responsive {
+    overflow-x: unset;
+}
+.ui-datepicker {
+    z-index: 5 !important;
+}
+
+/* ============================================================================== */
 /* Sticky table headers columns												      */
 /* ============================================================================== */
 <?php if (!empty($conf->global->FIX_STICKY_HEADER_CARD)) { ?>
@@ -10229,7 +10243,7 @@ div.tabs:first-of-type, .fiche > div.tabs
 /* ============================================================================== */
 /* Sticky table 1st column  												      */
 /* ============================================================================== */
-<?php if (!empty($conf->global->FIX_STICKY_COLUMN_FIRST)) { ?>
+<?php if (!empty($conf->global->FIX_STICKY_COLUMN_FIRST) || !empty($conf->global->OBLYON_STICKY_COLUMN_FIRST)) { ?>
 @media (min-width: 768px) {
     #id-right > .fiche > form[action*="list.php"] div.div-table-responsive > table > tbody > * > :first-of-type,
     #id-right > .fiche > .tabBar > form[action*="list.php"] div.div-table-responsive > table > tbody > * > :first-of-type {
@@ -10302,7 +10316,7 @@ div.tabs:first-of-type, .fiche > div.tabs
 /* ============================================================================== */
 /* Option to remove Kanban view in list                                           */
 /* ============================================================================== */
-<?php if (!empty($conf->global->DISABLE_KANBAN_VIEW_IN_LIST)) { ?>
+<?php if (!empty($conf->global->DISABLE_KANBAN_VIEW_IN_LIST) || !empty($conf->global->OBLYON_DISABLE_KANBAN_VIEW_IN_LIST)) { ?>
     .paginationafterarrows > .reposition {
         display: none;
     }
