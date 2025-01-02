@@ -64,7 +64,7 @@
 		$h++;
 
 		$head[$h][0] = dol_buildpath("/oblyon/admin/options.php", 1);
-		$head[$h][1] = $langs->trans("Options");
+		$head[$h][1] = $langs->trans("OblyonOptions");
 		$head[$h][2] = 'options';
 		$h++;
 

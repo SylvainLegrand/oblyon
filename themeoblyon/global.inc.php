@@ -10248,9 +10248,14 @@ div.tabs:first-of-type, .fiche > div.tabs
     #id-right > .fiche > form[action*="list.php"] div.div-table-responsive > table > tbody > * > :first-of-type,
     #id-right > .fiche > .tabBar > form[action*="list.php"] div.div-table-responsive > table > tbody > * > :first-of-type {
         position: sticky;
-        left: 38px;
+        <?php if (!empty($conf->global->OBLYON_STICKY_LEFTBAR) && !empty($conf->global->OBLYON_EFFECT_REDUCE_LEFTMENU)) { ?>
+            left: 38px;
+        <?php } else { ?>
+            left: 0;
+        <?php } ?>
         z-index: 2;
-        background: #<?php echo colorArrayToHex(colorStringToArray($colorbacklineimpair1)); ?>;
+        background-color: <?php print $colorbtitle; ?>;
+        /* background: #<?php echo colorArrayToHex(colorStringToArray($colorbacklineimpair1)); ?>;*/
         border-right: 1px solid #bbbbbb;
     }
 
@@ -10274,13 +10279,14 @@ div.tabs:first-of-type, .fiche > div.tabs
 /* ============================================================================== */
 /* Sticky table last column			    							      */
 /* ============================================================================== */
-<?php if (!empty($conf->global->OBLYON_STICKY_COLUMN_LAST)) { ?>
+<?php if (!empty($conf->global->FIX_STICKY_COLUMN_LAST) || !empty($conf->global->OBLYON_STICKY_COLUMN_LAST)) { ?>
 #id-right > .fiche > form[action*="list.php"] div.div-table-responsive > table > tbody > * > :last-of-type,
 #id-right > .fiche > .tabBar > form[action*="list.php"] div.div-table-responsive > table > tbody > * > :last-of-type {
     position: sticky;
     right: 0;
     z-index: 1;
-    background: #<?php echo colorArrayToHex(colorStringToArray($colorbacklineimpair1)); ?>;
+    background-color: <?php print $colorbtitle; ?>;
+    /* background: #<?php echo colorArrayToHex(colorStringToArray($colorbacklineimpair1)); ?>; */
     border-left: 1px solid #bbbbbb;
 }
 <?php } ?>

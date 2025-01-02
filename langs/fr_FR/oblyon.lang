@@ -219,13 +219,14 @@ OBLYON_SOCIAL_GITHUB            = URL Github
 #
 # Options page
 #
-OptionsGeneral=Options générales
-OblyonOptionsTitle            = Options
-OblyonMainUseQuickAddDropdown = Utiliser le menu d'ajout rapide des éléments (En haut à droite)
-OblyonMainUseBookmarkDropdown = Utiliser le menu des marques pages (En haut à droite)
-OblyonImageHeightTable        = Hauteur maximale des images dans les listes (tables)
-OblyonDisableVersion          = Ne pas afficher le numéro de version de Dolibarr (En haut à droite)
-OblyonPaddingRightBottom      = Afficher une marge en bas de page sur la partie droite
+OblyonOptionsTitle              = Configurateur Oblyon - Options
+OptionsGeneral                  = Options générales
+OblyonOptions                   = Options
+OblyonMainUseQuickAddDropdown   = Utiliser le menu d'ajout rapide des éléments (En haut à droite)
+OblyonMainUseBookmarkDropdown   = Utiliser le menu des marques pages (En haut à droite)
+OblyonImageHeightTable          = Hauteur maximale des images dans les listes (tables)
+OblyonDisableVersion            = Ne pas afficher le numéro de version de Dolibarr (En haut à droite)
+OblyonPaddingRightBottom        = Afficher une marge en bas de page sur la partie droite
 # List
 OptionsList=Options des listes
 SwitchColumnOnLeft=Basculer la colonne de sélection / recherche / action en masse à gauche

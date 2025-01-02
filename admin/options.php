@@ -104,11 +104,11 @@ $currentFont				= getDolGlobalString('OBLYON_FONT_FAMILY', 'Arial');
 // View *****************************************
 $page_name					= $langs->trans('OblyonOptionsTitle');
 llxHeader('', $page_name);
-$linkback					= '<a href = "'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1">'.$langs->trans('BackToModuleList').'</a>';
+$linkback = '<a href = "'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1">'.$langs->trans('BackToModuleList').'</a>';
 print load_fiche_titre($page_name, $linkback);
 
 // Configuration header *************************
-$head						= oblyon_admin_prepare_head();
+$head = oblyon_admin_prepare_head();
 print dol_get_fiche_head($head, 'options', $langs->trans('Module432573Name'), 0, 'inovea@oblyon');
 
 // setup page goes here *************************
