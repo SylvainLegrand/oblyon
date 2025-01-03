@@ -2762,17 +2762,21 @@ div.arearef {
 	position: sticky;
     z-index: 4;
 	<?php if (!empty($conf->global->MAIN_MENU_INVERT)) { ?>
-        <?php if (!empty($conf->global->FIX_STICKY_TABS_CARD)) { ?>
+        <?php if (!empty($conf->global->FIX_STICKY_TABS_CARD) && (!empty($conf->global->OBLYON_STICKY_TOPBAR))) { ?>
     	top: 84px;
-	    <?php } else { ?>
-	    top: 42px;
+	    <?php } elseif (!empty($conf->global->FIX_STICKY_TABS_CARD) || !empty($conf->global->OBLYON_STICKY_TOPBAR)) { ?>
+        top: 42px;
+        <?php } else { ?>
+	    top: 0px;
 	    <?php } ?>
 	<?php } else { ?>
-        <?php if (!empty($conf->global->FIX_STICKY_TABS_CARD)) { ?>
-    	top: 84px;
-	    <?php } else { ?>
-	    top: 42px;
-	    <?php } ?>
+        <?php if (!empty($conf->global->FIX_STICKY_TABS_CARD) && (!empty($conf->global->OBLYON_STICKY_TOPBAR))) { ?>
+            top: 84px;
+        <?php } elseif (!empty($conf->global->FIX_STICKY_TABS_CARD) || !empty($conf->global->OBLYON_STICKY_TOPBAR)) { ?>
+            top: 42px;
+        <?php } else { ?>
+            top: 0px;
+        <?php } ?>
 	<?php } ?>
 	background: inherit;
     padding-bottom: 20px;
@@ -5137,16 +5141,16 @@ div.tabsAction {
     margin: 20px 0 10px 0;
     padding: 0;
     text-align: <?php print $right; ?>;
-<?php if (!empty($conf->global->FIX_ABSOLUTE_BUTTONS_ACTION_CARD)) { ?>
-	position: sticky;
-    z-index: 4;
-	bottom: 0;
-	<?php if (GETPOST("optioncss") == 'print') {	?>
-    background-color: #fff !important;
-	<?php } else { ?>
-    background-color: var(--bgcolor) !important;
-	<?php } ?>
-<?php } ?>
+    <?php if (!empty($conf->global->FIX_ABSOLUTE_BUTTONS_ACTION_CARD)) { ?>
+        position: sticky;
+        z-index: 4;
+        bottom: 0;
+        <?php if (GETPOST("optioncss") == 'print') {	?>
+            background-color: #fff !important;
+        <?php } else { ?>
+            background-color: var(--bgcolor) !important;
+        <?php } ?>
+    <?php } ?>
 }
 
 div.tabactive,
