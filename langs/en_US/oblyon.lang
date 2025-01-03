@@ -236,6 +236,8 @@ FixStickyGrandTotalBar=Sticky grand total bar at the bottom of the page
 # Card
 FixStickyTabsCard=Sticky tab banner when scrolling vertically
 FixAreaRefCard=Sticky area ref when scrolling vertically (Disabled on mobiles phones)
+MainMaxTabsInCard=Maximum number of tabs visible. Others are grouped into a combo list
+LimitTabLineToOne=(Allows you to limit the tabs to a single line => necessary when the 2 previous options are active simultaneously)
 FixAbsoluteButtonsActionCard=Sticky action buttons at bottom of the page
 ShowLineNumberCard=Show line number (Invoice, proposal, etc)
 
