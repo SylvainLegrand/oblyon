@@ -103,7 +103,7 @@ $font_options				= array ('Arial' 				=> 'Arial',
 $currentFont				= getDolGlobalString('OBLYON_FONT_FAMILY', 'Arial');
 
 // View *****************************************
-$page_name					= $langs->trans('OblyonOptionsTitle');
+$page_name = $langs->trans('OblyonOptionsTitle');
 llxHeader('', $page_name);
 $linkback = '<a href = "'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1">'.$langs->trans('BackToModuleList').'</a>';
 print load_fiche_titre($page_name, $linkback);
@@ -116,6 +116,21 @@ print dol_get_fiche_head($head, 'options', $langs->trans('Module432573Name'), 0,
 $easyaVersion = (float) !empty($conf->global->EASYA_VERSION) ? $conf->global->EASYA_VERSION : '';
 
 $labs_picto = ' '.img_picto($langs->trans('WIP'), 'fa-flask', '', false, 0, 0, '', 'error ');
+
+// accesskey is for Windows or Linux:  ALT + key for chrome, ALT + SHIFT + KEY for firefox
+// accesskey is for Mac:               CTRL + key for all browsers
+$stringforfirstkey = $langs->trans("KeyboardShortcut");
+if ($conf->browser->os === 'macintosh') {
+    $stringforfirstkey .= ' CTL +';
+} else {
+    if ($conf->browser->name == 'chrome') {
+        $stringforfirstkey .= ' ALT +';
+    } elseif ($conf->browser->name == 'firefox') {
+        $stringforfirstkey .= ' ALT + SHIFT +';
+    } else {
+        $stringforfirstkey .= ' CTL +';
+    }
+}
 
 print '	<script type = "text/javascript">
 			$(document).ready(function() {
@@ -190,7 +205,11 @@ oblyon_print_input('MAIN_STATUS_USES_IMAGES', 'on_off', 'G' . $countg . ' - ' . 
 $countg++;
 
 $metas = array(array(), $conf->entity, 0, 0, 1, 0, 0, 0, '', 'options');
-oblyon_print_input('MAIN_USE_TOP_MENU_QUICKADD_DROPDOWN', 'on_off', 'G' . $countg . ' - ' . $langs->trans('OblyonMainUseQuickAddDropdown'), '', $metas, 2, 1);	// Quickadd dropdown menu
+oblyon_print_input('MAIN_USE_TOP_MENU_QUICKADD_DROPDOWN', 'on_off', 'G' . $countg . ' - ' . $langs->trans('OblyonMainUseQuickAddDropdown') . ' (' . $stringforfirstkey . ' a)', '', $metas, 2, 1);	// Quickadd dropdown menu
+$countg++;
+
+$metas = array(array(), $conf->entity, 0, 0, 1, 0, 0, 0, '', 'options');
+oblyon_print_input('MAIN_USE_TOP_MENU_SEARCH_DROPDOWN', 'on_off', 'G' . $countg . ' - ' . $langs->trans('OblyonMainUseSearchDropdown') . ' (' . $stringforfirstkey . ' s)', '', $metas, 2, 1);	// Search dropdown menu
 $countg++;
 
 if (!empty($conf->bookmark->enabled)) {

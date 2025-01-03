@@ -10252,7 +10252,9 @@ div.tabs:first-of-type, .fiche > div.tabs
     #id-right > .fiche > form[action*="list.php"] div.div-table-responsive > table > tbody > * > :first-of-type,
     #id-right > .fiche > .tabBar > form[action*="list.php"] div.div-table-responsive > table > tbody > * > :first-of-type {
         position: sticky;
-        <?php if (!empty($conf->global->OBLYON_STICKY_LEFTBAR) && !empty($conf->global->OBLYON_EFFECT_REDUCE_LEFTMENU)) { ?>
+        <?php if (!empty($conf->global->OBLYON_STICKY_LEFTBAR) && empty($conf->global->OBLYON_EFFECT_REDUCE_LEFTMENU)) { ?>
+            left: 230px;
+        <?php } elseif (!empty($conf->global->OBLYON_STICKY_LEFTBAR) && !empty($conf->global->OBLYON_EFFECT_REDUCE_LEFTMENU)) { ?>
             left: 38px;
         <?php } else { ?>
             left: 0;
