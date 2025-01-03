@@ -241,6 +241,8 @@ FixStickyGrandTotalBar=Fixer la barre des totaux généraux des tableaux en bas 
 OptionsCard=Options des fiches
 FixStickyTabsCard=Fixer le bandeau des onglets lors d'un défilement vertical
 FixAreaRefCard=Fixer l'espace référence de la fiche lors d'un défilement vertical (Désactivé sur les téléphones portables)
+MainMaxTabsInCard=Nombre maximal d'onglets visibles. Les autres onglets sont regroupés dans une liste déroulante
+LimitTabLineToOne=(Permet de circonscrire les onglets dans une seule ligne => nécessaire quand les 2 options précédentes sont actives simultanément)
 FixAbsoluteButtonsActionCard=Fixer les boutons d'actions en bas de page
 ShowLineNumberCard=Afficher le numéro des lignes (Facture, proposition commerciale, etc)
 

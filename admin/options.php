@@ -59,7 +59,8 @@ if (preg_match('/set_(.*)/', $action, $reg)) {
 }
 	// Update buttons management
 if (preg_match('/update_(.*)/', $action, $reg)) {
-	$list									= array ('Gen' => array('OBLYON_FONT_SIZE', 'OBLYON_IMAGE_HEIGHT_TABLE', 'OBLYON_FONT', 'OBLYON_FONT_FAMILY'));
+	$list									= array('Gen'   => array('OBLYON_FONT_SIZE', 'OBLYON_IMAGE_HEIGHT_TABLE', 'OBLYON_FONT', 'OBLYON_FONT_FAMILY'),
+                                                    'Card'  => array('MAIN_MAXTABS_IN_CARD'));
 	$confkey								= $reg[1];
 	$error									= 0;
 	foreach ($list[$confkey] as $constname)	$result	= dolibarr_set_const($db, $constname, GETPOST($constname, 'alpha'), 'chaine', 0, 'Oblyon module', $conf->entity);
@@ -318,6 +319,13 @@ if ($easyaVersion >= "2024.0.0" || (float) DOL_VERSION >= 17.0) {
     $countc++;
 }
 
+if ($easyaVersion >= "2024.0.0" || (float) DOL_VERSION >= 17.0) {
+    $txt = getDolGlobalString('FIX_AREAREF_CARD') && getDolGlobalString('FIX_STICKY_TABS_CARD') ? ' '.$langs->trans('LimitTabLineToOne') : '';
+    $metas = array('type' => 'number', 'class' => 'flat quatrevingtpercent right action', 'dir' => 'rtl', 'min' => '8', 'max' => '50');
+    oblyon_print_input('MAIN_MAXTABS_IN_CARD', 'input', 'C' . $countc . ' - ' . $langs->trans('MainMaxTabsInCard').$txt, '', $metas, 2, 1);	// Max tabs in card
+    $countc++;
+}
+
 if ($easyaVersion >= "2024.0.0" || (float) DOL_VERSION >= 14.0) {
     // Old Compatibility
     if (getDolGlobalString('FIX_AREAREF_TABACTION')) {
@@ -337,6 +345,11 @@ if ($easyaVersion >= "2024.0.0" || (float) DOL_VERSION >= 18.0) {
 
 print '</tbody>';
 print '</table>';
+print '<br>';
+
+oblyon_print_btn_action('Card');
+
+print '<br>';
 print '</div>';
 
 print dol_get_fiche_end();
