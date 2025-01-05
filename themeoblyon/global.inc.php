@@ -6223,7 +6223,7 @@ div.ui-tooltip {
 }
 
 /* ============================================================================== */
-/* Calendar                                                                       */
+/* Calendar date picker                                                           */
 /* ============================================================================== */
 
 .ui-datepicker-calendar .ui-state-default, .ui-datepicker-calendar .ui-widget-content .ui-state-default,
@@ -6232,6 +6232,23 @@ html .ui-datepicker-calendar .ui-button.ui-state-disabled:hover, html .ui-button
 {
     border: unset;
 }
+
+div#ui-datepicker-div {
+    width: 300px;
+    box-shadow: 2px 5px 15px #aaa;
+    border: unset;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+}
+.ui-datepicker .ui-datepicker table {
+    font-size: unset;
+}
+.ui-datepicker .ui-widget-header {
+    border: unset;
+    background: unset;
+}
+
 .ui-datepicker .ui-datepicker-header {
 	background: var(--bgcolor) !important;
 	border: none;
@@ -6243,8 +6260,11 @@ html .ui-datepicker-calendar .ui-button.ui-state-disabled:hover, html .ui-button
 	font-weight: bold !important;
 }
 
-img.datecallink { padding-right: 2px !important; }
+img.datecallink { padding-left: 2px !important; padding-right: 2px !important; }
 
+select.ui-datepicker-year {
+    margin-left: 2px !important;
+}
 .ui-datepicker-trigger {
 	filter: invert(<?php print $invertratiofilter; ?>%);
     vertical-align: middle;
@@ -6343,7 +6363,8 @@ div.visible {
 	display: block;
 }
 
-div.hidden, td.hidden, img.hidden, span.hidden, div.showifmore {
+div.hidden, div.hiddenforpopup, header.hidden, tr.hidden, td.hidden,
+img.hidden, span.hidden, br.hidden, div.showifmore {
 	display: none;
 }
 .unvisible {
@@ -6357,7 +6378,24 @@ tr.visible {
 /*  Module website                                                                */
 /* ============================================================================== */
 
-.phptag {
+.previewnotyetavailable {
+    opacity: 0.5;
+}
+
+.websiteformtoolbar {
+    position: sticky;
+    top: <?php echo empty($dol_hide_topmenu) ? ($disableimages ? '32px' : '52px') : '0'; ?>;
+    z-index: 1002;	/* Dolibarr menu is 1001, Website menu is 1002 */
+}
+
+.exampleapachesetup {
+    overflow-y: auto;
+    height: 100px;
+    font-size: 0.8em;
+    border: 1px solid #aaa;
+}
+
+span[phptag] {
     background: #ddd; border: 1px solid #ccc; border-radius: 4px;
 }
 
@@ -6365,42 +6403,74 @@ tr.visible {
     border: 0px;
     background-color: transparent;
     background-image: none;
-    color: #000 !important;
-    text-shadow: none;
 }
+.bordertransp {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    font-weight: normal;
+}
+.websitebar .button.bordertransp, .websitebar .fa-plus-circle.btnTitle-icon {
+    color: unset;
+    text-decoration: unset !important;
+    margin: 0px 4px 0px 4px  !important
+}
+
 .websitebar {
     border-bottom: 1px solid #ccc;
-    background: #eee;
+    background: #e6e6e6;
+    display: inline-block;
+    z-index: 1000;
+}
+.centpercent.websitebar {
+    width: calc(100% - 10px);
+    padding: 5px 5px 5px 5px;
+    font-size: 0.94em;
+}
+.websitebar .buttonDelete, .websitebar .button {
+    text-shadow: none;
 }
 .websitebar .button, .websitebar .buttonDelete
 {
-    padding: 2px 4px 2px 4px !important;
+    padding: 4px 5px 4px 5px !important;
     margin: 2px 4px 2px 4px  !important;
-    line-height: normal;
+    /*	line-height: normal; */
+    background: #f5f5f5 !important;
+    border: 1px solid #ccc !important;
 }
 .websiteselection {
-    display: inline-block;
-    padding-left: 10px;
+    /* display: inline-block; */
+    padding-<?php echo $right; ?>: 10px;
+    vertical-align: middle;
+    line-height: 2.2em;
+}
+.websiteselectionsection {
+    font-size: 0.85em;
+}
+.websiteselection span {
     vertical-align: middle;
 }
 .websitetools {
     float: right;
 }
 .websiteselection, .websitetools {
-    margin-top: 3px;
+    /* margin-top: 3px;
     padding-top: 3px;
-    padding-bottom: 3px;
+    padding-bottom: 3px; */
 }
-
 .websiteinputurl {
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
+    line-height: 26px;
 }
 .websiteiframenoborder {
     border: 0px;
 }
+span.websiteselection span.select2.select2-container.select2-container--default {
+    margin: 0 0 0 4px;
+}
 span.websitebuttonsitepreview, a.websitebuttonsitepreview {
-	vertical-align: middle;
+    vertical-align: middle;
 }
 span.websitebuttonsitepreview img, a.websitebuttonsitepreview img {
     width: 26px;
@@ -6409,13 +6479,28 @@ span.websitebuttonsitepreview img, a.websitebuttonsitepreview img {
 span.websitebuttonsitepreviewdisabled img, a.websitebuttonsitepreviewdisabled img {
     opacity: 0.2;
 }
-.websiteiframenoborder {
-    border: 0px;
-}
 .websitehelp {
     vertical-align: middle;
     float: right;
     padding-top: 8px;
+}
+.websiteselectionsection {
+    border-left: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    margin-left: 0px;
+    padding-left: 8px;
+    margin-right: 5px;
+}
+.websitebar input#previewpageurl {
+    line-height: 1em;
+}
+
+.websitebar input.bordertransp {
+    line-height: normal !important;
+}
+
+#divbodywebsite section p {
+    margin: unset;
 }
 
 /* ============================================================================== */
@@ -6599,22 +6684,27 @@ table.cal_event td.cal_event_right {
 }
 
 /* ============================================================================== */
-/*  Ajax - Liste deroulante de l'autocompletion                                   */
+/*  Ajax - Combo list for autocompletion                                          */
 /* ============================================================================== */
 
 .ui-widget-content {
-	border: solid 1px rgba(0,0,0,.3);
-	background: var(--bgcolor) !important;
-	color: var(--colortext);
+    border: solid 1px rgba(0,0,0,.3);
+    background: var(--colorbackbody) !important;
+    color: var(--colortext) !important;
 }
+/*.ui-widget-header {
+	background: var(--colorbacktitle);
+}*/
 
 .ui-autocomplete-loading {
-	background: white url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/working.gif', 1) ?>) right center no-repeat;
+    background: white url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/working.gif', 1) ?>) right center no-repeat;
 }
 .ui-autocomplete {
     position:absolute;
     width:auto;
     font-size: 1.0em;
+    background-color: var(--inputbackgroundcolor);
+    border:1px solid #888;
     margin:0px;
     /*	       padding:0px; This make combo crazy */
 }
@@ -6623,7 +6713,9 @@ table.cal_event td.cal_event_right {
     margin:0px;
     padding:0px;
 }
-.ui-autocomplete ul li.selected { background-color: #D3E5EC;}
+.ui-autocomplete ul li.selected {
+    background-color: var(--inputbackgroundcolor);
+}
 .ui-autocomplete ul li {
     list-style-type:none;
     display:block;
@@ -6631,6 +6723,449 @@ table.cal_event td.cal_event_right {
     padding:2px;
     height:18px;
     cursor:pointer;
+}
+
+/* ============================================================================== */
+/*  jQuery - jeditable for inline edit                                            */
+/* ============================================================================== */
+
+.editkey_textarea, .editkey_ckeditor, .editkey_string, .editkey_email, .editkey_numeric, .editkey_select, .editkey_autocomplete {
+    background: url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/edit.png', 1) ?>) right top no-repeat;
+    cursor: pointer;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+
+.editkey_datepicker {
+    background: url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/calendar.png', 1) ?>) right center no-repeat;
+    margin-right: 3px;
+    cursor: pointer;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+
+.editval_textarea.active:hover, .editval_ckeditor.active:hover, .editval_string.active:hover, .editval_email.active:hover, .editval_numeric.active:hover, .editval_select.active:hover, .editval_autocomplete.active:hover, .editval_datepicker.active:hover {
+    background: white;
+    cursor: pointer;
+}
+
+.viewval_textarea.active:hover, .viewval_ckeditor.active:hover, .viewval_string.active:hover, .viewval_email.active:hover, .viewval_numeric.active:hover, .viewval_select.active:hover, .viewval_autocomplete.active:hover, .viewval_datepicker.active:hover {
+    background: white;
+    cursor: pointer;
+}
+
+.viewval_hover {
+    background: white;
+}
+
+/* ============================================================================== */
+/*  Holiday                                                                       */
+/* ============================================================================== */
+
+#types .btn {
+    cursor: pointer;
+}
+
+#types .btn-primary {
+    font-weight: bold;
+}
+
+#types form {
+    padding: 20px;
+}
+
+#types label {
+    display:inline-block;
+    width:100px;
+    margin-right: 20px;
+    padding: 4px;
+    text-align: right;
+    vertical-align: top;
+}
+
+#types input.text, #types textarea {
+    width: 400px;
+}
+
+#types textarea {
+    height: 100px;
+}
+
+/*------------------------------------*\
+#jQuery Modules
+\*------------------------------------*/
+
+/**
+* Tooltips
+*/
+
+#tooltip {
+    background-color: #fffff0;
+    border-top: solid 1px #bbb;
+    border-<?php print $left; ?>: solid 1px #bbb;
+    border-<?php print $right; ?>: solid 1px #444;
+    border-bottom: solid 1px #444;
+    opacity: 1;
+    padding: 2px;
+    position: absolute;
+    width: <?php print dol_size(450,'width'); ?>px;
+    z-index: 97;
+}
+
+/**
+* Gantt
+*/
+
+td.gtaskname {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ============================================================================== */
+/* Admin Menu                                                                     */
+/* ============================================================================== */
+
+/* CSS for treeview */
+.treeview ul { background-color: transparent !important; margin-top: 0 !important; /* margin-bottom: 4px !important; padding-top: 2px !important; */ }
+.treeview li { background-color: transparent !important; padding: 0 0 0 20px !important; min-height: 30px; }
+.treeview .hitarea { width: 20px !important; margin-left: -20px !important; margin-top: 3px; }
+.treeview li table { min-height: 30px; }
+.treeview .hover { color: var(--colortextlink) !important; text-decoration: underline !important; }
+
+
+/* ============================================================================== */
+/*  Show Excel tabs                                                               */
+/* ============================================================================== */
+
+.table_data
+{
+    border-style:ridge;
+    border:1px solid;
+}
+.tab_base
+{
+    background:#C5D0DD;
+    font-weight:bold;
+    border-style:ridge;
+    border: 1px solid;
+    cursor:pointer;
+}
+.table_sub_heading
+{
+    background:#CCCCCC;
+    font-weight:bold;
+    border-style:ridge;
+    border: 1px solid;
+}
+.table_body
+{
+    background:#F0F0F0;
+    font-weight:normal;
+    font-family:sans-serif;
+    border-style:ridge;
+    border: 1px solid;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+.tab_loaded
+{
+    background:#222222;
+    color:white;
+    font-weight:bold;
+    border-style:groove;
+    border: 1px solid;
+    cursor:pointer;
+}
+
+
+/* ============================================================================== */
+/*  CSS for color picker                                                          */
+/* ============================================================================== */
+
+div.jPicker table.jPicker {
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+table.jPicker tr:first-of-type td {
+    height: 2px !important;
+    line-height: 2px;
+}
+.jPicker .Move {
+    background: unset !important;
+    border: unset !important;
+}
+.jPicker .Preview div span {
+    border: unset !important;
+    width: unset !important;
+    height: 50% !important;
+}
+table.jPicker {
+    border-radius: 5px;
+    border: 1px solid #bbb !important;
+    background-color: var(--colorbackbody) !important;
+    box-shadow: 0px 0px 10px #ccc;
+}
+.jPicker .Grid {
+    background-image: unset !important;
+}
+.jPicker .Grid span.QuickColor {
+    border: unset !important;
+}
+.jPicker td.Radio {
+    min-width: 34px;
+}
+.jPicker td.Text {
+    white-space: nowrap;
+}
+.jPicker td.Text input {
+    height: 1em !important;
+}
+.jPicker .Preview div {
+    height: 36px !important;
+}
+.jPicker input[type="button"] {
+    background: var(--butactionbg);
+    color: var(--textbutaction);
+    border-radius: 4px;
+    border-collapse: collapse;
+    border: none;
+}
+
+A.color, A.color:active, A.color:visited {
+    position : relative;
+    display : block;
+    text-decoration : none;
+    width : 10px;
+    height : 10px;
+    line-height : 10px;
+    margin : 0px;
+    padding : 0px;
+    border : 1px inset white;
+}
+A.color:hover {
+    border : 1px outset white;
+}
+A.none, A.none:active, A.none:visited, A.none:hover {
+    position : relative;
+    display : block;
+    text-decoration : none;
+    width : 10px;
+    height : 10px;
+    line-height : 10px;
+    margin : 0px;
+    padding : 0px;
+    cursor : default;
+    border : 1px solid #b3c5cc;
+}
+.tblColor {
+    display : none;
+}
+.tdColor {
+    padding : 1px;
+}
+.tblContainer {
+    background-color : #b3c5cc;
+}
+.tblGlobal {
+    position : absolute;
+    top : 0px;
+    left : 0px;
+    display : none;
+    background-color : #b3c5cc;
+    border : 2px outset;
+}
+.tdContainer {
+    padding : 5px;
+}
+.tdDisplay {
+    width : 50%;
+    height : 20px;
+    line-height : 20px;
+    border : 1px outset white;
+}
+.tdDisplayTxt {
+    width : 50%;
+    height : 24px;
+    line-height : 12px;
+    font-family : <?php print $fontlist ?>;
+    font-size : 8pt;
+    color : black;
+    text-align : center;
+}
+.btnColor {
+    width : 100%;
+    font-family : <?php print $fontlist ?>;
+    font-size : 10pt;
+    padding : 0px;
+    margin : 0px;
+}
+.btnPalette {
+    width : 100%;
+    font-family : <?php print $fontlist ?>;
+    font-size : 8pt;
+    padding : 0px;
+    margin : 0px;
+}
+.colorselector {
+    border: solid 1px #ddd !important;
+}
+
+/* Style to overwrites JQuery styles */
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    /* border: 1px solid #888; */
+    background: var(--colorbacktitle1);
+    color: unset;
+    font-weight: bold;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    background: var(--colorbackhmenu1);
+    color: #ffffff !important;
+    border: 1px solid var(--colorbackhmenu1);
+}
+.ui-menu {
+    padding: 5px;
+    /*
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        */
+}
+.ui-menu .ui-menu-item a {
+    text-decoration:none;
+    display:block;
+    padding:.5em .6em;
+    line-height:1.5;
+    font-weight: normal;
+    font-family:<?php echo $fontlist; ?>;
+    font-size:1em;
+}
+.ui-widget {
+    font-family:<?php echo $fontlist; ?>;
+}
+/* .ui-button { margin-left: -2px; <?php print(preg_match('/chrome/', $conf->browser->name) ? 'padding-top: 1px;' : ''); ?> } */
+.ui-button { margin-left: -2px; }
+.ui-button-icon-only .ui-button-text { height: 8px; }
+.ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text { padding: 2px 0px 6px 0px; }
+.ui-button-text
+{
+    line-height: 1em !important;
+}
+.ui-autocomplete-input { margin: 0; padding: 4px; }
+
+
+/* ============================================================================== */
+/*  CKEditor                                                                      */
+/* ============================================================================== */
+
+body.cke_show_borders {
+    margin: 5px !important;
+}
+
+.cke_dialog {
+    border: 1px #bbb solid ! important;
+}
+/*.cke_editor table, .cke_editor tr, .cke_editor td
+{
+	border: 0px solid #FF0000 !important;
+}
+span.cke_skin_kama { padding: 0 !important; }*/
+.cke_wrapper { padding: 4px !important; }
+a.cke_dialog_ui_button
+{
+    font-family: <?php print $fontlist ?> !important;
+    background-image: url(<?php echo $img_button ?>) !important;
+    background-position: bottom !important;
+    border: 1px solid #C0C0C0 !important;
+    -webkit-border-radius:0px 5px 0px 5px !important;
+    border-radius:0px 5px 0px 5px !important;
+    -webkit-box-shadow: 3px 3px 4px #DDD !important;
+    box-shadow: 3px 3px 4px #DDD !important;
+}
+.cke_dialog_ui_hbox_last
+{
+    vertical-align: bottom !important;
+}
+.cke_dialog_ui_hbox_first {
+    vertical-align: middle !important;
+}
+.cke_combo_text {
+    width: 40px !important;
+}
+/*
+.cke_editable
+{
+	line-height: 1.4 !important;
+	margin: 6px !important;
+}
+*/
+a.cke_dialog_ui_button_ok span {
+    text-shadow: none !important;
+    color: #333 !important;
+}
+a.cke_button, a.cke_combo_button {
+    height: 18px !important;
+}
+div.cke_notifications_area .cke_notification_warning {
+    visibility: hidden;
+}
+
+/* CSS To hide the picto menu on smartphone, except when maximize */
+@media only screen and (max-width: 768px)
+{
+    .cke_inner:not(.cke_maximized) .cke_toolbar_separator,
+    .cke_inner:not(.cke_maximized) .cke_combo,
+    .cke_inner:not(.cke_maximized) .cke_button:not(.cke_button__maximize) {
+        display: none;
+    }
+}
+
+/* ============================================================================== */
+/*  ACE editor                                                                    */
+/* ============================================================================== */
+.ace_editor {
+    border: 1px solid #ddd;
+    margin: 0;
+}
+.aceeditorstatusbar {
+    margin: 0;
+    padding: 0;
+    padding-<?php echo $left; ?>: 10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ebebeb;
+    height: 2.2em;
+    line-height: 2.2em;
+}
+.ace_status-indicator {
+    color: gray;
+    position: relative;
+    right: 0;
+    border-left: 1px solid;
+}
+pre#editfilecontentaceeditorid {
+    margin-top: 5px;
+}
+
+
+/* ============================================================================== */
+/*  File upload                                                                   */
+/* ============================================================================== */
+
+.template-upload {
+    height: 72px !important;
+}
+
+
+/* ============================================================================== */
+/*  Custom reports                                                                */
+/* ============================================================================== */
+
+.customreportsoutput, .customreportsoutputnotdata {
+    padding-top: 20px;
+}
+.customreportsoutputnotdata {
+    text-align: center;
 }
 
 /* ============================================================================== */
@@ -6667,642 +7202,409 @@ table.cal_event td.cal_event_right {
 }
 
 
-/*------------------------------------*\
-#cashdesk module
-\*------------------------------------*/
+/* ============================================================================== */
+/*  Comments                                                                   	  */
+/* ============================================================================== */
 
-.conteneur {
-    background-color: <?php echo $colorbline; ?> !important;
-    box-shadow: 0 1px 1px rgba(0,0,0, .04);
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0, .04);
+#comment div {
+    box-sizing:border-box;
 }
-
-.conteneur_img_gauche {
-    background: none!important;
+#comment .comment {
+    border-radius:7px;
+    margin-bottom:10px;
+    overflow:hidden;
 }
-
-.conteneur_img_droite {
-    background: none!important;
+#comment .comment-table {
+    display:table;
+    height:100%;
 }
-
-
-.entete {
-    background: none!important;
-    height: 0!important;
+#comment .comment-cell {
+    display:table-cell;
 }
-
-
-.menu_principal {
-    background-color: <?php print $bgnavtop; ?> !important;
-    background-image: none !important;
-    margin: 0 0 20px !important;
-    width: 100% !important;
-    height: 90px !important;
+#comment .comment-info {
+    font-size:0.8em;
+    border-right:1px solid #dedede;
+    margin-right:10px;
+    width:160px;
+    text-align:center;
+    background:rgba(255,255,255,0.5);
+    vertical-align:middle;
+    padding:10px 2px;
 }
-
-.menu_principal .logopos {
-    padding-top: 5px !important;
-    max-height: 80px !important;
+#comment .comment-info a {
+    color:inherit;
 }
-
-.menu_principal .menu {
-    padding: 15px 0!important;
+#comment .comment-right {
+    vertical-align:top;
 }
-
-.menu_principal .menu li {
-    line-height: 1.5em;
-    margin: 0 10px;
+#comment .comment-description {
+    padding:10px;
+    vertical-align:top;
 }
-
-.menu_principal .menu_choix1,
-.menu_principal .menu_choix2 {
-    padding: 0;
-    font-size: 1.3em!important;
-    width: initial!important;
+#comment .comment-delete {
+    width: 100px;
+    text-align:center;
+    vertical-align:middle;
 }
-
-.menu_principal .menu_choix1 a,
-.menu_principal .menu_choix2 a {
-    border: 1px solid #eee;
-    border-radius: 5px;
-    margin: 5px;
-    padding: 14px 5px 14px 54px;
-    height: 38px;
-    width: initial!important;
+#comment .comment-delete:hover {
+    background:rgba(250,20,20,0.8);
 }
-
-.menu_principal .menu_choix1 a:hover,
-.menu_principal .menu_choix1 a:focus,
-.menu_principal .menu_choix2 a:hover,
-.menu_principal .menu_choix2 a:focus {
-    background-color: <?php echo $bgbutton_hover;?>;
+#comment .comment-edit {
+    width: 100px;
+    text-align:center;
+    vertical-align:middle;
 }
-
-.menu_principal .menu_choix1 a {
-    background: url("<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/cashdesk/new.png',1); ?>") top left no-repeat;
+#comment .comment-edit:hover {
+    background:rgba(0,184,148,0.8);
 }
-
-.menu_principal .menu_choix2 a {
-    background: url("<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/cashdesk/gescom.png',1); ?>") top left no-repeat;
-}
-
-.menu_principal .menu_choix1 a span,
-.menu_principal .menu_choix2 a span{
-    color: #eee;
-    display: inline-block;
-    padding: 13px 0;
-}
-
-.menu_principal .menu_choix1 a:hover span,
-.menu_principal .menu_choix1 a:focus span,
-.menu_principal .menu_choix2 a:hover span,
-.menu_principal .menu_choix2 a:focus span {
-    color: #fcfcfc !important;
-}
-
-.menu_principal .menu_choix0 {
-    color: #eee !important;
-    float: right !important;
-    font-style: normal !important;
-    font-size: 13px !important;
-    margin-right: 20px !important;
-    text-align: left !important;
-    min-width: 235px !important;
-    max-width: 50% !important;
-}
-
-.menu_principal .menu_choix0 a {
-    color: var(--colorfline);
-    font-weight: bold!important;
-}
-
-.menu_principal .menu_choix0 a:hover,
-.menu_principal .menu_choix0 a:focus {
-    color: <?php echo $colorfline_hover; ?>;
-    text-decoration: underline;
-}
-
-.menu_principal .menu_choix0 a img {
-    vertical-align: sub;
-}
-
-.liste_articles {
-    border: none!important;
-    width: 245px !important;
-}
-
-.liste_articles_bas {
-    background-color: #333;
-    border: 1px solid rgba(0,0,0, .24) !important;
-    color: #eee;
-    padding-bottom: 15px;
-}
-
-p.titre {
-    background-color: <?php print $maincolor; ?>;
-    border-bottom: none !important;
-    color: #f4f4f4 !important;
-    padding: 8px;
-}
-
-.liste_articles .cadre_article {
-    border-bottom: 1px solid #eee !important;
-    width: 200px !important;
-}
-
-.liste_articles .cadre_article p {
-    color: #eee !important;
-}
-
-.liste_articles .cadre_article p a {
-    color: #eee !important;
-}
-
-.cadre_article p a:hover,
-.cadre_article p a:focus {
-    text-decoration: underline;
-}
-
-.cadre_prix_total {
-    background-color: #f6f6f6;
-    border: 1px solid rgba(0,0,0, .24) !important;
-    color: #33cc66 !important;
-    margin-left: 23px !important;
-    margin-right: 23px !important;
-}
-
-.bouton_login input {
-    background-color: <?php print $maincolor; ?>!important;
-    background-image: none !important;
-    border: 1px solid #c0c0c0 !important;
-    box-shadow: inset 0 1px 0 rgba(170, 200, 210, .6);
-    -webkit-box-shadow: inset 0 1px 0 rgba(170, 200, 210, .6);
-    color: #eee;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 1em;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.bouton_login input:hover,
-.bouton_login input:focus,
-.bouton_login input:active {
-    background-color: $bgbutton_hover !important;
-    padding: 1em;
-}
-
-.principal {
-    margin: 0 20px !important;
-}
-
-.titre1 {
-    color: #f07b6e!important;
-    font-size: 1.3em!important;
-}
-
-.cadre_facturation {
-    border: 2px solid rgba(0,0,0, .32) !important;
-    background-color: <?php echo $colorbline; ?>;
-    color: var(--colorfline);
-    padding: 1em;
-}
-
-.cadre_facturation table {
+#comment textarea {
     width: 100%;
-    margin: 0.5em 0;
-}
-
-.cadre_facturation table tr td {
-    padding: 0.5em;
-}
-
-.cadre_facturation .label1 {
-    color: var(--colorfline);
-}
-
-.select_tva select {
-    width: 70px !important;
-}
-
-.texte1_off, .texte2_off {
-    cursor: not-allowed;
 }
 
 
-/* Force values for small screen 767 */
-@media only screen and (max-width: 767px)
-{
-    .menu_principal .menu {
-        padding: 8px 0 !important;
-    }
 
-    .menu_principal .menu li.menu_choix1,
-    .menu_principal .menu li.menu_choix2 {
-        padding: 15px 0 5px 0;
-        margin: 0 5px;
-    }
+/* ============================================================================== */
+/*  JSGantt                                                                       */
+/* ============================================================================== */
 
-    .menu_principal .menu_choix1 a,
-    .menu_principal .menu_choix2 a {
-        background-size: 36px 36px;
-        height: 30px;
-        padding: 8px 38px 8px 0;
-    }
-
-    .menu_principal .menu_choix1 a span.hideonsmartphone,
-    .menu_principal .menu_choix2 a span.hideonsmartphone {
-        display: none;
-    }
-    .liste_articles {
-        margin-right: 0 !important;
-    }
-
-    .menu_principal .menu_choix0 {
-        max-width: 66% !important;
-    }
-
-    .menu_principal .menu_choix0 select {
-        width: auto;
-    }
-
-    /* Do not force width for cashdesk */
-    .cadre_facturation .maxwidthonsmartphone {
-        max-width: fit-content;
-    }
+div.scroll2 {
+    width: <?php print isset($_SESSION['dol_screenwidth']) ? max((int) $_SESSION['dol_screenwidth'] - 830, 450) : '450'; ?>px !important;
 }
 
-
-/*
-* Buttons
-*/
-
-.bouton_ajout_article {
-    background-color: <?php echo $colorbline; ?> !important;
-    background-image: none!important;
-    border: 1px solid <?php print $maincolor; ?>!important;
-    color: <?php print $maincolor; ?>;
-    box-shadow: inset 0 1px 0 rgba(170, 200, 210, .6);
-    -webkit-box-shadow: inset 0 1px 0 rgba(170, 200, 210, .6);
-    cursor: pointer;
-    display: block;
-    font-weight: bold!important;
-    margin: 15px auto 0 !important;
-    text-decoration: none;
-    text-transform: uppercase;
-    width: initial !important;
-    white-space: nowrap;
+div#GanttChartDIVglisthead, div#GanttChartDIVgcharthead {
+    line-height: 2;
 }
 
-.bouton_ajout_article:hover,
-.bouton_ajout_article:active,
-.bouton_ajout_article:focus {
-    background-color: <?php print $maincolor; ?>!important;
-    background-image: none!important;
-    border-color: <?php print $maincolor; ?>;
-    color: #f7f7f7;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+.gtaskname div, .gtaskname, .gstartdate div, .gstartdate, .genddate div, .genddate {
+    font-size: unset !important;
 }
 
-.bouton_mode_reglement,
-.bouton_validation {
-    background-color: #f8f8f8!important;
-    background-image: none!important;
-    border: 1px solid #c0c0c0!important;
-    -webkit-box-shadow: inset 0 1px 0 rgba(170, 200, 210, .6);
-    box-shadow: inset 0 1px 0 rgba(170, 200, 210, .6);
-    color: #434956;
-    cursor: pointer;
-    font-weight: bold;
-    text-decoration: none;
-    white-space: nowrap;
+div.gantt, .gtaskheading, .gmajorheading, .gminorheading, .gminorheadingwkend {
+    font-size: unset !important;
+    font-weight: normal !important;
+    color: #000 !important;
 }
-
-.bouton_mode_reglement:hover,
-.bouton_mode_reglement:active,
-.bouton_mode_reglement:focus,
-.bouton_validation:hover,
-.bouton_validation:active,
-.bouton_validation:focus {
-    background-image: none!important;
-    border: 1px solid <?php print $maincolor; ?>!important;
-    color: <?php print $maincolor; ?>;
-    -webkit-box-shadow: inset 0 5px 0 <?php print $maincolor; ?>88;
-    box-shadow: inset 0 5px 0 <?php print $maincolor; ?>88;
+div.gTaskInfo {
+    background: #f0f0f0 !important;
 }
-
-.bouton_mode_reglement_disabled {
-    background-color: #ddd!important;
-    border: 1px solid #aaa !important;
-    box-shadow: inset 0 1px 0 rgba(170, 170, 170, .6);
-    -webkit-box-shadow: inset 0 1px 0 rgba(170, 170, 170, .6);
-    color: #777!important;
-    cursor: not-allowed;
-    font-weight: normal!important;
-    text-decoration: none !important;
-    white-space: nowrap !important;
+.gtaskblue {
+    background: rgb(108,152,185) !important;
 }
-
-.pied {
-    background: none!important;
-    height: 0!important;
+.gtaskgreen {
+    background: rgb(160,173,58) !important;
 }
-
-/*------------------------------------*\
-#jQuery Modules
-\*------------------------------------*/
-
-/**
-* Tooltips
-*/
-
-#tooltip {
-    background-color: #fffff0;
-    border-top: solid 1px #bbb;
-    border-<?php print $left; ?>: solid 1px #bbb;
-    border-<?php print $right; ?>: solid 1px #444;
-    border-bottom: solid 1px #444;
-    opacity: 1;
-    padding: 2px;
-    position: absolute;
-    width: <?php print dol_size(450,'width'); ?>px;
-    z-index: 97;
-}
-
-
-/**
-* Ajax - Liste deroulante de l'autocompletion
-*/
-
-
-
-
-
-
-
-/**
-* Gantt
-*/
-
 td.gtaskname {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-/**
-* jQuery - jeditable
-*/
-
-.editkey_textarea,
-.editkey_ckeditor,
-.editkey_string,
-.editkey_email,
-.editkey_numeric,
-.editkey_select,
-.editkey_autocomplete {
-    background: url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/edit.png',1); ?>) right top no-repeat;
-    cursor: pointer;
+td.gminorheadingwkend {
+    color: #888 !important;
+}
+td.gminorheading {
+    color: #666 !important;
+}
+.glistlbl, .glistgrid {
+    width: 582px !important;
+}
+/*.gtaskname div, .gtaskname {
+	min-width: 250px !important;
+	max-width: 250px !important;
+	width: 250px !important;
+}*/
+.gtaskname div, .gtaskname {
+    min-width: 250px !important;
+    max-width: 500px !important;
+    width: unset !important;
+}
+.gpccomplete div, .gpccomplete {
+    min-width: 40px !important;
+    max-width: 40px !important;
+    width: 40px !important;
+}
+td.gtaskheading.gstartdate, td.gtaskheading.genddate {
+    white-space: break-spaces;
+}
+.gtasktableh tr:nth-child(2) td:nth-child(2), .gtasktableh tr:nth-child(2) td:nth-child(3), .gtasktableh tr:nth-child(2) td:nth-child(4), .gtasktableh tr:nth-child(2) td:nth-child(5), .gtasktableh tr:nth-child(2) td:nth-child(6), .gtasktableh tr:nth-child(2) td:nth-child(7) {
+    color: transparent !important;
+    border-left: none;
+    border-right: none;
+    border-top: none;
 }
 
-.editkey_datepicker {
-    background: url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/calendar.png',1); ?>) right center no-repeat;
-    cursor: pointer;
+/* ============================================================================== */
+/*  jFileTree                                                                     */
+/* ============================================================================== */
+
+.ecmfiletree {
+    width: 99%;
+    height: 99%;
+    padding-left: 2px;
+    font-weight: normal;
 }
 
-.editval_textarea.active:hover,
-.editval_ckeditor.active:hover,
-.editval_string.active:hover,
-.editval_email.active:hover,
-.editval_numeric.active:hover,
-.editval_select.active:hover,
-.editval_autocomplete.active:hover,
-.editval_datepicker.active:hover {
-    background-color: white;
-    cursor: pointer;
+.fileview {
+    width: 99%;
+    height: 99%;
+    background: #FFF;
+    padding-left: 2px;
+    padding-top: 4px;
+    font-weight: normal;
 }
 
-.viewval_textarea.active:hover,
-.viewval_ckeditor.active:hover,
-.viewval_string.active:hover,
-.viewval_email.active:hover,
-.viewval_numeric.active:hover,
-.viewval_select.active:hover,
-.viewval_autocomplete.active:hover,
-.viewval_datepicker.active:hover {
-background-color: white;
-cursor: pointer;
+div.filedirelem {
+    position: relative;
+    display: block;
+    text-decoration: none;
 }
 
-.viewval_hover {
-background-color: white;
+ul.filedirelem {
+    padding: 2px;
+    margin: 0 5px 5px 5px;
+}
+ul.filedirelem li {
+    list-style: none;
+    padding: 2px;
+    margin: 0 10px 20px 10px;
+    width: 160px;
+    height: 120px;
+    text-align: center;
+    display: block;
+    float: <?php print $left; ?>;
+    border: solid 1px #DDDDDD;
 }
 
-
-/**
-* Treeview - Admin Menu
-*/
-
-.treeview ul {
-background-color: transparent !important;
-margin-top: 0;
+ul.ecmjqft {
+    line-height: 32px;
+    padding: 0px;
+    margin: 0px;
+    font-weight: normal;
 }
 
-.treeview li {
-background-color: transparent !important;
-min-height: 20px;
-padding: 0 0 0 16px !important;
+ul.ecmjqft li {
+    list-style: none;
+    padding: 0px;
+    padding-left: 20px;
+    margin: 0px;
+    white-space: nowrap;
+    display: block;
 }
 
-
-
-/**
-* Excel tabs
-*/
-
-.table_data {
-border-style: ridge;
-border: 1px solid;
+ul.ecmjqft a {
+    line-height: 24px;
+    vertical-align: middle;
+    color: unset;
+    padding: 0px 0px;
+    font-weight:normal;
+    display: inline-block !important;
+}
+ul.ecmjqft > a {
+    width: calc(100% - 100px);
+    overflow: hidden;
+    white-space: break-spaces;
+    word-break: break-all;
+}
+ul.ecmjqft a:active {
+    font-weight: bold !important;
+}
+ul.ecmjqft a:hover {
+    text-decoration: underline;
+}
+div.ecmjqft {
+    vertical-align: middle;
+    display: inline-block !important;
+    text-align: <?php echo $right; ?>;
+    float: <?php echo $right; ?>;
+    right:4px;
+    clear: both;
+    height: 16px;
+}
+#ecm-layout-north {
+    min-height: 40px;
+}
+#ecm-layout-north div.attachareaformuserfileecm {
+    padding-bottom: 0px;
+}
+div#ecm-layout-west {
+    width: 380px;
+    vertical-align: top;
+}
+div#ecm-layout-center {
+    width: calc(100% - 405px);
+    vertical-align: top;
+    float: <?php echo $right; ?>;
 }
 
-.tab_base {
-background-color: #c5d0dd;
-border: 1px solid;
-border-style: ridge;
-cursor: pointer;
-font-weight: bold;
+.ecmjqft LI.directory { font-weight:normal; background: url(<?php echo dol_buildpath($path.'/theme/common/treemenu/folder2.png', 1); ?>) left top no-repeat; background-position-y: 8px; }
+.ecmjqft LI.expanded { font-weight:normal; background: url(<?php echo dol_buildpath($path.'/theme/common/treemenu/folder2-expanded.png', 1); ?>) left top no-repeat; background-position-y: 8px; }
+.ecmjqft LI.wait { font-weight:normal; background: url(<?php echo dol_buildpath('/theme/'.$theme.'/img/working.gif', 1); ?>) left top no-repeat; }
+
+
+/* ============================================================================== */
+/*  jNotify                                                                       */
+/* ============================================================================== */
+
+.jnotify-container {
+    position: fixed !important;
+<?php if (getDolGlobalString('MAIN_JQUERY_JNOTIFY_BOTTOM')) { ?>
+    top: auto !important;
+    bottom: 4px !important;
+<?php } ?>
+    text-align: center;
+    min-width: <?php echo $dol_optimize_smallscreen ? '200' : '480'; ?>px;
+    width: auto;
+    max-width: 1024px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    word-wrap: break-word;
+}
+.jnotify-container .jnotify-notification .jnotify-message {
+    font-weight: normal;
+    text-align: start;
+    word-break: break-word;
+}
+.jnotify-container .jnotify-notification-warning .jnotify-close, .jnotify-container .jnotify-notification-warning .jnotify-message {
+    color: #a28918 !important;
+}
+.jnotify-container .jnotify-close {
+    top: 4px !important;
+    font-size: 1.6em !important;
 }
 
-.table_sub_heading {
-background-color: #ccc;
-border: 1px solid;
-border-style: ridge;
-font-weight: bold;
+/* use or not ? */
+div.jnotify-background {
+    opacity : 0.95 !important;
+    -webkit-box-shadow: 2px 2px 4px #8888 !important;
+    box-shadow: 2px 2px 4px #8888 !important;
 }
 
-.table_body {
-background-color: #f0f0f0;
-border: 1px solid;
-border-collapse: collapse;
-border-spacing: 0;
-border-style: ridge;
-font-family: var(--fontfamilydol);
-font-weight: normal;
+/* jnotify for the login page */
+.bodylogin .jnotify-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100000;
+    max-width: unset;
+    padding-left: unset !important;
+    padding-right: unset !important;
+    padding-top: unset !important;
 }
-
-.tab_loaded {
-background-color: #222;
-border: 1px solid;
-border-style: groove;
-color: white;
-cursor: pointer;
-font-weight: bold;
+.bodylogin .jnotify-container .jnotify-notification {
+    margin: unset !important;
 }
-
-
-/**
-* Color picker
-*/
-
-A.color,
-A.color:active,
-A.color:visited {
-border: 1px inset white;
-display: block;
-height: 10px;
-line-height: 10px;
-margin: 0;
-padding: 0;
-position: relative;
-text-decoration: none;
-width: 10px;
+.bodylogin .jnotify-container .jnotify-notification .jnotify-background {
+    border-radius: unset !important;
 }
-
-A.color:hover,
-A.color:focus {
-border: 1px outset white;
-}
-
-A.none,
-A.none:active,
-A.none:visited,
-A.none:hover,
-A.none:focus {
-border: 1px solid #b3c5cc;
-cursor: default;
-display: block;
-height: 10px;
-line-height: 10px;
-margin: 0;
-padding: 0;
-position: relative;
-text-decoration: none;
-width: 10px;
-}
-
-.tblColor {
-display: none;
-}
-
-.tdColor {
-padding: 1px;
-}
-
-.tblContainer {
-background-color: #b3c5cc;
-}
-
-.tblGlobal {
-background-color: #b3c5cc;
-border: 2px outset;
-display: none;
-left: 0;
-position: absolute;
-top: 0;
-}
-
-.tdContainer {
-padding: 5px;
-}
-
-.tdDisplay {
-border: 1px outset white;
-height: 20px;
-line-height: 20px;
-width: 50%;
-}
-
-.tdDisplayTxt {
-color: black;
-font-size: 8pt;
-height: 24px;
-line-height: 12px;
-text-align: center;
-width: 50%;
-}
-
-.btnColor {
-font-size: 10pt;
-margin: 0;
-padding: 0;
-width: 100%;
-}
-
-.btnPalette {
-font-size: 8pt;
-margin: 0;
-padding: 0;
-width: 100%;
+.bodylogin .jnotify-container .jnotify-notification .jnotify-message {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
 }
 
 
-/**
-* Overwriting JQuery styles
-*/
+/* ============================================================================== */
+/*  blockUI                                                                      */
+/* ============================================================================== */
 
-.ui-menu .ui-menu-item a {
-display: block;
-font-family: <?php echo $fontlisted; ?>;
-font-size: 1em;
-font-weight: normal;
-color: var(--colortext);
-line-height: 1.5;
-padding: .2em .4em;
-text-decoration: none;
-zoom: 1;
+/*div.growlUI { background: url(check48.png) no-repeat 10px 10px }*/
+div.dolEventValid h1, div.dolEventValid h2 {
+    color: #567b1b;
+    background-color: #e3f0db;
+    padding: 5px 5px 5px 5px;
+    text-align: left;
+}
+div.dolEventError h1, div.dolEventError h2 {
+    color: #a72947;
+    background-color: #d79eac;
+    padding: 5px 5px 5px 5px;
+    text-align: left;
 }
 
-.ui-widget {
-font-family: <?php echo $fontlisted; ?>;
-font-size: <?php echo $fontsize; ?>px;
-}
-.ui-widget.ui-widget-content {
-	border: solid 1px rgba(0,0,0,.3);
+/* ============================================================================== */
+/*  Maps                                                                          */
+/* ============================================================================== */
+
+.divmap, #google-visualization-geomap-embed-0, #google-visualization-geomap-embed-1, #google-visualization-geomap-embed-2 {
 }
 
-.ui-button {
-    margin-left: -2px;
-    padding-top: 1px;
+
+/* ============================================================================== */
+/*  Datatable                                                                     */
+/* ============================================================================== */
+
+table.dataTable tr.odd td.sorting_1, table.dataTable tr.even td.sorting_1 {
+    background: none !important;
+}
+.sorting_asc  { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_asc.png', 1); ?>') no-repeat center right !important; }
+.sorting_desc { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_desc.png', 1); ?>') no-repeat center right !important; }
+.sorting_asc_disabled  { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_asc_disabled.png', 1); ?>') no-repeat center right !important; }
+.sorting_desc_disabled { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_desc_disabled.png', 1); ?>') no-repeat center right !important; }
+.dataTables_paginate {
+    margin-top: 8px;
+}
+.paginate_button_disabled {
+    opacity: 1 !important;
+    color: #888 !important;
+    cursor: default !important;
+}
+.paginate_disabled_previous:hover, .paginate_enabled_previous:hover, .paginate_disabled_next:hover, .paginate_enabled_next:hover
+{
+    font-weight: normal;
+}
+.paginate_enabled_previous:hover, .paginate_enabled_next:hover
+{
+    text-decoration: underline !important;
+}
+.paginate_active
+{
+    text-decoration: underline !important;
+}
+.paginate_button
+{
+    font-weight: normal !important;
+    text-decoration: none !important;
+}
+.paging_full_numbers {
+    height: inherit !important;
+}
+.paging_full_numbers a.paginate_active:hover, .paging_full_numbers a.paginate_button:hover {
+    background-color: var(--colorbackbody) !important;
+}
+.paging_full_numbers, .paging_full_numbers a.paginate_active, .paging_full_numbers a.paginate_button {
+    background-color: var(--colorbackbody) !important;
+    border-radius: inherit !important;
+}
+.paging_full_numbers a.paginate_button_disabled:hover, .paging_full_numbers a.disabled:hover {
+    background-color: var(--colorbackbody) !important;
+}
+.paginate_button, .paginate_active {
+    border: 1px solid #ddd !important;
+    padding: 6px 12px !important;
+    margin-left: -1px !important;
+    line-height: 1.42857143 !important;
+    margin: 0 0 !important;
 }
 
-.ui-button-icon-only .ui-button-text {
-    height: 8px;
+/* For jquery plugin combobox */
+/* Disable this. It breaks wrapping of boxes
+.ui-corner-all { white-space: nowrap; } */
+
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled, .paginate_button_disabled {
+    opacity: .35;
+    background-image: none;
 }
 
-.ui-button-icon-only .ui-button-text,
-.ui-button-icons-only .ui-button-text {
-    padding: 2px 0 6px 0;
+div.dataTables_length {
+    float: right !important;
+    padding-left: 8px;
 }
-
-.ui-button-text {
-    line-height: 1em !important;
+div.dataTables_length select {
+    background: #fff;
 }
-
-.ui-autocomplete-input {
-    margin: 0;
-    padding: 1px;
+.dataTables_wrapper .dataTables_paginate {
+    padding-top: 0px !important;
 }
-
 
 /* confirmation box */
 
@@ -7361,410 +7663,35 @@ border-bottom-top-radius: 0!important;
 
 
 
-/**
-* CKEditor
-*/
-
-span.cke_skin_kama {
-border-radius: 0!important;
--moz-border-radius: 0!important;
--webkit-border-radius: 0!important;
-padding: 0 !important;
-}
-
-.cke_skin_kama .cke_wrapper {
-border-radius: 0!important;
--moz-border-radius: 0!important;
--webkit-border-radius: 0!important;
-}
-
-.cke_wrapper.cke_ltr { background-color: #444!important; }
-
-.cke_skin_kama a.cke_toolbox_collapser,
-.cke_skin_kama a:hover.cke_toolbox_collapser,
-.cke_skin_kama a:focus.cke_toolbox_collapser {
-background-color: #eee!important;
-border: none!important;
-}
-
-.cke_skin_kama .cke_toolgroup,
-.cke_skin_kama .cke_rcombo a,
-.cke_skin_kama .cke_rcombo a:active,
-.cke_skin_kama .cke_rcombo a:hover,
-.cke_skin_kama .cke_rcombo a:focus {
-background-color: #eee!important;
-background-image: none!important;
-background-repeat: no-repeat!important;
-background-position: initial!important;
-border-radius: 0!important;
--moz-border-radius: 0!important;
--webkit-border-radius: 0!important;
-}
-
-.cke_skin_kama a.cke_toolbox_collapser_min,
-.cke_skin_kama a:hover.cke_toolbox_collapser_min,
-.cke_skin_kama a:focus.cke_toolbox_collapser_min {
-}
-
-.cke_editor table,
-.cke_editor tr,
-.cke_editor td {
-border: 0!important;
-}
-
-.cke_wrapper { padding: 4px !important; }
-
-.cke_skin_kama .cke_contents iframe {
-border-style: solid;
-border-width: 1px;
-color: #777;
-line-height: 1em;
-outline: 0;
-}
-
-a.cke_dialog_ui_button {
-background-image: url(<?php echo $img_button; ?>) !important;
-background-position: bottom !important;
-font-family: var(--fontfamilydol) !important;
-margin: 0em .5em !important;
-padding: .1em .7em !important;
-}
-
-.cke_dialog_ui_hbox_last {
-vertical-align: bottom !important;
-}
-
-
-
-/* ============================================================================== */
-/*  File upload                                                                   */
-/* ============================================================================== */
-
-.template-upload {
-height: 72px !important;
-}
-
-
-/* ============================================================================== */
-/*  JSGantt                                                                       */
-/* ============================================================================== */
-
-div.scroll2 {
-width: <?php print isset($_SESSION['dol_screenwidth'])?max($_SESSION['dol_screenwidth']-830, 450):'450'; ?>px !important;
-}
-
-.gtaskname div, .gtaskname {
-font-size: unset !important;
-}
-div.gantt, .gtaskheading, .gmajorheading, .gminorheading, .gminorheadingwkend {
-font-size: unset !important;
-font-weight: normal !important;
-color: #000 !important;
-}
-div.gTaskInfo {
-background: #f0f0f0 !important;
-}
-.gtaskblue {
-background: rgb(108,152,185) !important;
-}
-.gtaskgreen {
-background: rgb(160,173,58) !important;
-}
-td.gtaskname {
-overflow: hidden;
-text-overflow: ellipsis;
-}
-td.gminorheadingwkend {
-color: #888 !important;
-}
-td.gminorheading {
-color: #666 !important;
-}
-.glistlbl, .glistgrid {
-width: 582px !important;
-}
-.gtaskname div, .gtaskname {
-min-width: 250px !important;
-max-width: 250px !important;
-width: 250px !important;
-}
-.gpccomplete div, .gpccomplete {
-min-width: 40px !important;
-max-width: 40px !important;
-width: 40px !important;
-}
-
-/* ============================================================================== */
-/*  jFileTree                                                                     */
-/* ============================================================================== */
-
-.ecmfiletree {
-    width: 99%;
-    height: 99%;
-    padding-left: 2px;
-    font-weight: normal;
-}
-
-.fileview {
-    width: 99%;
-    height: 99%;
-    background: #FFF;
-    padding-left: 2px;
-    padding-top: 4px;
-    font-weight: normal;
-}
-
-div.filedirelem {
-    position: relative;
-    display: block;
-    text-decoration: none;
-}
-
-ul.filedirelem {
-    padding: 2px;
-    margin: 0 5px 5px 5px;
-}
-ul.filedirelem li {
-    list-style: none;
-    padding: 2px;
-    margin: 0 10px 20px 10px;
-    width: 160px;
-    height: 120px;
-    text-align: center;
-    display: block;
-    float: <?php print $left; ?>;
-    border: solid 1px #f4f4f4;
-}
-
-.ui-layout-north {
-
-}
-
-ul.ecmjqft {
-    line-height: 16px;
-    padding: 0px;
-    margin: 0px;
-    font-weight: normal;
-}
-
-ul.ecmjqft li {
-    list-style: none;
-    padding: 0px;
-    padding-left: 20px;
-    margin: 0px;
-    display: block;
-}
-
-ul.ecmjqft a {
-    line-height: 24px;
-    vertical-align: middle;
-	color: var(--colortextlink);
-    padding: 0px 0px;
-    font-weight:normal;
-    display: inline-block !important;
-}
-ul.ecmjqft a:active {
-    font-weight: bold !important;
-}
-ul.ecmjqft a:hover {
-    text-decoration: underline;
-}
-
-div.ecmjqft {
-    vertical-align: middle;
-    display: inline-block !important;
-    text-align: right;
-    float: right;
-    right:4px;
-    clear: both;
-}
-div#ecm-layout-west {
-    width: 380px;
-    vertical-align: top;
-}
-div#ecm-layout-center {
-    width: calc(100% - 390px);
-    vertical-align: top;
-    float: right;
-}
-
-.ecmjqft LI.directory { font-weight:normal; background: url(<?php echo dol_buildpath($path.'/theme/common/treemenu/folder2.png', 1); ?>) left top no-repeat; }
-.ecmjqft LI.expanded { font-weight:normal; background: url(<?php echo dol_buildpath($path.'/theme/common/treemenu/folder2-expanded.png', 1); ?>) left top no-repeat; }
-.ecmjqft LI.wait { font-weight:normal; background: url(<?php echo dol_buildpath('/theme/'.$theme.'/img/working.gif', 1); ?>) left top no-repeat; }
-
-
-/* ============================================================================== */
-/*  jNotify                                                                       */
-/* ============================================================================== */
-
-.jnotify-container {
-    position: fixed !important;
-<?php if (! empty($conf->global->MAIN_JQUERY_JNOTIFY_BOTTOM)) { ?>
-    top: auto !important;
-    bottom: 4px !important;
-<?php } ?>
-    text-align: center;
-    min-width: <?php echo $dol_optimize_smallscreen?'200':'480'; ?>px;
-    width: auto;
-    max-width: 1024px;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    word-wrap: break-word;
-}
-.jnotify-container .jnotify-notification .jnotify-message {
-    font-weight: normal;
-}
-.jnotify-container .jnotify-notification .jnotify-close, .jnotify-container .jnotify-notification .jnotify-message {
-	color: <?php echo $colorNotifInfoTxt ?> !important;
-}
-.jnotify-container .jnotify-notification .jnotify-background {
-	background-color: <?php echo $colorNotifInfoBg ?> !important;
-}
-.jnotify-container .jnotify-notification-warning .jnotify-close, .jnotify-container .jnotify-notification-warning .jnotify-message {
-	color: <?php echo $colorNotifWarningTxt ?> !important;
-}
-
-.jnotify-container .jnotify-notification-warning .jnotify-background {
-	background-color: <?php echo $colorNotifWarningBg ?> !important;
-}
-
-.jnotify-container .jnotify-notification-error .jnotify-close, .jnotify-container .jnotify-notification-error .jnotify-message {
-	color:<?php echo $colorNotifErrorTxt ?> !important;
-}
-.jnotify-container .jnotify-notification-error .jnotify-background {
-	background-color: <?php echo $colorNotifErrorBg ?> !important;
-}
-/* use or not ? */
-div.jnotify-background {
-    opacity : 0.95 !important;
-    -webkit-box-shadow: 2px 2px 4px #888 !important;
-    box-shadow: 2px 2px 4px #888 !important;
-}
-
-/* ============================================================================== */
-/*  blockUI                                                                      */
-/* ============================================================================== */
-
-/*div.growlUI { background: url(check48.png) no-repeat 10px 10px }*/
-div.dolEventValid h1, div.dolEventValid h2 {
-color: #567b1b;
-background-color: #e3f0db;
-padding: 5px 5px 5px 5px;
-text-align: left;
-}
-div.dolEventError h1, div.dolEventError h2 {
-color: #a72947;
-background-color: #d79eac;
-padding: 5px 5px 5px 5px;
-text-align: left;
-}
-
-/* ============================================================================== */
-/*  Maps                                                                          */
-/* ============================================================================== */
-
-.divmap,
-#google-visualization-geomap-embed-0,
-#google-visualization-geomap-embed-1,
-#google-visualization-geomap-embed-2 {
-box-shadow: 0 0 10px #aaa;
--moz-box-shadow: 0 0 10px #aaa;
--webkit-box-shadow: 0 0 10px #aaa;
-}
-
-/* ============================================================================== */
-/*  Datatable                                                                     */
-/* ============================================================================== */
-
-table.dataTable tr.odd td.sorting_1, table.dataTable tr.even td.sorting_1 {
-background: none !important;
-}
-.sorting_asc  { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_asc.png', 1); ?>') no-repeat center right !important; }
-.sorting_desc { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_desc.png', 1); ?>') no-repeat center right !important; }
-.sorting_asc_disabled  { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_asc_disabled.png', 1); ?>') no-repeat center right !important; }
-.sorting_desc_disabled { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_desc_disabled.png', 1); ?>') no-repeat center right !important; }
-.dataTables_paginate {
-margin-top: 8px;
-}
-.paginate_button_disabled {
-opacity: 1 !important;
-color: #888 !important;
-cursor: default !important;
-}
-.paginate_disabled_previous:hover, .paginate_enabled_previous:hover, .paginate_disabled_next:hover, .paginate_enabled_next:hover
-{
-font-weight: normal;
-}
-.paginate_enabled_previous:hover, .paginate_enabled_next:hover
-{
-    text-decoration: underline !important;
-}
-.paginate_active
-{
-    text-decoration: underline !important;
-}
-.paginate_button
-{
-    font-weight: normal !important;
-    text-decoration: none !important;
-}
-.paging_full_numbers {
-    height: inherit !important;
-}
-.paging_full_numbers a.paginate_active:hover, .paging_full_numbers a.paginate_button:hover {
-    background-color: #DDD !important;
-}
-.paging_full_numbers, .paging_full_numbers a.paginate_active, .paging_full_numbers a.paginate_button {
-    background-color: #FFF !important;
-    border-radius: inherit !important;
-}
-.paging_full_numbers a.paginate_button_disabled:hover, .paging_full_numbers a.disabled:hover {
-    background-color: #FFF !important;
-}
-.paginate_button, .paginate_active {
-    border: 1px solid #ddd !important;
-    padding: 6px 12px !important;
-    margin-left: -1px !important;
-    line-height: 1.42857143 !important;
-    margin: 0 0 !important;
-}
-
-/* For jquery plugin combobox */
-/* Disable this. It breaks wrapping of boxes
-.ui-corner-all { white-space: nowrap; } */
-
-.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled, .paginate_button_disabled {
-opacity: .35;
-background-image: none;
-}
-
-div.dataTables_length {
-float: right !important;
-padding-left: 8px;
-}
-div.dataTables_length select {
-background: #fff;
-}
-.dataTables_wrapper .dataTables_paginate {
-padding-top: 0px !important;
-}
 
 /* ============================================================================== */
 /*  Select2                                                                       */
 /* ============================================================================== */
 
+span.select2-selection--single.flat[aria-disabled="true"] span.select2-selection__rendered {
+    opacity: 0.5;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--colorbackhmenu1);
+    color: var(--colortextbackhmenu);
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] span {
+    color: #fff !important;
+}
+
 span.select2.select2-container.select2-container--default {
     text-align: initial;
-<?php if (empty($conf->global->THEME_SHOW_BORDER_ON_INPUT)) { ?>
+    <?php if (empty($conf->global->THEME_SHOW_BORDER_ON_INPUT)) { ?>
     border-left: none;
     border-top: none;
     border-right: none;
-<?php } ?>
+    <?php } ?>
 }
 span.select2.select2-container.select2-container--default {
-<?php if (empty($conf->global->THEME_SHOW_BORDER_ON_INPUT)) { ?>
+    <?php if (empty($conf->global->THEME_SHOW_BORDER_ON_INPUT)) { ?>
     /*border-bottom: solid 1px var(--inputbordercolor);*/
-<?php } ?>
+    <?php } ?>
 }
 
 input.select2-input {
@@ -7852,11 +7779,11 @@ input.select2-input {
 .select2-container--default .select2-selection--single
 {
     outline: none;
-<?php if (empty($conf->global->THEME_SHOW_BORDER_ON_INPUT)) { ?>
+    <?php if (empty($conf->global->THEME_SHOW_BORDER_ON_INPUT)) { ?>
     border-top: none;
     border-left: none;
     border-right: none;
-<?php } ?>
+    <?php } ?>
 
     border<?php echo empty($conf->global->THEME_SHOW_BORDER_ON_INPUT) ? '-bottom' : ''; ?>: solid 1px var(--inputbordercolor);
 
@@ -8121,10 +8048,58 @@ span#select2-boxbookmark-container, span#select2-boxcombo-container {
     cursor: text;
     overflow: hidden;
 }
+.select2-results__option {
+    padding: 8px;
+}
+span.select2-dropdown--below {
+    margin-top: -1px;
+    min-width: 100px;
+}
+span.select2-dropdown--above {
+    margin-bottom: -1px;
+    min-width: 100px;
+}
 
-.select2-container--default .select2-selection--multiple {
-	background-color: var(--inputbackgroundcolor);
-    color: #222 !important;
+.parentonrightofpage {
+    direction: rtl;
+}
+
+select.multiselectononeline {
+    padding: 0;
+    vertical-align: middle;
+    min-height: unset;
+    height: 2.2em !important;
+    opacity: 0;
+    /* width: 1px !important; */
+}
+
+@media only screen and (min-width: 768px)
+{
+    /* CSS to have the dropdown boxes larger that the input search area */
+    .select2-container.select2-container--open:not(.graphtype, .limit, .combolargeelem):not(.yesno) .select2-dropdown.ui-dialog {
+        min-width: 230px !important;
+    }
+    .select2-container.select2-container--open:not(.graphtype, .limit, .combolargeelem):not(.yesno) .select2-dropdown--below:not(.onrightofpage),
+    .select2-container.select2-container--open:not(.graphtype, .limit, .combolargeelem):not(.yesno) .select2-dropdown--above:not(.onrightofpage) {
+        min-width: 230px !important;
+    }
+    .onrightofpage span.select2-dropdown.ui-dialog.select2-dropdown--below,
+    .onrightofpage span.select2-dropdown.ui-dialog.select2-dropdown--above {
+        min-width: 140px !important;
+    }
+    .combolargeelem.select2-container.select2-container--open .select2-dropdown.ui-dialog {
+        min-width: 320px !important;
+    }
+
+    .select2-container--open .select2-dropdown--below {
+        border-top: 1px solid var(--inputbordercolor);
+        /* border-top: 1px solid #aaaaaa; */
+    }
+}
+
+/* must be after the other .select2-container.select2-container--open .select2-dropdown.ui-dialog */
+.limit.select2-container.select2-container--open .select2-dropdown.ui-dialog {
+    min-width: 100px !important;
 }
 
 /* ============================================================================== */
@@ -8156,73 +8131,87 @@ color: #000 !important;
 /*  External lib multiselect with checkbox                                        */
 /* ============================================================================== */
 
+.multi-select-menu {
+    z-index: 10;
+}
+
 .multi-select-container {
-display: inline-block;
-position: relative;
+    display: inline-block;
+    position: relative;
 }
 
 .multi-select-menu {
-position: absolute;
-left: 0;
-top: 0.8em;
-float: left;
-min-width: 100%;
-background: #fff;
-margin: 1em 0;
-padding: 0.4em 0;
-border: 1px solid #aaa;
-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-display: none;
+    position: absolute;
+    left: 0;
+    top: 0.8em;
+    float: left;
+    min-width: 100%;
+    background: var(--inputbackgroundcolor);
+    margin: 1em 0;
+    padding: 0.4em 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+div.multi-select-menu[role="menu"] {
+    min-width: 220px !important;
 }
 
 .multi-select-menu input {
-margin-right: 0.3em;
-vertical-align: 0.1em;
+    margin-right: 0.3em;
+    vertical-align: 0.1em;
 }
 
 .multi-select-button {
-display: inline-block;
-max-width: 20em;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-vertical-align: middle;
-background-color: #fff;
-cursor: default;
+    display: inline-block;
+    max-width: 20em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    background-color: var(--inputbackgroundcolor);
+    cursor: default;
 
-border: none;
-border-bottom: solid 1px rgba(0,0,0,.2);
-padding: 5px;
-padding-left: 2px;
-height: 17px;
+    border: none;
+    border-bottom: solid 1px var(--inputbordercolor);
+    padding: 5px;
+    padding-left: 2px;
+    height: 17px;
 }
 .multi-select-button:focus {
-outline: none;
-border-bottom: 1px solid #666;
+    outline: none;
+    border-bottom: 1px solid #666;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .multi-select-button:after {
-content: "";
-display: inline-block;
-width: 0;
-height: 0;
-border-style: solid;
-border-width: 0.5em 0.23em 0em 0.23em;
-border-color: #444 transparent transparent transparent;
-margin-left: 0.4em;
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0.5em 0.23em 0em 0.23em;
+    border-color: #444 transparent transparent transparent;
+    margin-left: 0.4em;
 }
 
 .multi-select-container--open .multi-select-menu { display: block; }
 
 .multi-select-container--open .multi-select-button:after {
-border-width: 0 0.4em 0.4em 0.4em;
-border-color: transparent transparent #999 transparent;
+    border-width: 0 0.4em 0.4em 0.4em;
+    border-color: transparent transparent #999 transparent;
 }
 
 .multi-select-menuitem {
-clear: both;
-float: left;
-padding-left: 5px
+    clear: both;
+    float: left;
+    padding-left: 5px
+}
+label.multi-select-menuitem {
+    line-height: 24px;
+    text-align: start;
 }
 
 /* ============================================================================== */
@@ -8262,8 +8251,67 @@ dl.dropdown {
     display:inline-block;
     padding: 0 3px 2px 0;
 }
+.maxwidthsearch .dropdown dt a span, .multiSel span {
+    padding: 3px 3px 2px 3px;
+}
 .dropdown span.value {
     display:none;
+}
+.dropdown dd ul {
+    background-color: var(--inputbackgroundcolor);
+    box-shadow: 1px 1px 10px #aaa;
+    display:none;
+<?php echo $right; ?>:0px;						/* pop is align on right */
+    padding: 0 0 0 0;
+    position:absolute;
+    top:2px;
+    list-style:none;
+    max-height: 264px;
+    overflow: auto;
+    border-radius: 4px;
+    z-index: 1;
+}
+.dropdown dd ul.selectedfieldsleft {
+<?php echo $right; ?>: auto;
+}
+.dropdown dd ul li {
+    white-space: nowrap;
+    font-weight: normal;
+    padding: 7px 8px 7px 8px;
+    /* color: var(--colortext); */
+    color: var(--colortext);
+}
+.dropdown dd ul li:hover {
+    background: #eee;
+}
+.dropdown dd ul li input[type="checkbox"] {
+    margin-<?php echo $right; ?>: 3px;
+}
+.dropdown dd ul li a, .dropdown dd ul li span {
+    padding: 3px;
+    display: block;
+}
+.dropdown dd ul li span {
+    color: #888;
+}
+/*.dropdown dd ul li a:hover {
+	background-color: var(--inputbackgroundcolor);
+}*/
+dd.dropdowndd ul li {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* ============================================================================== */
+/* Kanban                                                                         */
+/* ============================================================================== */
+
+.info-box-label {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* ============================================================================== */
@@ -8279,94 +8327,104 @@ dl.dropdown {
 }
 
 /* ============================================================================== */
-/*  JMobile                                                                       */
+/*  JMobile - Android                                                             */
 /* ============================================================================== */
 
+.searchpage .tagtr .tagtd {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.searchpage .tagtr .tagtd .button {
+    background: unset;
+    border: unset;
+}
+.searchpage .searchform input {
+    font-size: 1.15em;
+}
+
 li.ui-li-divider .ui-link {
-color: #FFF !important;
+    color: #FFF !important;
 }
 .ui-btn {
-margin: 0.1em 2px
+    margin: 0 2px;
 }
 a.ui-link, a.ui-link:hover, .ui-btn:hover, span.ui-btn-text:hover, span.ui-btn-inner:hover {
-text-decoration: none !important;
+    text-decoration: none !important;
 }
 .ui-body-c {
-background: #fff;
+    background: #fff;
 }
 
 .ui-btn-inner {
-min-width: .4em;
-padding-left: 6px;
-padding-right: 6px;
-font-size: <?php print $fontsize ?>px;
-/* white-space: normal; */		/* Warning, enable this break the truncate feature */
+    min-width: .4em;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: <?php print is_numeric($fontsize) ? $fontsize.'px' : $fontsize; ?>;
+    /* white-space: normal; */		/* Warning, enable this break the truncate feature */
 }
 .ui-btn-icon-right .ui-btn-inner {
-padding-right: 30px;
+    padding-right: 30px;
 }
 .ui-btn-icon-left .ui-btn-inner {
-padding-left: 30px;
+    padding-left: 30px;
 }
 .ui-select .ui-btn-icon-right .ui-btn-inner {
-padding-right: 30px;
+    padding-right: 30px;
 }
 .ui-select .ui-btn-icon-left .ui-btn-inner {
-padding-left: 30px;
+    padding-left: 30px;
 }
 .ui-select .ui-btn-icon-right .ui-icon {
-right: 8px;
+    right: 8px;
 }
 .ui-btn-icon-left > .ui-btn-inner > .ui-icon, .ui-btn-icon-right > .ui-btn-inner > .ui-icon {
-margin-top: -10px;
+    margin-top: -10px;
 }
 select {
-/* display: inline-block; */	/* We can't set this. This disable ability to make */
-overflow:hidden;
-white-space: nowrap;			/* Enabling this make behaviour strange when selecting the empty value if this empty value is '' instead of '&nbsp;' */
-text-overflow: ellipsis;
+    /* display: inline-block; */	/* We can't set this. This disable ability to make */
+    overflow:hidden;
+    white-space: nowrap;			/* Enabling this make behaviour strange when selecting the empty value if this empty value is '' instead of '&nbsp;' */
+    text-overflow: ellipsis;
 }
 .fiche .ui-controlgroup {
-margin: 0px;
-padding-bottom: 0px;
+    margin: 0px;
+    padding-bottom: 0px;
 }
-div.ui-controlgroup-controls div.tabsElem
-{
-margin-top: 2px;
+div.ui-controlgroup-controls div.tabsElem {
+    margin-top: 2px;
 }
-div.ui-controlgroup-controls div.tabsElem a
-{
--webkit-box-shadow: 0 -3px 6px rgba(0,0,0,.2);
-box-shadow: 0 -3px 6px rgba(0,0,0,.2);
+div.ui-controlgroup-controls div.tabsElem a {
+    -webkit-box-shadow: 0 -3px 6px rgba(0,0,0,.2);
+    box-shadow: 0 -3px 6px rgba(0,0,0,.2);
 }
 div.ui-controlgroup-controls div.tabsElem a#active {
--webkit-box-shadow: 0 -3px 6px rgba(0,0,0,.3);
-box-shadow: 0 -3px 6px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 -3px 6px rgba(0,0,0,.3);
+    box-shadow: 0 -3px 6px rgba(0,0,0,.3);
 }
 
 a.tab span.ui-btn-inner
 {
-border: none;
-padding: 0;
+    border: none;
+    padding: 0;
 }
 
 .ui-link {
-color: <?php echo $colortext; ?>;
+    color: <?php echo $colortext; ?>;
 }
 .liste_titre .ui-link {
-color: <?php print $colorftitle; ?> !important;
+    color: <?php print $colorftitle; ?> !important;
 }
 
 a.ui-link {
-word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* force wrap possible onto field overflow does not works */
 .formdoc .ui-btn-inner
 {
-white-space: normal;
-overflow: hidden;
-text-overflow: clip; /* "hidden" : do not exists as a text-overflow value (https://developer.mozilla.org/fr/docs/Web/CSS/text-overflow) */
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: clip; /* "hidden" : do not exists as a text-overflow value (https://developer.mozilla.org/fr/docs/Web/CSS/text-overflow) */
 }
 
 /* Warning: setting this may make screen not beeing refreshed after a combo selection */
@@ -8374,102 +8432,100 @@ text-overflow: clip; /* "hidden" : do not exists as a text-overflow value (https
 background: #fff;
 }*/
 
-div.ui-radio, div.ui-checkbox
-{
-display: inline-block;
-border-bottom: 0px !important;
+div.ui-radio, div.ui-checkbox {
+    display: inline-block;
+    border-bottom: 0px !important;
 }
 .ui-checkbox input, .ui-radio input {
-height: auto;
-width: auto;
-margin: 4px;
-position: static;
+    height: auto;
+    width: auto;
+    margin: 4px;
+    position: static;
 }
 div.ui-checkbox label+input, div.ui-radio label+input {
-position: absolute;
+    position: absolute;
 }
-.ui-mobile fieldset
-{
-padding-bottom: 10px; margin-bottom: 4px; border-bottom: 1px solid #AAAAAA !important;
+.ui-mobile fieldset {
+    padding-bottom: 10px; margin-bottom: 4px; border-bottom: 1px solid #AAAAAA !important;
 }
 
 ul.ulmenu {
-border-radius: 0;
--webkit-border-radius: 0;
+    border-radius: 0;
+    -webkit-border-radius: 0;
 }
 
 .ui-field-contain label.ui-input-text {
-vertical-align: middle !important;
+    vertical-align: middle !important;
 }
 .ui-mobile fieldset {
-border-bottom: none !important;
+    border-bottom: none !important;
 }
 
 /* Style for first level menu with jmobile */
 .ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
-padding: 1em 15px;
-display: block;
+    padding: 1em 15px;
+    display: block;
 }
 .ui-btn-up-c {
-font-weight: normal;
+    font-weight: normal;
 }
 .ui-focus, .ui-btn:focus {
--webkit-box-shadow: none;
-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 .ui-bar-b {
-/*border: 1px solid #888;*/
-border: none;
-background: none;
-text-shadow: none;
-color: var(--colortexttitlenotab) !important;
+    /*border: 1px solid #888;*/
+    border: none;
+    background: none;
+    text-shadow: none;
+    color: var(--colortexttitlenotab) !important;
 }
 .ui-bar-b, .lilevel0 {
-background-repeat: repeat-x;
-border: none;
-background: none;
-text-shadow: none;
-color: var(--colortexttitlenotab) !important;
+    background-repeat: repeat-x;
+    border: none;
+    background: none;
+    text-shadow: none;
+    color: var(--colortexttitlenotab) !important;
 }
 .alilevel0 {
-font-weight: normal !important;
+    font-weight: normal !important;
 }
 
 .ui-li.ui-last-child, .ui-li.ui-field-contain.ui-last-child {
-border-bottom-width: 0px !important;
+    border-bottom-width: 0px !important;
 }
 .alilevel0 {
-color: <?php print $colorftitle; ?> !important;
+    color: <?php print $colorftitle; ?> !important;
 }
 .ulmenu {
-box-shadow: none !important;
-border-bottom: 1px solid #ccc;
+    box-shadow: none !important;
+    border-bottom: 1px solid #ccc;
 }
 .ui-btn-icon-right {
-border-right: 1px solid #ccc !important;
+    border-right: 1px solid #ccc !important;
 }
 .ui-body-c {
-border: 1px solid #ccc;
-text-shadow: none;
+    border: 1px solid #ccc;
+    text-shadow: none;
 }
 .ui-btn-up-c, .ui-btn-hover-c {
-/* border: 1px solid #ccc; */
-text-shadow: none;
+    /* border: 1px solid #ccc; */
+    text-shadow: none;
 }
 .ui-body-c .ui-link, .ui-body-c .ui-link:visited, .ui-body-c .ui-link:hover {
-color: rgb(<?php echo $colortextlink; ?>);
+    color: rgb(<?php echo $colortextlink; ?>);
 }
 .ui-btn-up-c .vsmenudisabled {
-color: #<?php echo $colorshadowtitle; ?> !important;
-text-shadow: none !important;
+    color: #<?php echo $colorshadowtitle; ?> !important;
+    text-shadow: none !important;
 }
 /*
 .ui-btn-up-c {
-background: transparent;
+    background: transparent;
 }
 
 div.tabsElem a.tab {
-background: transparent;
+    background: transparent;
 }
 
 .ui-controlgroup-horizontal .ui-btn.ui-first-child {
@@ -8575,49 +8631,63 @@ border-top-right-radius: 6px;
 
 /* The theme for public pages */
 .public_body {
-margin: 20px;
+    margin: 20px;
 }
 .public_border {
-border: 1px solid #888;
+    border: 1px solid #888;
+}
+.publicnewmemberform div.tabBarWithBottom {
+    border: 1px solid #e8e8e8;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: var(--colorbackgrey);
+    /*box-shadow: 2px 2px 10px #ddd;*/
 }
 
+.publicnewmemberform #tablesubscribe {
+    color: var(--colortextbackvmenu);
+}
 
-
-::-webkit-scrollbar {
-    width: 12px;
-}
-::-webkit-scrollbar-button {
-    background: #aaa
-}
-::-webkit-scrollbar-track-piece {
-    background: #fff
-}
-::-webkit-scrollbar-thumb {
-    background: #ddd
+@media only screen and (max-width: 768px)
+{
+    .publicnewmemberform div.tabBarWithBottom {
+        padding: 10px;
+    }
 }
 
 /* ============================================================================== */
 /* Ticket module                                                                  */
 /* ============================================================================== */
+
+#KWwithajax ul {
+    padding-left: 20px;
+}
+
+.ticketpublictable td {
+    height: 2.2em;
+}
+
 .ticketpublicarea {
-    width: 100%;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 .publicnewticketform {
     /* margin-top: 25px !important; */
 }
 .ticketlargemargin {
-    padding-top: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
 }
-@media only screen and (max-width: 767px)
+@media only screen and (max-width: 768px)
 {
     .ticketlargemargin {
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 5px; padding-right: 5px;
+        padding-top: 10px;
     }
     .ticketpublicarea {
-        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
 
@@ -8793,101 +8863,101 @@ border: 1px solid #888;
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(230,230,230,0.4) 100%);
 }
 .cd-timeline-content:after {
-content: "";
-display: table;
-clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 .cd-timeline-content h2 {
-color: #303e49;
+    color: #303e49;
 }
 .cd-timeline-content .cd-date {
-font-size: 13px;
-font-size: 0.8125rem;
+    font-size: 13px;
+    font-size: 0.8125rem;
 }
 .cd-timeline-content .cd-date {
-display: inline-block;
+    display: inline-block;
 }
 .cd-timeline-content p {
-margin: 1em 0;
-line-height: 1.6;
+    margin: 1em 0;
+    line-height: 1.6;
 }
 
 .cd-timeline-content .cd-date {
-float: left;
-padding: .2em 0;
-opacity: .7;
+    float: left;
+    padding: .2em 0;
+    opacity: .7;
 }
 .cd-timeline-content::before {
-content: '';
-position: absolute;
-top: 16px;
-right: 100%;
-height: 0;
-width: 0;
-border: 7px solid transparent;
-border-right: 7px solid white;
+    content: '';
+    position: absolute;
+    top: 16px;
+    right: 100%;
+    height: 0;
+    width: 0;
+    border: 7px solid transparent;
+    border-right: 7px solid white;
 }
 @media only screen and (min-width: 768px) {
-.cd-timeline-content h2 {
-font-size: 20px;
-font-size: 1.25rem;
-}
-.cd-timeline-content {
-font-size: 16px;
-font-size: 1rem;
-}
-.cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-font-size: 14px;
-font-size: 0.875rem;
-}
+    .cd-timeline-content h2 {
+        font-size: 20px;
+        font-size: 1.25rem;
+    }
+    .cd-timeline-content {
+        font-size: 16px;
+        font-size: 1rem;
+    }
+    .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
+        font-size: 14px;
+        font-size: 0.875rem;
+    }
 }
 @media only screen and (min-width: 1170px) {
-.cd-timeline-content {
-margin-left: 0;
-padding: 1.6em;
-width: 43%;
-}
-.cd-timeline-content::before {
-top: 24px;
-left: 100%;
-border-color: transparent;
-border-left-color: white;
-}
-.cd-timeline-content .cd-read-more {
-float: left;
-}
-.cd-timeline-content .cd-date {
-position: absolute;
-width: 55%;
-left: 115%;
-top: 6px;
-font-size: 16px;
-font-size: 1rem;
-}
-.cd-timeline-block:nth-child(even) .cd-timeline-content {
-float: right;
-}
-.cd-timeline-block:nth-child(even) .cd-timeline-content::before {
-top: 24px;
-left: auto;
-right: 100%;
-border-color: transparent;
-border-right-color: white;
-}
-.cd-timeline-block:nth-child(even) .cd-timeline-content .cd-read-more {
-float: right;
-}
-.cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
-left: auto;
-right: 115%;
-text-align: right;
-}
+    .cd-timeline-content {
+        margin-left: 0;
+        padding: 1.6em;
+        width: 43%;
+    }
+    .cd-timeline-content::before {
+        top: 24px;
+        left: 100%;
+        border-color: transparent;
+        border-left-color: white;
+    }
+    .cd-timeline-content .cd-read-more {
+        float: left;
+    }
+    .cd-timeline-content .cd-date {
+        position: absolute;
+        width: 55%;
+        left: 115%;
+        top: 6px;
+        font-size: 16px;
+        font-size: 1rem;
+    }
+    .cd-timeline-block:nth-child(even) .cd-timeline-content {
+        float: right;
+    }
+    .cd-timeline-block:nth-child(even) .cd-timeline-content::before {
+        top: 24px;
+        left: auto;
+        right: 100%;
+        border-color: transparent;
+        border-right-color: white;
+    }
+    .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-read-more {
+        float: right;
+    }
+    .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
+        left: auto;
+        right: 115%;
+        text-align: right;
+    }
 
 }
 
 /* Pagination */
 div.refidpadding {
-    padding-top: 3px;
+    /* padding-top: 3px; */
 }
 div.refid {
     font-weight: bold;
@@ -10145,18 +10215,100 @@ div.phpdebugbar-widgets-templates a.phpdebugbar-widgets-editor-link:before
 /* For copy-paste feature                                                         */
 /* ============================================================================== */
 
-span.clipboardCPValueToPrint {
-	display: inline-block;
+span.clipboardCPValueToPrint, div.clipboardCPValueToPrint  {
+    display: inline-block;
 }
 span.clipboardCPValue.hidewithsize {
-	width: 0 !important;
-	display: inline-block;
-	color: transparent;
-	white-space: nowrap;
+    width: 0 !important;
+    display: inline-block;	/* this will be modify on the fly by the copy-paste js code in lib_foot.js.php to have copy feature working */
+    color: transparent;
+    white-space: nowrap;
+    overflow-x: hidden;
+    vertical-align: middle;
+}
+div.clipboardCPValue.hidewithsize {
+    width: 0 !important;
+    display: none;
+    color: transparent;
+    white-space: nowrap;
 }
 
 .clipboardCPShowOnHover .clipboardCPButton {
-	display: none;
+    display: none;
+}
+
+/* To make a div popup, we must use a position absolute inside a position relative */
+.clipboardCPText {
+    position: relative;
+}
+.clipboardCPTextDivInside {
+    position: absolute;
+    background: #f8f8fa;
+    color: #888;
+    border: 1px solid #E0E0E0;
+    opacity: 1;
+    z-index: 20;
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    top: -5px;
+    left: 0px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 0.9em;
+    box-shadow: 1px 1px 6px #ddd;
+}
+
+
+/* ============================================================================== */
+/* CSS style used for hrm skill/rank (may be we can remove this)                  */
+/* ============================================================================== */
+
+.radio_js_bloc_number {
+    display:inline-block;
+    padding:5px 7px;
+    min-width:20px;
+    border-radius:3px;
+    border:1px solid #ccc;
+    background:#eee;
+    color:#555;
+    cursor:pointer;
+    margin:2px;
+    text-align:center;
+}
+.radio_js_bloc_number.selected {
+    transition:0.2s ease background;
+    background:#888;
+    color:#fff;
+    border-color:#555;
+}
+
+
+/* ============================================================================== */
+/* Virtual business card                                                          */
+/* ============================================================================== */
+
+.virtualcard-div {
+    overflow: hidden;
+    vertical-align: top;
+    /* background: #aaa; */
+}
+
+#virtualcard-iframe {
+    border: 40px solid #aaa;
+    vertical-align: top;
+    width: 10%;
+    min-width: 100px;
+    border-radius: 10px;
+    aspect-ratio: 0.6;
+}
+.nopointervent {
+    pointer-events: none;
+}
+.scalepreview {
+    /* transform: scale(0.5); */
+    zoom: 0.20;
+    /* filter: blur(4px); */
 }
 
 /* ============================================================================== */
@@ -10179,6 +10331,64 @@ span.clipboardCPValue.hidewithsize {
     top:50%;
     transform: translate(-50%, -50%);
     text-align:center;
+    font-size: 2em;
+}
+
+/* ============================================================================== */
+/* CSS style used for color jPicker                                               */
+/* ============================================================================== */
+
+table.jPicker {
+    border: 1px solid #bbb !important;
+}
+
+/* ============================================================================== */
+/* CSS style used for survey                                                      */
+/* ============================================================================== */
+
+.opensurveydescription * {
+    width: 100%;
+}
+.imgopensurveywizard
+{
+    padding: 0 4px 0 4px;
+}
+.survey_borders {
+    margin-left: 100px;
+    margin-right: 100px;
+    text-align: start;
+}
+.survey_intro {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+}
+.survey_borders .resultats .nom {
+    text-align: <?php echo $left; ?>
+}
+.survey_borders .resultats .sujet, .survey_borders .resultats .jour {
+    min-width: 100px;
+}
+
+/* ============================================================================== */
+/* CSS style used for BookCal                                                     */
+/* ============================================================================== */
+
+.center.bookingtab {
+    margin-left: 20px;
+}
+#bookinghoursection {
+    width: 145px;
+    height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: left;
+}
+.bookcalform {
+    border: 1px solid #000;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
 
 /* ============================================================================== */

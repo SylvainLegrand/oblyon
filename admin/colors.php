@@ -1,6 +1,6 @@
 <?php
-	/************************************************
-	* Copyright (C) 2015-2024  Alexandre Spangaro   <alexandre@inovea-conseil.com>
+/************************************************
+	* Copyright (C) 2015-2025  Alexandre Spangaro   <alexandre@inovea-conseil.com>
 	* Copyright (C) 2023-2024  Sylvain Legrand	    <contact@infras.fr>
 	*
 	* This program is free software: you can redistribute it and/or modify
@@ -17,30 +17,39 @@
 	* along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	************************************************/
 
-	/************************************************
-	* 	\file		../oblyon/admin/colors.php
-	* 	\ingroup	oblyon
-	* 	\brief		Options Page < Oblyon Theme Configurator >
-	************************************************/
+/************************************************
+* 	\file		../oblyon/admin/colors.php
+* 	\ingroup	oblyon
+* 	\brief		Options Page < Oblyon Theme Configurator >
+************************************************/
 
-	// Dolibarr environment *************************
-	require '../config.php';
+// Dolibarr environment *************************
+require '../config.php';
 
-	// Libraries ************************************
-	require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
-	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
-	require_once '../lib/oblyon.lib.php';
+// Libraries ************************************
+require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
+require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
+dol_include_once('/oblyon/lib/oblyon.lib.php');
 
-	// Translations *********************************
-	$langs->loadLangs(array('admin', 'oblyon@oblyon', 'inovea@oblyon'));
+/**
+ * @var Conf $conf
+ * @var DoliDB $db
+ * @var HookManager $hookmanager
+ * @var Societe $mysoc
+ * @var Translate $langs
+ * @var User $user
+ */
 
-	// Access control *******************************
-	if (! $user->admin)			accessforbidden();
+// Translations *********************************
+$langs->loadLangs(array('admin', 'oblyon@oblyon', 'inovea@oblyon'));
 
-	// Reset cache **********************************
-	$_SESSION['dol_resetcache']	= dol_print_date(dol_now(), 'dayhourlog');
+// Access control *******************************
+if (! $user->admin) accessforbidden();
 
-	// init variables *******************************
+// Reset cache **********************************
+$_SESSION['dol_resetcache']	= dol_print_date(dol_now(), 'dayhourlog');
+
+// init variables *******************************
 	$listcolor					= array('top'		=> array('OBLYON_COLOR_TOPMENU_BCKGRD',
 															'OBLYON_COLOR_TOPMENU_BCKGRD_HOVER',
 															'OBLYON_COLOR_TOPMENU_TXT',
@@ -407,63 +416,66 @@
 														)
 										);
 
-	// Actions **************************************
-	$action							= GETPOST('action','alpha');
-	$result							= '';
-	// Sauvegarde / Restauration
-	if ($action == 'bkupParams')	$result	= oblyon_bkup_module ('oblyon');
-	if ($action == 'restoreParams')	$result	= oblyon_restore_module ('oblyon');
-	// On / Off management
-	if (preg_match('/set_(.*)/', $action, $reg)) {
-		$confkey	= $reg[1];
-		$result		= dolibarr_set_const($db, $confkey, GETPOST('value'), 'chaine', 0, 'Oblyon module', $conf->entity);
-	}
-	// Update buttons management
-	if (preg_match('/update_(.*)/', $action, $reg)) {
-		$list		= array ('Gen'	=> array('THEME_INVERT_RATIO_FILTER'));
-		$confkey	= $reg[1];
-		$error		= 0;
-		foreach ($list[$confkey] as $constname)	$result	= dolibarr_set_const($db, $constname, GETPOST($constname, 'alpha'),	'chaine', 0, 'Oblyon module', $conf->entity);
-		foreach ($listcolor as $list)
-			foreach ($list as $constname)	$result	= dolibarr_set_const($db, $constname, '#'.GETPOST($constname, 'alpha'),	'chaine', 0, 'Oblyon module', $conf->entity);
-		if ($confkey == 'theme') {
-			$res	= 1;
-			foreach ($listtheme[GETPOST('value', 'alpha')] as $constname => $constvalue) {
-				$result	= dolibarr_set_const($db, $constname, $constvalue,	'chaine', 0, 'Oblyon module', $conf->entity);
-				$res	= $res * $result;
-			}
-			$result	= $res > 0 ? 2 : -1;
+// Actions **************************************
+$action							= GETPOST('action','alpha');
+$result							= '';
+
+// Sauvegarde / Restauration
+if ($action == 'bkupParams')	$result	= oblyon_bkup_module ('oblyon');
+if ($action == 'restoreParams')	$result	= oblyon_restore_module ('oblyon');
+// On / Off management
+if (preg_match('/set_(.*)/', $action, $reg)) {
+    $confkey	= $reg[1];
+	$result		= dolibarr_set_const($db, $confkey, GETPOST('value'), 'chaine', 0, 'Oblyon module', $conf->entity);
+}
+// Update buttons management
+if (preg_match('/update_(.*)/', $action, $reg)) {
+	$list		= array ('Gen'	=> array('THEME_INVERT_RATIO_FILTER'));
+	$confkey	= $reg[1];
+	$error		= 0;
+	foreach ($list[$confkey] as $constname)	$result	= dolibarr_set_const($db, $constname, GETPOST($constname, 'alpha'),	'chaine', 0, 'Oblyon module', $conf->entity);
+	foreach ($listcolor as $list)
+	foreach ($list as $constname)   $result	= dolibarr_set_const($db, $constname, '#'.GETPOST($constname, 'alpha'),	'chaine', 0, 'Oblyon module', $conf->entity);
+	if ($confkey == 'theme') {
+		$res	= 1;
+		foreach ($listtheme[GETPOST('value', 'alpha')] as $constname => $constvalue) {
+			$result	= dolibarr_set_const($db, $constname, $constvalue,	'chaine', 0, 'Oblyon module', $conf->entity);
+			$res	= $res * $result;
 		}
+		$result	= $res > 0 ? 2 : -1;
 	}
-	// Retour => message Ok ou Ko
-	if ($result == 2)	setEventMessages($langs->trans('ThemeApplied').' : '.$langs->trans('Oblyon'.GETPOST('value', 'alpha')), null, 'mesgs');
-	if ($result == 1)	setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
-	if ($result == -1)	setEventMessages($langs->trans('Error'), null, 'errors');
+}
+// Retour => message Ok ou Ko
+if ($result == 2)	setEventMessages($langs->trans('ThemeApplied').' : '.$langs->trans('Oblyon'.GETPOST('value', 'alpha')), null, 'mesgs');
+if ($result == 1)	setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
+if ($result == -1)	setEventMessages($langs->trans('Error'), null, 'errors');
 
-	// View *****************************************
-	$page_name			= $langs->trans('OblyonColorsTitle');
-	llxHeader('', $page_name, '', '', '', '', array('/oblyon/js/jscolor.js', '/oblyon/js/jquery.ui.touch-punch.min.js'), '');
-	$linkback			= '<a href = "'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1">'.$langs->trans('BackToModuleList').'</a>';
-	print load_fiche_titre($page_name, $linkback);
+// View *****************************************
+$page_name			= $langs->trans('OblyonColorsTitle');
+llxHeader('', $page_name, '', '', '', '', array('/oblyon/js/jscolor.js', '/oblyon/js/jquery.ui.touch-punch.min.js'), '');
+$linkback			= '<a href = "'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1">'.$langs->trans('BackToModuleList').'</a>';
+print load_fiche_titre($page_name, $linkback);
 
-	// Configuration header *************************
-	$head				= oblyon_admin_prepare_head();
-	print dol_get_fiche_head($head, 'colors', $langs->trans('Module432573Name'), 0, 'inovea@oblyon');
+// Configuration header *************************
+$head				= oblyon_admin_prepare_head();
+print dol_get_fiche_head($head, 'colors', $langs->trans('Module432573Name'), 0, 'inovea@oblyon');
 
-	// setup page goes here *************************
-	print '	<script type = "text/javascript">
+// setup page goes here *************************
+print '	<script type = "text/javascript">
 				$(document).ready(function() {
 					$(".action").keyup(function(event) {
 						if (event.which === 13)	$("#action").click();
 					});
 				});
-			</script>
-			<form action = "'.$_SERVER['PHP_SELF'].'" method = "POST" enctype = "multipart/form-data">
+			</script>';
+
+print '<form action = "'.$_SERVER['PHP_SELF'].'" method = "POST" enctype = "multipart/form-data">
 				<input type="hidden" name="token" value="'.newToken().'" />
 				<input type="hidden" name="action" value="update">
 				<input type="hidden" name="page_y" value="">
 				<input type="hidden" name="dol_resetcache" value="1">';
-	// Sauvegarde / Restauration
+
+    // Sauvegarde / Restauration
 	oblyon_print_backup_restore();
 	clearstatcache();
 	print '		<div class = "div-table-responsive-no-min">

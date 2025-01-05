@@ -30,6 +30,15 @@ dol_include_once('/oblyon/core/modules/modOblyon.class.php');
 dol_include_once('/oblyon/lib/oblyon.lib.php');
 dol_include_once('/oblyon/lib/inovea_common.lib.php');
 
+/**
+ * @var Conf $conf
+ * @var DoliDB $db
+ * @var HookManager $hookmanager
+ * @var Societe $mysoc
+ * @var Translate $langs
+ * @var User $user
+ */
+
 // Langs
 $langs->loadLangs(array('admin','oblyon@oblyon', 'inovea@oblyon', 'oldauthors@oblyon'));
 
@@ -47,17 +56,19 @@ $action = GETPOST('action', 'alpha');
 /*
  * View
  */
+$help_url = '';
 $page_name = "ThemeOblyonAboutTitle";
-llxHeader('', $langs->trans($page_name));
+
+llxHeader('', $langs->trans($page_name), $help_url, '', 0, 0, '', '', '', 'mod-oblyon page-admin_support');
 
 // Subheader
 $linkback = '<a href = "'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1">'.$langs->trans('BackToModuleList').'</a>';
-print load_fiche_titre($langs->trans($page_name), $linkback);
+print load_fiche_titre($langs->trans($page_name), $linkback, 'object_inovea.png@oblyon');
 
 // Configuration header
 $head = oblyon_admin_prepare_head();
 
-print dol_get_fiche_head($head, 'about', $langs->trans("Module432573Name"), 0, "inovea@oblyon");
+print dol_get_fiche_head($head, 'about', $langs->trans("Module432573Name"), -1, "info");
 
 $modClass = new modOblyon($db);
 $oblyonVersion = !empty($modClass->getVersion()) ? $modClass->getVersion() : 'NC';

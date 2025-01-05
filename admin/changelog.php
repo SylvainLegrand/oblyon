@@ -21,13 +21,22 @@
  * \ingroup		oblyon
  * \brief		Changelog Page < Oblyon Theme Configurator >
  */
-	// Dolibarr environment *************************
-	require '../config.php';
+// Dolibarr environment *************************
+require '../config.php';
 
 // Libraries
 require_once DOL_DOCUMENT_ROOT . '/core/lib/admin.lib.php';
 dol_include_once('/oblyon/lib/oblyon.lib.php');
 dol_include_once('/oblyon/lib/inovea_common.lib.php');
+
+/**
+ * @var Conf $conf
+ * @var DoliDB $db
+ * @var HookManager $hookmanager
+ * @var Societe $mysoc
+ * @var Translate $langs
+ * @var User $user
+ */
 
 // Langs
 $langs->loadLangs(array('admin','oblyon@oblyon', 'inovea@oblyon', 'oldauthors@oblyon'));
@@ -47,24 +56,23 @@ $action = GETPOST('action', 'alpha');
  * View
  */
 $page_name = "ThemeOblyonChangelogTitle";
-llxHeader('', $langs->trans($page_name));
+$help_url = '';
+llxHeader('', $langs->trans($page_name), $help_url, '', 0, 0, '', '', '', 'mod-oblyon page-admin_changelog');
 
 // Subheader
 $linkback = '<a href = "'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1">'.$langs->trans('BackToModuleList').'</a>';
-print load_fiche_titre($langs->trans($page_name), $linkback);
+print load_fiche_titre($langs->trans($page_name), $linkback, 'object_inovea.png@oblyon');
 
 // Configuration header
 $head = oblyon_admin_prepare_head();
 
-print dol_get_fiche_head($head, 'changelog', $langs->trans("Module432573Name"), 0, "inovea@oblyon");
+print dol_get_fiche_head($head, 'changelog', $langs->trans("Module432573Name"), -1, "info");
 
 print '<div class="div-table-responsive-no-min">';
 print '<table summary="edit" class="noborder centpercent editmode tableforfield">';
 
 print '<h2>Licence</h2>';
 print $langs->trans("LicenseMessage");
-print '<h2>Bugs / comments</h2>';
-print $langs->trans("AboutMessage");
 
 $changelog = inovea_common_getChangeLog('oblyon');
 

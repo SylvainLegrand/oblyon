@@ -34,7 +34,16 @@ require '../config.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formfile.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/doleditor.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
-require_once '../lib/oblyon.lib.php';
+dol_include_once('/oblyon/lib/oblyon.lib.php');
+
+/**
+ * @var Conf $conf
+ * @var DoliDB $db
+ * @var HookManager $hookmanager
+ * @var Societe $mysoc
+ * @var Translate $langs
+ * @var User $user
+ */
 
 // Translations *********************************
 $langs->loadLangs(array('admin', 'oblyon@oblyon', 'inovea@oblyon'));

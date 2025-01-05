@@ -65,7 +65,7 @@ function inovea_common_getChangeLog($moduleName)
             @include_once DOL_DOCUMENT_ROOT . '/core/lib/parsemd.lib.php';
             $content = dolMd2Html($content, 'parsedown', array('doc/' => $moduleUrlPath . '/doc/'));
         } else {
-            $content = inovea_common_dolMd2Html('codenaf', $content, 'parsedown', array('doc/' => $moduleUrlPath . '/doc/'));
+            $content = inovea_common_dolMd2Html('oblyon', $content, 'parsedown', array('doc/' => $moduleUrlPath . '/doc/'));
         }
 
     }
