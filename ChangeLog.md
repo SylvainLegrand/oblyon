@@ -7,13 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### [3.1.0] - Compatibility 14.0.x - 21.0.x (2024/12/30)
 
 ### Fixed
+- CSS
 
 ### Added
 - Option to change the Dolibarr font family
 
 ### Changed
 - Move ChangeLog to format 1.1.0 of "Keep a changelog" 
-- Seperate the option to change the text color of line titles and the main title
+- Separate the option to change the text color of line titles and the main title
+- Remove Cashdesk CSS
 
 ### [3.0.6] - Compatibility 14.0.x - 20.0.x (2024/09/30)
 - Fix CSS badges
