@@ -17,15 +17,15 @@
         border-left: 1px solid #bbbbbb;
     }
 
-        <?php if (isModEnabled('quicklist') && !getDolGlobalString('MAIN_CHECKBOX_LEFT_COLUMN')) { ?>
+    <?php if (isModEnabled('quicklist') && !getDolGlobalString('MAIN_CHECKBOX_LEFT_COLUMN')) { ?>
         .quicklist-dropdown-content {
             right: 50px !important;
         }
-        <?php } ?>
     <?php } ?>
 
     <?php if (isModEnabled('quicklist') && getDolGlobalString('MAIN_CHECKBOX_LEFT_COLUMN')) { ?>
-    .quicklist-dropdown-content {
-        right: -300px !important;
+        .quicklist-dropdown-content {
+            right: -300px !important;
     }
+    <?php } ?>
 <?php } ?>

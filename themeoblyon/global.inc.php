@@ -10427,6 +10427,13 @@ div.fiche>form>div.div-table-responsive, div.fiche>form>div.div-table-responsive
         background-color: <?php print $colorbtitle; ?>;
         z-index: 1;
     }
+    .publicnewticketform2 th {
+        top: unset !important;
+    }
+    .fichehalfleft  tr.liste_titre th:not(#ajaxloaded_tablelines th),
+    .fichehalfright  tr.liste_titre th:not(#ajaxloaded_tablelines th) {
+        top: unset;
+    }
 <?php } ?>
 
 /* ============================================================================== */
