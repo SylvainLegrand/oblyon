@@ -10400,7 +10400,7 @@ div.fiche>form>div.div-table-responsive, div.fiche>form>div.div-table-responsive
     overflow-x: unset;
 }
 .ui-datepicker {
-    z-index: 5 !important;
+    /*z-index: 5 !important;*/
 }
 
 /* ============================================================================== */
@@ -10540,6 +10540,10 @@ div.tabs:first-of-type, .fiche > div.tabs
 <?php if (!empty($conf->global->DISABLE_KANBAN_VIEW_IN_LIST) || !empty($conf->global->OBLYON_DISABLE_KANBAN_VIEW_IN_LIST)) { ?>
     .paginationafterarrows > .reposition {
         display: none;
+    }
+	/* pour éviter que le bouton d'ajout de consommation de temps soit masqué par la ligne précédente (/projet/tasks/time.php) */
+    .paginationafterarrows > .reposition.btnTitlePlus {
+        display: inline-block;
     }
 <?php } ?>
 
