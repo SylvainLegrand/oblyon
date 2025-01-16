@@ -6691,6 +6691,10 @@ table.cal_event td.cal_event_right {
     background: var(--colorbackbody) !important;
     color: var(--colortext) !important;
 }
+
+.ui-widget-content a {
+    color: var(--colortext) !important;
+}
 /*.ui-widget-header {
 	background: var(--colorbacktitle);
 }*/
