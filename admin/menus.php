@@ -183,6 +183,8 @@ if (getDolGlobalString('MAIN_MENU_INVERT')) {
 						</tr>';
 	}
 }
+$metas		= array(array(), $conf->entity, 0, 0, 1, 0, 0, 0, '', 'menus');
+oblyon_print_input('OBLYON_TOUCH_MENU', 'on_off', $langs->trans('TouchMenu').'<br><span class = "opacitymedium">'.$langs->trans('TouchMenuHelp').'</span>', '', $metas, 2, 1);	// Touch screen menu mode
 print '				</table>
 				</div>';
 print dol_get_fiche_end();
