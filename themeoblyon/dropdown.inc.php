@@ -234,26 +234,26 @@ if (! defined('ISLOADEDBYSTEELSHEET')) die('Must be call by steelsheet'); ?>
 }
 
 	.user-footer .pull-left .button-top-menu-dropdown {
-		background-color: <?php print $colorButtonAction1; ?>;
+		background-color: var(--colorButtonAction1);
 		color: #fff;
 	}
 
 	.user-footer .pull-left .button-top-menu-dropdown:hover, .user-footer .pull-left .button-top-menu-dropdown:focus {
-		background-color: <?php print $colorButtonAction2; ?>;
-		border-color: <?php print $colorButtonAction2; ?>;
+		background-color: var(--colorButtonAction2);
+		border-color: var(--colorButtonAction2);
 		box-shadow: inset 0 1px 0 rgba(235,235,235, .6);
 		-webkit-box-shadow: inset 0 1px 0 rgba(235,235,235, .6);
 		color: #fff;
 	}
 
 	.user-footer .pull-right .button-top-menu-dropdown {
-		background-color: <?php print $colorButtonDelete1; ?>;
+		background-color: var(--colorButtonDelete1);
 		color: #fff;
 	}
 
 	.user-footer .pull-right .button-top-menu-dropdown:hover, .user-footer .pull-left .button-top-menu-dropdown:focus {
-		background-color: <?php print $colorButtonDelete2; ?>;
-		border-color: <?php print $colorButtonDelete2; ?>;
+		background-color: var(--colorButtonDelete2);
+		border-color: var(--colorButtonDelete2);
 		box-shadow: inset 0 1px 0 rgba(235,235,235, .6);
 		-webkit-box-shadow: inset 0 1px 0 rgba(235,235,235, .6);
 		color: #fff;
@@ -388,11 +388,11 @@ if (! defined('ISLOADEDBYSTEELSHEET')) die('Must be call by steelsheet'); ?>
     div.quickaddblock:hover,
     div.quickaddblock:active,
     div.quickaddblock:focus {
-        background: <?php print $maincolor; ?>;
+        background: var(--maincolor);
     }
 
     /* for the dropdown on action buttons */
-    dropdown-holder {
+    .dropdown-holder { /* InfraS change: added missing leading dot, selector never matched .dropdown-holder */
         position: relative;
         display: inline-block;
     }
@@ -400,12 +400,16 @@ if (! defined('ISLOADEDBYSTEELSHEET')) die('Must be call by steelsheet'); ?>
     .dropdown-content {
         display: none;
         position: absolute;
-        z-index: 1;
+        z-index: 5; /* InfraS change: aligned with eldy so the menu stacks above surrounding page content */
         width: 300px;
         right:10px;	/* will be set with js */
+        /* InfraS add begin: default anchor below the button, aligned with eldy */
+        bottom: 0;
+        transform: translateY(100%);
+        /* InfraS add end */
         background: #fff;
         border: 1px solid #bbb;
-        text-align: <?php echo $left; ?>;
+        text-align: var(--left);
         -webkit-box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
         box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
     }
